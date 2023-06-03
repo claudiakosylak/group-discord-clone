@@ -20,6 +20,7 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, default=datetime.now())
 
     servers = db.relationship('Server', back_populates='user')
+    channel_messages = db.relationship('ChannelMessage', back_populates='user')
 
 
     @property
@@ -40,5 +41,6 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'date_of_birth': self.date_of_birth,
             'about': self.about,
-            'profile_pic': self.profile_pic
+            'profile_pic': self.profile_pic,
+            'channel_messages': self.channel_messages.to_dict()
         }

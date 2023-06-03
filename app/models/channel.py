@@ -13,11 +13,13 @@ class Channel(db.Model):
     server_id = db.Column(db.Integer, db.ForeignKey('servers.id'), nullable = False)
 
     server = db.relationship('Server', back_populates='channels')
+    channel_messages = db.relationship('ChannelMessage', back_populates='channel')
 
     def to_dict(self):
         return {
             'id': self.id,
             'title': self.title,
             'server_id': self.server_id,
-            'server': self.server.to_dict()
+            'server': self.server.to_dict(),
+            'channel_messages': self.channel_messages.to_dict()
         }
