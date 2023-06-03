@@ -15,6 +15,7 @@ class Server(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)
 
     user = db.relationship('User', back_populates='servers')
+    channels = db.relationship('Channel', back_populates='server')
 
     def to_dict(self):
         return {
@@ -23,5 +24,6 @@ class Server(db.Model):
             'private_status': self.private_status,
             'preview_icon': self.preview_icon,
             'owner_id': self.owner_id,
-            'user': self.user.to_dict()
+            'user': self.user.to_dict(),
+            'channels': self.channels.to_dict()
         }
