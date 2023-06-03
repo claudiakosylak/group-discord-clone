@@ -5,16 +5,16 @@ from datetime import datetime
 def seed_channels():
 
     channel1 = Channel(
-        title='Channel One', server_id = 1
+        title='Channel One', server_id = 1, topic='This is the channel 1 test topic'
     )
     channel2 = Channel(
-        title='Channel Two', server_id = 1
+        title='Channel Two', server_id = 1, topic='This is the channel 2 test topic'
     )
     channel3 = Channel(
-        title='Channel Three', server_id = 2
+        title='Channel Three', server_id = 2, topic='This is the channel 3 test topic'
     )
     channel4 = Channel(
-        title='Channel Four', server_id = 2
+        title='Channel Four', server_id = 2, topic='This is the channel 4 test topic'
     )
 
 
