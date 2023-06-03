@@ -16,6 +16,7 @@ class Server(db.Model):
 
     user = db.relationship('User', back_populates='servers')
     channels = db.relationship('Channel', back_populates='server')
+    memberships = db.relationship('Membership', back_populates='server')
 
     def to_dict(self):
         return {
@@ -25,5 +26,6 @@ class Server(db.Model):
             'preview_icon': self.preview_icon,
             'owner_id': self.owner_id,
             'user': self.user.to_dict(),
-            'channels': self.channels.to_dict()
+            'channels': self.channels.to_dict(),
+            'memberships': self.memberships.to_dict()
         }

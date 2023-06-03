@@ -21,6 +21,7 @@ class User(db.Model, UserMixin):
 
     servers = db.relationship('Server', back_populates='user')
     channel_messages = db.relationship('ChannelMessage', back_populates='user')
+    memberships = db.relationship('Membership', back_populates='user')
 
 
     @property
@@ -42,5 +43,6 @@ class User(db.Model, UserMixin):
             'date_of_birth': self.date_of_birth,
             'about': self.about,
             'profile_pic': self.profile_pic,
-            'channel_messages': self.channel_messages.to_dict()
+            'channel_messages': self.channel_messages.to_dict(),
+            'memberships': self.memberships.to_dict()
         }
