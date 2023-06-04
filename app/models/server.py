@@ -12,7 +12,7 @@ class Server(db.Model):
     private_status = db.Column(db.Boolean, default=False)
     preview_icon = db.Column(db.String(255), default='https://t4.ftcdn.net/jpg/04/00/24/31/360_F_400243185_BOxON3h9avMUX10RsDkt3pJ8iQx72kS3.jpg')
     created_at = db.Column(db.DateTime, default=datetime.now())
-    owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)
+    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable = False)
 
     user = db.relationship('User', back_populates='servers')
     channels = db.relationship('Channel', back_populates='server')

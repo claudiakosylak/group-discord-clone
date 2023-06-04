@@ -10,8 +10,8 @@ class ChannelMessage(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(5000), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now())
-    channel_id = db.Column(db.Integer, db.ForeignKey('channels.id'), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    channel_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('channels.id')), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
 
     channel = db.relationship('Channel', back_populates='channel_messages')
     user = db.relationship('User', back_populates='channel_messages')
