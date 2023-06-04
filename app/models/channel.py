@@ -9,6 +9,7 @@ class Channel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(40), nullable=False)
+    topic = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=datetime.now())
     server_id = db.Column(db.Integer, db.ForeignKey('servers.id'), nullable = False)
 
@@ -19,7 +20,7 @@ class Channel(db.Model):
         return {
             'id': self.id,
             'title': self.title,
+            'topic': self.topic,
             'server_id': self.server_id,
-            'server': self.server.to_dict(),
-            'channel_messages': self.channel_messages.to_dict()
+            'server': self.server.to_dict()
         }
