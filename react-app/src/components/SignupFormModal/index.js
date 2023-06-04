@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
@@ -14,7 +14,17 @@ function SignupFormModal() {
 	const [day, setDay] = useState("");
 	const [year, setYear] = useState("");
 	const [errors, setErrors] = useState([]);
+	const [hasSubmitted, setHasSubmitted] = useState(false)
 	const { closeModal } = useModal();
+
+	useEffect(() => {
+		const errors = []
+		if (!month.length || !day.length || !year.length) errors.push("Date of birth is required")
+
+
+		setErrors(errors)
+
+	}, [month, day, year])
 
 	// const handleSubmit = async (e) => {
 	// 	e.preventDefault();
@@ -34,7 +44,7 @@ function SignupFormModal() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
+		setHasSubmitted(true)
 		let monthObj = {
 			"January": 1,
 			"February": 2,
@@ -50,11 +60,12 @@ function SignupFormModal() {
 			"December": 12,
 		}
 
-		const dateOfBirth = `${year}-${monthObj[month]}-${day}`
-		const data = await dispatch(signUp(username, email, password, dateOfBirth));
+		// const dateOfBirth = `${year}-${monthObj[month]}-${day}`
+		const data = await dispatch(signUp(username, email, password, month, day, year));
 		if (data) {
 			setErrors(data);
 		} else {
+			setHasSubmitted(false)
 			closeModal();
 		}
 
@@ -71,14 +82,16 @@ function SignupFormModal() {
 		yearOptionArr.push(i)
 	}
 
+
+
 	return (
 		<>
 			<h1>Sign Up</h1>
 			<form onSubmit={handleSubmit}>
 				<ul>
-					{errors.map((error, idx) => (
+					{(hasSubmitted && errors.length) && (errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
-					))}
+					)))}
 				</ul>
 				<label>
 					Email
