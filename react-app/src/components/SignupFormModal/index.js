@@ -18,8 +18,10 @@ function SignupFormModal() {
 	const { closeModal } = useModal();
 
 	useEffect(() => {
-		const errors = []
-		if (!month.length || !day.length || !year.length) errors.push("Date of birth is required")
+		const errors = {}
+		// if (!month.length || !day.length || !year.length) errors.dateOfBirth = "Date of birth is required"
+
+		if (month === "Month" || day === "Day" || year === "Year") errors.dateOfBirth = "Valid date of birth required"
 
 
 		setErrors(errors)
@@ -78,7 +80,7 @@ function SignupFormModal() {
 	}
 
 	let yearOptionArr = []
-	for (let i = 1900; i < 2024; i++) {
+	for (let i = 1900; i < 2023; i++) {
 		yearOptionArr.push(i)
 	}
 
@@ -92,6 +94,7 @@ function SignupFormModal() {
 					{(hasSubmitted && errors.length) && (errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
 					)))}
+
 				</ul>
 				<label>
 					Email
@@ -137,6 +140,9 @@ function SignupFormModal() {
 						onChange={(e) => setMonth(e.target.value)}
 						required
 					>
+					<option value="" disabled>
+						Month
+					</option>
 					<option value="January">
 						January
 					</option>
@@ -184,6 +190,7 @@ function SignupFormModal() {
 						onChange={(e) => setDay(e.target.value)}
 						required
 					>
+					<option value="" disabled>Day</option>
 					{daysOptionArr.map(day => (
 						<option key={day} value={day}>{day}</option>
 					))}
@@ -197,13 +204,14 @@ function SignupFormModal() {
 						onChange={(e) => setYear(e.target.value)}
 						required
 					>
+					<option value="" disabled>Year</option>
 					{yearOptionArr.map(year => (
 						<option key={year} value={year}>{year}</option>
 					))}
 					</select>
 				</label>
 
-				<button type="submit">Sign Up</button>
+				<button type="submit" disabled={month === "" || day === "" || year === ""}>Sign Up</button>
 			</form>
 		</>
 	);
