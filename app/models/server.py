@@ -25,7 +25,5 @@ class Server(db.Model):
             'private_status': self.private_status,
             'preview_icon': self.preview_icon,
             'owner_id': self.owner_id,
-            'user': self.user.to_dict(),
-            'channels': self.channels.to_dict(),
-            'memberships': self.memberships.to_dict()
+            'user': self.user.to_dict()
         }

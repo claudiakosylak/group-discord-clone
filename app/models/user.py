@@ -42,7 +42,5 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'date_of_birth': self.date_of_birth,
             'about': self.about,
-            'profile_pic': self.profile_pic,
-            'channel_messages': self.channel_messages.to_dict(),
-            'memberships': self.memberships.to_dict()
+            'profile_pic': self.profile_pic
         }
