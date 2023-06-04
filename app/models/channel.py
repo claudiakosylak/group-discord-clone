@@ -11,7 +11,7 @@ class Channel(db.Model):
     title = db.Column(db.String(40), nullable=False)
     topic = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=datetime.now())
-    server_id = db.Column(db.Integer, db.ForeignKey('servers.id'), nullable = False)
+    server_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('servers.id')), nullable = False)
 
     server = db.relationship('Server', back_populates='channels')
     channel_messages = db.relationship('ChannelMessage', back_populates='channel')

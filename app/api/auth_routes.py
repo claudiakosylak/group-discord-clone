@@ -3,6 +3,7 @@ from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+from datetime import datetime
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -61,15 +62,40 @@ def sign_up():
     """
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    # print("This is the request in the signup route python ===", request.data)
+    # print("we are trying to convert bytes to something=====", request.data.decode("utf-8"))
+    # dict_data = request.data.decode("utf-8")
+    print("THIS IS THE FORM BEFORE VALIDATE ON SUB =====", form.data["month"])
     if form.validate_on_submit():
+        print("THIS IS THE FORM =====", form.data["month"])
+        monthObj = {
+            "January": 1,
+			"February": 2,
+			"March": 3,
+			"April": 4,
+			"May": 5,
+			"June": 6,
+			"July": 7,
+			"August": 8,
+			"September": 9,
+			"October": 10,
+			"November": 11,
+			"December": 12,
+        }
+        dateOfBirth = f"{form.data['year']}-{monthObj[form.data['month']]}-{form.data['day']}"
+        print("THIS IS THE DATE OF BIRTH", dateOfBirth)
+        dob = datetime.strptime(dateOfBirth, '%Y-%m-%d')
+
         user = User(
             username=form.data['username'],
             email=form.data['email'],
-            password=form.data['password']
+            password=form.data['password'],
+            date_of_birth=dob.date()
         )
         db.session.add(user)
         db.session.commit()
         login_user(user)
+        print("THIS IS THE USER AFTER ====", user)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
