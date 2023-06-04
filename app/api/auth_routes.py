@@ -3,6 +3,7 @@ from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+from datetime import datetime
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -61,11 +62,14 @@ def sign_up():
     """
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print("This is the request in the signup route python ===", request.data)
     if form.validate_on_submit():
+        date_of_birth_var = datetime.strptime(form.data["date_of_birth"], '%Y-%m-%d')
         user = User(
             username=form.data['username'],
             email=form.data['email'],
-            password=form.data['password']
+            password=form.data['password'],
+            date_of_birth=date_of_birth_var
         )
         db.session.add(user)
         db.session.commit()
