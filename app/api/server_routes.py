@@ -50,4 +50,4 @@ def servers_route():
     print("FILTERED SERVERS: ", filtered_servers)
     print("************** DICT: ", server_dict)
 
-    return filtered_servers
+    return server_dict
