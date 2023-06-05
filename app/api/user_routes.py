@@ -2,6 +2,10 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import User, db
 from ..forms.update_user_form import UpdateUserForm
+from email_validator import validate_email
+import re
+from app.api.AWS_helpers import upload_file_to_s3, get_unique_filename, remove_file_from_s3
+from datetime import datetime
 
 user_routes = Blueprint('users', __name__)
 
@@ -37,29 +41,57 @@ def update_user(id, username, email, hashed_password, date_of_birth , about, pro
     errors = {}
     user = User.query.get(id)
 
-    if username and len(username) < 40:
-        user['username'] = username
-    elif username:
-        errors['username'] = 'Username must be less than 40 characters'
+    if form.validate_on_submit():
 
-    if email and len(email) < 255:
-        user['email'] = email
-    elif email:
-        errors['email'] = email
+        monthObj = {
+            "January": 1,
+			"February": 2,
+			"March": 3,
+			"April": 4,
+			"May": 5,
+			"June": 6,
+			"July": 7,
+			"August": 8,
+			"September": 9,
+			"October": 10,
+			"November": 11,
+			"December": 12,
+        }
+        dateOfBirth = f"{form.data['year']}-{monthObj[form.data['month']]}-{form.data['day']}"
+        dob = datetime.strptime(dateOfBirth, '%Y-%m-%d')
 
-    if hashed_password:
-        user['hashed_password'] = hashed_password
+        if username and len(username) < 40:
+            user['username'] = username
+        elif username:
+            errors['username'] = 'Username must be less than 40 characters'
 
-    if date_of_birth:
-        user['date_of_birth'] = date_of_birth
+        if email:
+            valid = re.search(r'[\w.]+\@[\w.]+', email)
 
-    if about and len(about) < 2000:
-        user['about'] = about
-    elif about:
-        errors['about'] = 'About must less than 200 characters'
+        if email and len(email) < 255 and valid is True:
+            user['email'] = email
+        elif email:
+            errors['email'] = 'Enter a valid email'
 
-    if profile_pic:
-        user['profile_pic'] = profile_pic
+        if hashed_password:
+            user['hashed_password'] = hashed_password
+
+        if date_of_birth:
+            user['date_of_birth'] = dob.date()
+
+        if about and len(about) < 2000:
+            user['about'] = about
+        elif about:
+            errors['about'] = 'About must less than 200 characters'
+
+        if profile_pic:
+            image = form.data["profile_pic"]
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            if 'url' not in upload:
+                errors['profile_pic'] = 'Invalid image url'
+            else:
+                user['profile_pic'] = upload['url']
 
     db.commit()
     return user.to_dict()

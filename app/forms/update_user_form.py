@@ -3,6 +3,8 @@ from wtforms import StringField, SelectField
 from wtforms.validators import DataRequired, Email, ValidationError
 from app.models import User
 import datetime
+from flask_wtf.file import FileField, FileAllowed, FileRequired
+from app.api.AWS_helpers import ALLOWED_EXTENSIONS
 
 
 def user_exists(form, field):
@@ -39,4 +41,4 @@ class UpdateUserForm(FlaskForm):
     day = SelectField("Day", choices=days, default="Day", validators=[DataRequired()])
     year = SelectField("Year", choices=years, default="Year", validators=[DataRequired()])
     about = StringField('about')
-    profile_pic = StringField('profile_pic')
+    profile_pic = FileField('profile_pic', validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
