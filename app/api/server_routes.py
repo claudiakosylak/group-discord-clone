@@ -7,19 +7,19 @@ server_routes = Blueprint('servers', __name__)
 
 @server_routes.route('/')
 @login_required
-def servers():
+def servers_route():
     """
     Query for all servers and returns them in a list of server dictionaries
     """
 
-    servers = Server.query.all()
-    print("SERVERS:", servers)
+    all_servers = Server.query.all()
+    print("SERVERS:", all_servers)
 
-    for server in servers:
+    for server in all_servers:
         print("server.id: ",server.id)
         
-    user_memberships = Membership.query.filter(Membership.user_id == current_user.id)
-    owned_servers = Server.query.filter(Server.owner_id == current_user.id)
+    user_memberships = Membership.query.filter(Membership.user_id == current_user.id).all()
+    owned_servers = Server.query.filter(Server.owner_id == current_user.id).all()
     user_server_ids = []
 
     for membership in user_memberships:
@@ -28,19 +28,17 @@ def servers():
     for servers in owned_servers:
         user_server_ids.append(servers.id)
 
-
-
-    # filtered_servers = [server for server in servers if server.id in user_server_ids]
+    filtered_servers = [server for server in all_servers if server.id in user_server_ids]
 
     #normalize list (filtered_servers) to json format
     server_dict = {}
     print("all server ids for current user: ", user_server_ids)
-    for server in servers:
-        if server.id in user_server_ids:
-            server_dict[server.id]: dict(server)
+    # for server in all_servers:
+    #     if server.id in user_server_ids:
+    #         server_dict[server.id]: dict(server)
 
-    # for server in filtered_servers:
-    #     server_dict[server.id]: server
+    for server in filtered_servers:
+        server_dict[server.id]: server
 
 
     print("current User: ",current_user.id)
@@ -48,4 +46,6 @@ def servers():
 
     # print("filtered servers: ", filtered_servers)
 
-    return server_dict
+    print("FILTERED SERVERS: ",filtered_servers)
+
+    return {"servers" : filtered_servers}
