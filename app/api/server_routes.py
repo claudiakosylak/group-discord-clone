@@ -1,11 +1,22 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import User, Server, Membership
-
+from app.models import User, Server, Membership, db
+from app.forms import ServerForm
 
 server_routes = Blueprint('servers', __name__)
 
-@server_routes.route('/')
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
+
+@server_routes.route('')
 @login_required
 def servers_route():
     """
@@ -32,3 +43,22 @@ def servers_route():
         server_dict[server.id] = server.to_dict()
 
     return server_dict
+
+
+@server_routes.route('/', methods=["POST"])
+@login_required
+def add_server():
+    form = ServerForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        newServer = Server(
+            title=form.data['title'],
+            owner_id=current_user.id
+        )
+
+        db.session.add(newServer)
+        db.session.commit()
+        return newServer.to_dict()
+    
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
