@@ -45,9 +45,10 @@ def servers_route():
     return server_dict
 
 
-@server_routes.route('/', methods=["POST"])
+@server_routes.route('', methods=["POST"])
 @login_required
 def add_server():
+    print("IN ADD SERVER ROUTE")
     form = ServerForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -56,6 +57,8 @@ def add_server():
             title=form.data['title'],
             owner_id=current_user.id
         )
+
+        print("NEW SERVER: ", newServer)
 
         db.session.add(newServer)
         db.session.commit()

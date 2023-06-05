@@ -19,30 +19,53 @@ export const getServersThunk = () =>  async (dispatch) => {
         await dispatch(getCurrentUsersServers(data))
         return data
     } else {
-        const errors = await res.json()
-        return errors
+        const err = await res.json()
+        return err
     }
 }
 
-// TODO: create thunk for creating new server
-// export const createNewServerThunk = (server) => async (dipatch) => {
-//     const res = await fetch("/api/servers", {
+export const createNewServerThunk = (server) => async (dispatch) => {
+    try {
+        const res = await fetch("/api/servers", {
+            method: "POST",
+            headers: { "Content-Type" : "application/json" },
+            body: JSON.stringify(server)
+        })
 
-//     })
-// }
+        if (res.ok) {
+            const newServer = await res.json()
+            console.log("in create new server thing")
+            console.log("NEW SERVER:", newServer)
+            await dispatch(createNewServerAction(newServer))
+            return newServer
+        } else {
+            const err = await res.json()
+            return err
+        }
+    } catch(errors) {
+        console.log("THIS IS THE CATCH ERROR: ", errors)
+
+    }
+}
  
 const initialState = { allServers: {}, currentServer: {} };
 
 const serverReducer = (state = initialState, action) => {
+    console.log("ACTION TYPE", action.type)
     switch (action.type) {
         case GET_CURRENT_USERS_SERVERS:
             const newState = { ...state, allServers: {}, currentServer: {} }
             newState.allServers = action.servers
             console.log("action.servers: ", action.servers)
             return newState;
+        case CREATE_NEW_SERVER:
+            const createState = {...state, allServers: {...state.allServers}, currentServer: {} }
+            createState.currentServer = action.server
+            return createState
         default: 
             return state;
     }
+
 }
 
 export default serverReducer;
