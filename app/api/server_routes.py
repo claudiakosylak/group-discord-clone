@@ -38,7 +38,8 @@ def servers_route():
     #         server_dict[server.id]: dict(server)
 
     for server in filtered_servers:
-        server_dict[server.id]: server
+        print("!!!!!!!!!!!!!!!! SERVER DICT: ",server.to_dict())
+        server_dict[server.id] = server.to_dict()
 
 
     print("current User: ",current_user.id)
@@ -46,6 +47,7 @@ def servers_route():
 
     # print("filtered servers: ", filtered_servers)
 
-    print("FILTERED SERVERS: ",filtered_servers)
+    print("FILTERED SERVERS: ", filtered_servers)
+    print("************** DICT: ", server_dict)
 
-    return {"servers" : filtered_servers}
+    return filtered_servers
