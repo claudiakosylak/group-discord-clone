@@ -65,7 +65,6 @@ const serverReducer = (state = initialState, action) => {
         default: 
             return state;
     }
-
 }
 
 export default serverReducer;

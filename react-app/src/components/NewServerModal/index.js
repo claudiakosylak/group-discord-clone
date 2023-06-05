@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import createNewServerThunk from "../../store/server"
+import { createNewServerThunk } from "../../store/server"
 // import "./LoginForm.css";
 
 function NewServerModal() {
