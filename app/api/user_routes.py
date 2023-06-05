@@ -32,7 +32,7 @@ def user(id):
 
 @user_routes.route('/<int:id>', methods=['PUT'])
 @login_required
-def update_user(id, username, email, hashed_password, date_of_birth , about, profile_pic):
+def update_user(id, username, email, password, date_of_birth, about, profile_pic):
     """
     Update a user by their ID number
     """
@@ -73,8 +73,8 @@ def update_user(id, username, email, hashed_password, date_of_birth , about, pro
         elif email:
             errors['email'] = 'Enter a valid email'
 
-        if hashed_password:
-            user['hashed_password'] = hashed_password
+        if password:
+            user['password'] = password
 
         if date_of_birth:
             user['date_of_birth'] = dob.date()
