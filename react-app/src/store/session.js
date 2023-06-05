@@ -106,26 +106,29 @@ export const signUp = (username, email, password, month, day, year) => async (di
 
 export const updateUserThunk = (user) => async(dispatch) => {
 	console.log("THIS IS THE USER WE ARE PASSING IN THE THUNK", user)
+	const {id, username, email, password, month, day, year, about, profile_pic} = user
 	const response = await fetch(`/api/users/${user.id}`, {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify(
-			// username,
-			// email,
-			// password,
-			// month,
-			// day,
-			// year,
-			// about,
-			// profile_pic
-			user
-		)
+		body: JSON.stringify({
+			id,
+			username,
+			email,
+			password,
+			month,
+			day,
+			year,
+			about,
+			profile_pic
+			// user
+		})
 	})
 	console.log("THIS IS THE RESPONSE IN THE UPDATE THUNK", response)
 	if (response.ok) {
 		const data = await response.json();
+		console.log("THIS IS THE DATA IN THE THUNK AFTER RESPONSE OK", data)
 		dispatch(updateUser(data));
 		return null;
 	} else if (response.status < 500) {

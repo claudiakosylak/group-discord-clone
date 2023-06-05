@@ -61,22 +61,33 @@ const UpdateUser = () => {
         //     about,
         //     profilePic
         // }
+        // const formData = new FormData();
+
         user.username = username
+        // formData.append("username", username)
         user.email = email
+        // formData.append("email", email)
         if (password) {
             user.password = password
+            // formData.append("password", password)
         }
         user.month = month
+        // formData.append("month", month)
         user.day = day
+        // formData.append("day", day)
         user.year = year
+        // formData.append("year", year)
         if (about.length > 0) {
             user.about = about
+            // formData.append("about", about)
         }
-        // if (profilePic) {
-        //     user.profilePic = profilePic
-        // }
+        if (profilePic) {
+            user.profile_pic = profilePic
+            // formData.append("profile_pic", profilePic)
+        }
 
-
+        // console.log("THIS IS THE FORM DATA", formData)
+        console.log("THIS IS THE USER IN THE COMPONENT", user)
         const data = await dispatch(updateUserThunk(user));
         console.log("THIS IS THE DATA IN THE HANDLE SUBMIT", data)
         // const formData = new FormData();
