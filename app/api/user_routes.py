@@ -32,17 +32,20 @@ def user(id):
 
 @user_routes.route('/<int:id>', methods=['PUT'])
 @login_required
-def update_user(id, username, email, password, date_of_birth, about, profile_pic):
+def update_user(**kwargs):
     """
     Update a user by their ID number
     """
+    print("WHAT IS THIS REQUEST======", kwargs)
+    # id, username, email, password, month, day, year, about, profile_pic = request.body
+
     form = UpdateUserForm() #ToDo make the UpdateUserForm in forms folder
     form['csrf_token'].data = request.cookies['csrf_token']
     errors = {}
-    user = User.query.get(id)
-
+    user = User.query.get(kwargs["id"])
+    print("THIS IS THE USER IN THE USER ROUTE=====================", dict(user.to_dict()))
     if form.validate_on_submit():
-
+        print("THIS IS THE FORM.DATA=======================", form.data)
         monthObj = {
             "January": 1,
 			"February": 2,
@@ -76,7 +79,7 @@ def update_user(id, username, email, password, date_of_birth, about, profile_pic
         if password:
             user['password'] = password
 
-        if date_of_birth:
+        if dob:
             user['date_of_birth'] = dob.date()
 
         if about and len(about) < 2000:

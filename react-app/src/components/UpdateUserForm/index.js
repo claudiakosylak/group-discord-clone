@@ -1,46 +1,130 @@
 import React, {useState} from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUserThunk } from "../../store/session";
+
+const UpdateUser = () => {
+
+    const dispatch = useDispatch()
+
+    const userId = useSelector(state => state.session.user.id)
+    const currentUser = useSelector(state => state.session.user)
 
 
-const UploadProfilePicture = () => {
+    const fullDateOfBirth = currentUser.date_of_birth.split(" ")
+
+
+    let monthObj = {
+        Jan: "January",
+        Feb: "February",
+        Mar: "March",
+        Apr: "April",
+        May: "May",
+        June: "June",
+        July: "July",
+        Aug: "August",
+        Sep: "September",
+        Oct: "October",
+        Nov: "November",
+        Dec: "December",
+    }
+
+
     const history = useHistory(); // so that we can redirect after the image upload is successful
     const [image, setImage] = useState(null);
     const [imageLoading, setImageLoading] = useState(false);
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [month, setMonth] = useState('');
-    const [day, setDay] = useState('');
-    const [year, setYear] = useState('');
-    const [about, setAbout] = useState('');
-    const [profilePic, setProfilePic] = useState('');
+    const [username, setUsername] = useState(currentUser?.username);
+    const [email, setEmail] = useState(currentUser?.email);
+    const [password, setPassword] = useState(currentUser?.password);
+    const [month, setMonth] = useState(monthObj[fullDateOfBirth[2]]);
+    const [day, setDay] = useState(fullDateOfBirth[1]);
+    const [year, setYear] = useState(fullDateOfBirth[3]);
+    const [about, setAbout] = useState(currentUser?.about);
+    const [profilePic, setProfilePic] = useState(currentUser?.profilePic);
+
+    const [errors, setErrors] = useState([]);
+    const [hasSubmitted, setHasSubmitted] = useState(false)
+
+    const user = useSelector(state => state.session.user)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const formData = new FormData();
-        console.log('This is our form dat in the 'formData)
-        formData.append("profile_pic", profilePic);
 
-        // aws uploads can be a bit slow—displaying
-        // some sort of loading message is a good idea
-        setImageLoading(true);
+        // const user = {
+        //     id: userId,
+        //     username,
+        //     email,
+        //     password,
+        //     month,
+        //     day,
+        //     year,
+        //     about,
+        //     profilePic
+        // }
+        user.username = username
+        user.email = email
+        if (password) {
+            user.password = password
+        }
+        user.month = month
+        user.day = day
+        user.year = year
+        if (about.length > 0) {
+            user.about = about
+        }
+        // if (profilePic) {
+        //     user.profilePic = profilePic
+        // }
 
-        const res = await fetch('/api/images', {
-            method: "POST",
-            body: formData,
-        });
-        if (res.ok) {
-            await res.json();
-            setImageLoading(false);
-            history.push("/images");
-        }
-        else {
-            setImageLoading(false);
-            // a real app would probably use more advanced
-            // error handling
-            console.log("error");
-        }
+
+        const data = await dispatch(updateUserThunk(user));
+        console.log("THIS IS THE DATA IN THE HANDLE SUBMIT", data)
+        // const formData = new FormData();
+        // console.log('This is our form data in the handle submit ', formData)
+        // formData.append("profile_pic", profilePic);
+
+        // // aws uploads can be a bit slow—displaying
+        // // some sort of loading message is a good idea
+        // setImageLoading(true);
+
+        // const res = await fetch(`/api/users/${userId}`, {
+        //     method: "PUT",
+        //     body: {
+        //         // id: userId,
+        //         username,
+        //         email,
+        //         password,
+        //         month,
+        //         day,
+        //         year,
+        //         about,
+        //         profile_pic: profilePic
+        //     },
+        // });
+        // console.log("THIS IS RES", res)
+        // if (res.ok) {
+        //     await res.json();
+        //     setImageLoading(false);
+        //     history.push(`/users/${userId}`);
+        // }
+        // else {
+        //     setImageLoading(false);
+        //     // a real app would probably use more advanced
+        //     // error handling
+        //     console.log("error");
+        // }
+
     }
+
+    let daysOptionArr = []
+	for (let i = 1; i < 32; i++) {
+		daysOptionArr.push(i)
+	}
+
+	let yearOptionArr = []
+	for (let i = 1900; i < 2023; i++) {
+		yearOptionArr.push(i)
+	}
 
     return (
 		<div>
@@ -80,7 +164,7 @@ const UploadProfilePicture = () => {
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            required
+
                         />
                     </label>
                     <label>
@@ -181,4 +265,4 @@ const UploadProfilePicture = () => {
 	);
 }
 
-export default UploadProfilePicture;
+export default UpdateUser;
