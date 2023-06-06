@@ -1,5 +1,6 @@
 const GET_MEMBERSHIPS = "membership/GET_MEMBERSHIPS"
 const GET_ONE_MEMBERSHIP = "membership/GET_ONE_MEMBERSHIP"
+const DELETE_MEMBERSHIP = "membership/DELETE_MEMBERSHIP"
 
 const getMembershipsAction = (memberships) => ({
     type: GET_MEMBERSHIPS,
@@ -9,6 +10,11 @@ const getMembershipsAction = (memberships) => ({
 const getOneMembershipAction = membership => ({
     type: GET_ONE_MEMBERSHIP,
     membership
+})
+
+const deleteMembershipAction = membershipId => ({
+    type: DELETE_MEMBERSHIP,
+    membershipId
 })
 
 export const getMembershipsThunk = (serverId) => async dispatch => {
@@ -40,6 +46,20 @@ export const createMembershipThunk = (membership, serverId) => async dispatch =>
     }
 }
 
+export const deleteMembershipThunk = (membershipId) => async dispatch => {
+    const res = await fetch(`/api/memberships/${membershipId}`, {
+        method: "DELETE"
+    })
+    if (res.ok) {
+        const deleteMembership = await res.json()
+        await dispatch(deleteMembershipAction(membershipId))
+        return deleteMembership
+    } else {
+        const err = await res.json()
+        return err
+    }
+}
+
 const initialState = { allMemberships: {}, currentMember: {}}
 
 const membershipReducer = (state = initialState, action) => {
@@ -52,6 +72,10 @@ const membershipReducer = (state = initialState, action) => {
             const memberState = {...state, allMemberships: {}, currentMember: {}}
             memberState.currentMember = action.membership
             return memberState
+        case DELETE_MEMBERSHIP:
+            const deleteMemberState = {...state, allMemberships: {...state.allMemberships}, currentMember: {}}
+            delete deleteMemberState.allMemberships[action.membershipId]
+            return deleteMemberState
         default:
             return state
     }

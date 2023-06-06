@@ -10,6 +10,7 @@ import NewChannelModal from '../CreateChannelModal';
 import EditChannelModal from '../EditChannelComponent';
 import EditServerModal from '../EditServerModal';
 import MembershipNavBar from '../MemberNavBar';
+import LeaveServerModal from '../LeaveServerModal';
 
 function OpenModalMenuItem({
   modalComponent, // component to render inside the modal
@@ -88,6 +89,12 @@ function ServerNavBar({ isLoaded }) {
               <OpenModalMenuItem
                 itemText="Server Settings"
                 modalComponent={<EditServerModal server={serversObj[activeServer]} />}
+              />
+            )}
+            {(activeServer && serversObj[activeServer].owner_id !== user.id) && (
+              <OpenModalMenuItem
+                itemText="Leave Server"
+                modalComponent={<LeaveServerModal server={serversObj[activeServer]}/>}
               />
             )}
             <ul>
