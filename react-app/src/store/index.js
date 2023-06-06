@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session'
 import serverReducer from './server'
 import channelReducer from './channel';
+import membershipReducer from './membership';
 
 const rootReducer = combineReducers({
   session,
   server: serverReducer,
-  channel: channelReducer
+  channel: channelReducer,
+  membership: membershipReducer
 });
 
 let enhancer;

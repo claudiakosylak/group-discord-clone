@@ -1,3 +1,9 @@
+.all-content-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .left-nav-bars-container {
     display: flex;
     width: 350px;
@@ -21,4 +27,9 @@
 .channel-menu-item {
     display: flex;
     gap: 10px;
+}
+
+.memberships-list-container {
+    display: flex;
+    flex-direction: column;
 }

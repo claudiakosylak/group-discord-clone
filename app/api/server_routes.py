@@ -15,6 +15,15 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
+@server_routes.route("/<int:id>/memberships")
+@login_required
+def get_memberships(id):
+    memberships = Membership.query.filter(Membership.server_id == id).all()
+    membership_dict = {}
+    for membership in memberships:
+        membership_dict[membership.id] = membership.to_dict()
+    return membership_dict
+
 @server_routes.route("/<int:id>/channels")
 @login_required
 def get_server_channels(id):

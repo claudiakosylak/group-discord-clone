@@ -9,6 +9,7 @@ import { getChannelsThunk } from '../../store/channel';
 import NewChannelModal from '../CreateChannelModal';
 import EditChannelModal from '../EditChannelComponent';
 import EditServerModal from '../EditServerModal';
+import MembershipNavBar from '../MemberNavBar';
 
 function OpenModalMenuItem({
   modalComponent, // component to render inside the modal
@@ -65,51 +66,58 @@ function ServerNavBar({ isLoaded }) {
 
 
   return (
-    <div className="left-nav-bars-container">
-      <div className="left-nav-bars">
-        <ul>
-          {servers.map(server => (
-            <li key={server.id}><button onClick={() => changeServer(server.id)}><img className="server-icons" src={server.preview_icon}></img></button></li>
-          ))}
-          <li>
-            <OpenModalMenuItem
-              itemText="Create New Server"
-              modalComponent={<NewServerModal />}
-            />
-          </li>
-        </ul>
-        <div>
-          {(activeServer && serversObj[activeServer].owner_id === user.id)&& (
-            <OpenModalMenuItem
-              itemText="Server Settings"
-              modalComponent={<EditServerModal server={serversObj[activeServer]} />}
-            />
-          )}
+    <div className="all-content-container">
+      <div className="left-nav-bars-container">
+        <div className="left-nav-bars">
           <ul>
-            <div className="channels-header"><p>CHANNELS</p>
+            {servers.map(server => (
+              <li key={server.id}><button onClick={() => changeServer(server.id)}><img className="server-icons" src={server.preview_icon}></img></button></li>
+            ))}
+            <li>
               <OpenModalMenuItem
-                itemText="+"
-                modalComponent={<NewChannelModal serverId={activeServer} />}
+                itemText="Create New Server"
+                modalComponent={<NewServerModal />}
               />
-            </div>
-            {activeServer && (
-              channels.map(channel => (
-                <div className="channel-menu-item">
-                  <li key={channel.id} ><button onClick={() => changeChannel(channel.id)}>{channel.title}</button></li>
-                  {(activeChannel === channel.id) && (
-                    <OpenModalMenuItem
-                      itemText="Edit"
-                      modalComponent={<EditChannelModal channel={channel} />} />
-                  )}
-                </div>
-              ))
-            )}
+            </li>
           </ul>
+          <div>
+            {(activeServer && serversObj[activeServer].owner_id === user.id) && (
+              <OpenModalMenuItem
+                itemText="Server Settings"
+                modalComponent={<EditServerModal server={serversObj[activeServer]} />}
+              />
+            )}
+            <ul>
+              <div className="channels-header"><p>CHANNELS</p>
+                <OpenModalMenuItem
+                  itemText="+"
+                  modalComponent={<NewChannelModal serverId={activeServer} />}
+                />
+              </div>
+              {activeServer && (
+                channels.map(channel => (
+                  <div className="channel-menu-item">
+                    <li key={channel.id} ><button onClick={() => changeChannel(channel.id)}>{channel.title}</button></li>
+                    {(activeChannel === channel.id) && (
+                      <OpenModalMenuItem
+                        itemText="Edit"
+                        modalComponent={<EditChannelModal channel={channel} />} />
+                    )}
+                  </div>
+                ))
+              )}
+            </ul>
+
+          </div>
 
         </div>
 
       </div>
-
+      <div>
+        {activeServer && (
+          <MembershipNavBar server={serversObj[activeServer]} />
+        )}
+      </div>
     </div>
   )
 }
