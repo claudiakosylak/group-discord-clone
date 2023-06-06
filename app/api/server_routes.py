@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import User, Server, Membership, db
+from app.models import User, Server, Membership, db, Channel
 from app.forms import ServerForm
 
 server_routes = Blueprint('servers', __name__)
@@ -15,6 +15,14 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
+@server_routes.route("/<int:id>/channels")
+@login_required
+def get_server_channels(id):
+    server_channels = Channel.query.filter(Channel.server_id == id).all()
+    channels_dict = {}
+    for channel in server_channels:
+        channels_dict[channel.id] = channel.to_dict()
+    return channels_dict
 
 @server_routes.route('')
 @login_required
@@ -63,5 +71,5 @@ def add_server():
         db.session.add(newServer)
         db.session.commit()
         return newServer.to_dict()
-    
+
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
