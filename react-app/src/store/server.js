@@ -38,9 +38,11 @@ export const getServersThunk = () =>  async (dispatch) => {
 
 export const getDiscoverServersThunk = () => async dispatch => {
     const res = await fetch("/api/servers/discover")
+    console.log("WE ARE IN THUNK")
 
     if (res.ok) {
         const servers = await res.json()
+        console.log("SERVERS IN THUNK: ", servers)
         await dispatch(getDiscoverServersAction(servers))
         return servers
     } else {
@@ -119,6 +121,7 @@ export const deleteServerThunk = (serverId) => async dispatch => {
 const initialState = { allServers: {}, currentServer: {}, discoverServers: {}};
 
 const serverReducer = (state = initialState, action) => {
+    console.log("IN REDUCER ACTION SERVERS: ", action.servers)
     switch (action.type) {
         case GET_CURRENT_USERS_SERVERS:
             const newState = { ...state, allServers: {...state.allServers}, currentServer: {}, discoverServers: {...state.discoverServers}}
@@ -135,6 +138,7 @@ const serverReducer = (state = initialState, action) => {
         case GET_DISCOVER_SERVERS:
             const discoverState = {...state, allServers: {...state.allServers}, currentServer: {}, discoverServers: {}}
             discoverState.discoverServers = action.servers
+            return discoverState;
         default:
             return state;
     }

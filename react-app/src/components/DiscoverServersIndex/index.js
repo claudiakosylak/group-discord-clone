@@ -8,20 +8,24 @@ function DiscoverServersIndex () {
     const memberServersObj = useSelector(state => state.server.allServers)
     const memberServers = Object.values(memberServersObj)
     const discoverServersObj = useSelector(state => state.server.discoverServers)
+    console.log("DISCOVER SERVERS OBJECT: ", discoverServersObj)
     const discoverServers = Object.values(discoverServersObj)
     const dispatch = useDispatch()
+    console.log("DISCOVER SERVERS ARRAY: ", discoverServers)
 
     useEffect(() => {
-        // dispatch(getServersThunk())
+        dispatch(getServersThunk())
         dispatch(getDiscoverServersThunk())
     }, [dispatch])
+
+
 
     return (
         <div>
             <ul>
-            {discoverServers.map(server => {
-                <li>{server.title}</li>
-            })}
+            {discoverServers.map(server => (
+                <li key={server.id}>{server.title}</li>
+            ))}
 
             </ul>
         </div>
