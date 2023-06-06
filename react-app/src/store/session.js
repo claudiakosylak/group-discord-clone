@@ -107,11 +107,15 @@ export const signUp = (username, email, password, month, day, year) => async (di
 export const updateUserThunk = (user) => async(dispatch) => {
 	console.log("THIS IS THE USER WE ARE PASSING IN THE THUNK", user)
 	const {id, username, email, password, month, day, year, about, profile_pic} = user
+	console.log('PROFILE_PIC IN THE updateUserThunk ----------------->', profile_pic)
+
+	const form_data = new FormData()
+	// form_data.append('test', 'working')
+	// form_data.get(te)
+	form_data.append('profile_pic', profile_pic)
+	console.log('HERE"S THE FORM DATATATATAT ---------->', form_data.get('profile_pic'))
 	const response = await fetch(`/api/users/${user.id}`, {
 		method: "PUT",
-		headers: {
-			"Content-Type": "application/json",
-		},
 		body: JSON.stringify({
 			id,
 			username,
@@ -121,10 +125,18 @@ export const updateUserThunk = (user) => async(dispatch) => {
 			day,
 			year,
 			about,
-			profile_pic
-			// user
+			// profile_pic: form_data
 		})
+		// body: form_data
 	})
+	//make another fetch request to add the image and only pass in form data as the body
+	if (form_data.get('profile_pic')) {
+		const imageResponse = await fetch(`/api/users/${user.id}/image`, {
+			method: "PUT",
+			body: form_data
+		})
+	}
+
 	console.log("THIS IS THE RESPONSE IN THE UPDATE THUNK", response)
 	if (response.ok) {
 		const data = await response.json();

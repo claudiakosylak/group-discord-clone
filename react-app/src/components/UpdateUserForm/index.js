@@ -3,15 +3,15 @@ import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserThunk } from "../../store/session";
 
-const UpdateUser = () => {
+function UpdateUser() {
 
     const dispatch = useDispatch()
 
     const userId = useSelector(state => state.session.user.id)
     const currentUser = useSelector(state => state.session.user)
+    console.log(currentUser)
 
-
-    const fullDateOfBirth = currentUser.date_of_birth.split(" ")
+    const fullDateOfBirth = currentUser?.date_of_birth.split(" ")
 
 
     let monthObj = {
@@ -47,6 +47,7 @@ const UpdateUser = () => {
 
     const user = useSelector(state => state.session.user)
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -81,11 +82,12 @@ const UpdateUser = () => {
             user.about = about
             // formData.append("about", about)
         }
+        console.log(profilePic)
         if (profilePic) {
             user.profile_pic = profilePic
             // formData.append("profile_pic", profilePic)
         }
-
+        console.log('USER DOT PROF_PIC ------------------>', user.profile_pic)
         // console.log("THIS IS THE FORM DATA", formData)
         console.log("THIS IS THE USER IN THE COMPONENT", user)
         const data = await dispatch(updateUserThunk(user));
@@ -93,6 +95,9 @@ const UpdateUser = () => {
         // const formData = new FormData();
         // console.log('This is our form data in the handle submit ', formData)
         // formData.append("profile_pic", profilePic);
+
+
+
 
         // // aws uploads can be a bit slow—displaying
         // // some sort of loading message is a good idea

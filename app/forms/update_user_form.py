@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField
+from wtforms import StringField, SelectField, SubmitField
 from wtforms.validators import DataRequired, Email, ValidationError
 from app.models import User
 import datetime
@@ -34,11 +34,11 @@ years = [num_year for num_year in range(1900, year_only)]
 
 
 class UpdateUserForm(FlaskForm):
-    username = StringField('username', validators=[DataRequired(), username_exists])
-    email = StringField('email', validators=[DataRequired(), user_exists])
-    password = StringField('password', validators=[DataRequired()])
-    month = SelectField("Month", choices=months, default="Month", validators=[DataRequired()])
-    day = SelectField("Day", choices=days, default="Day", validators=[DataRequired()])
-    year = SelectField("Year", choices=years, default="Year", validators=[DataRequired()])
+    username = StringField('username', validators=[])
+    email = StringField('email', validators=[])
+    password = StringField('password')
+    month = SelectField("Month", choices=months, default="Month", validators=[])
+    day = SelectField("Day", choices=days, default="Day", validators=[])
+    year = SelectField("Year", choices=years, default="Year", validators=[])
     about = StringField('about')
-    profile_pic = FileField('profile_pic', validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+    profile_pic = FileField('profile_pic', validators=[])
