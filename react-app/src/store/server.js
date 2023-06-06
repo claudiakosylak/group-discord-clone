@@ -71,7 +71,7 @@ export const updateServerThunk = (serverInfo, serverId) => async dispatch => {
         headers: { "Content-Type" : "application/json" },
         body: JSON.stringify(serverInfo)
     })
-
+    console.log("WE ARE HITTING THE THUNK")
     if (res.ok) {
         const updatedServer = await res.json();
         await dispatch(createNewServerAction(updatedServer))
@@ -82,14 +82,17 @@ export const updateServerThunk = (serverInfo, serverId) => async dispatch => {
     }
 }
 
-export const deleteServerThunk = serverId => async dispatch => {
+export const deleteServerThunk = (serverId) => async dispatch => {
     const res = await fetch(`/api/servers/${serverId}`, {method: "DELETE"})
+    console.log("***** SERVERID IN THUNK", serverId)
     if (res.ok) {
         const successMessage = await res.json();
+        console.log("SUCCESS MESSAGE: ", successMessage)
         dispatch(deleteServerAction(serverId))
         return successMessage;
     } else {
         const err = await res.json();
+        console.log("THE ERROR IN THUNK: ", err)
         return err;
     }
 }

@@ -10,6 +10,9 @@ function DeleteServerModal({ server }) {
     const [enteredTitle, setEnteredTitle] = useState("");
     const [error, setError] = useState("");
 
+    console.log("SERVER IN MODAL", server)
+    console.log("SERVERID IN MODAL", server.id)
+
 
     const handleDelete = () => {
 
@@ -27,7 +30,7 @@ function DeleteServerModal({ server }) {
         <div>
             <h1>Delete '{server.name}'</h1>
             <p>Are you sure you want to delete {server.title}? This action cannot be undone.</p>
-            <form onSubmit={handleDelete}>
+            <div onClick={handleDelete}>
                 <label>
                     ENTER SERVER NAME
                     <input
@@ -40,8 +43,8 @@ function DeleteServerModal({ server }) {
                     <p>{error}</p>
                 )}
                 <button onClick={closeModal}>Cancel</button>
-                <button type="submit">Delete Channel</button>
-            </form>
+                <button type="submit">Delete Server</button>
+            </div>
 
         </div>
 

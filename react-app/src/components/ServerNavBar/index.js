@@ -36,8 +36,11 @@ function ServerNavBar({ isLoaded }) {
   let channels = Object.values(channelsObj)
   const [activeServer, setActiveServer] = useState("")
   const [activeChannel, setActiveChannel] = useState("")
+  const user = useSelector(state => state.session.user)
 
-
+  console.log("&&&&&& SERVERSOBJ: ", serversObj)
+  console.log("^^^^^^ ACTIVE SERVER ID", activeServer)
+  console.log("******** ACTIVE SERVER ", serversObj[activeServer])
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -46,9 +49,8 @@ function ServerNavBar({ isLoaded }) {
 
   useEffect(() => {
     dispatch(getChannelsThunk(activeServer))
-  }, [dispatch, activeServer])
 
-  console.log("SERVERS: ", serversObj)
+  }, [dispatch, activeServer])
 
   const changeServer = (id) => {
     console.log("INSIDE CHANGE SERVER ID: ", id)
@@ -77,7 +79,12 @@ function ServerNavBar({ isLoaded }) {
           </li>
         </ul>
         <div>
-
+          {(activeServer && serversObj[activeServer].owner_id === user.id)&& (
+            <OpenModalMenuItem
+              itemText="Server Settings"
+              modalComponent={<EditServerModal server={serversObj[activeServer]} />}
+            />
+          )}
           <ul>
             <div className="channels-header"><p>CHANNELS</p>
               <OpenModalMenuItem
