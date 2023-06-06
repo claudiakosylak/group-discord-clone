@@ -47,7 +47,24 @@ export const createNewServerThunk = (server) => async (dispatch) => {
 
     }
 }
- 
+
+export const updateServerThunk = (serverInfo, serverId) => async dispatch => {
+    const res = await fetch(`/api/servers/${serverId}`, {
+        method: "PUT",
+        headers: { "Content-Type" : "application/json" },
+        body: JSON.stringify(serverInfo)
+    })
+
+    if (res.ok) {
+        const updatedServer = await res.json();
+        await dispatch(createNewServerAction(updatedServer))
+        return updatedServer
+    } else {
+        const err = await res.json()
+        return err
+    }
+}
+
 const initialState = { allServers: {}, currentServer: {} };
 
 const serverReducer = (state = initialState, action) => {
@@ -62,7 +79,7 @@ const serverReducer = (state = initialState, action) => {
             const createState = {...state, allServers: {...state.allServers}, currentServer: {} }
             createState.currentServer = action.server
             return createState
-        default: 
+        default:
             return state;
     }
 }

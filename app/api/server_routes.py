@@ -15,6 +15,18 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
+@server_routes.route("/<int:id>", methods=["PUT"])
+@login_required
+def update_server(id):
+    form = ServerForm()
+    server = Server.query.get(id)
+    if current_user.id == server.owner_id:
+        server.title = form.data["title"]
+        db.session.commit()
+        return server.to_dict()
+    return {"Only server owner can update information"}
+
+
 
 @server_routes.route('')
 @login_required
@@ -63,5 +75,5 @@ def add_server():
         db.session.add(newServer)
         db.session.commit()
         return newServer.to_dict()
-    
+
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
