@@ -125,9 +125,7 @@ export const updateUserThunk = (user) => async(dispatch) => {
 			day,
 			year,
 			about,
-			// profile_pic: form_data
 		})
-		// body: form_data
 	})
 	//make another fetch request to add the image and only pass in form data as the body
 	if (form_data.get('profile_pic')) {
