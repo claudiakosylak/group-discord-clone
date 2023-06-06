@@ -58,9 +58,23 @@ def create_channel(id):
 @server_routes.route("/discover")
 @login_required
 def discover_servers():
-    servers = Server.query.filter(Server.private_status == False).all()
+    all_servers = Server.query.filter(Server.private_status == False).all()
+    user_memberships = Membership.query.filter(Membership.user_id == current_user.id).all()
+    print("MEMBERSHIPS BELONG TO USER", user_memberships)
+    owned_servers = Server.query.filter(Server.owner_id == current_user.id).all()
+    print("SERVERS USER OWNS", owned_servers)
+    owned_server_ids = [server.id for server in owned_servers]
+    print("OWNED SERVER IDS: ", owned_server_ids)
+    user_membership_ids = [membership.id for membership in user_memberships]
+    user_discover_servers = []
+
+    for server in all_servers:
+        if server.id not in user_membership_ids and server.id not in owned_server_ids:
+            user_discover_servers.append(server)
+
+    # filtered_servers = [server for server in all_servers if server.id in user_discover_ids]
     servers_dict = {}
-    for server in servers:
+    for server in user_discover_servers:
         servers_dict[server.id] = server.to_dict()
 
     return servers_dict
