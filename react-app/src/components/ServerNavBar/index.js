@@ -80,7 +80,7 @@ function ServerNavBar({ isLoaded }) {
               />
             </li>
             <li>
-              <NavLink />
+                <NavLink to="/discover">Discover</NavLink>
             </li>
           </ul>
           <div>

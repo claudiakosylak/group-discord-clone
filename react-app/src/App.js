@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import ServerNavBar from "./components/ServerNavBar";
+import DiscoverServersIndex from "./components/DiscoverServersIndex";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,17 +22,23 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+            {sessionUser && (
+              <ServerNavBar isLoaded={isLoaded} />
+            )}
+          </Route>
           <Route path="/login" >
             <LoginFormPage />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route path="/discover">
+            <DiscoverServersIndex />
+          </Route>
         </Switch>
       )}
-      { sessionUser && (
-        <ServerNavBar isLoaded={isLoaded} />
-      )}
+
     </>
   );
 }

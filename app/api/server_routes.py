@@ -55,6 +55,16 @@ def create_channel(id):
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
+@server_routes.route("/discover")
+@login_required
+def discover_servers():
+    servers = Server.query.filter(Server.private_status == False).all()
+    servers_dict = {}
+    for server in servers:
+        servers_dict[server.id] = server.to_dict()
+
+    return servers_dict
+
 @server_routes.route("/<int:id>")
 @login_required
 def get_server(id):
