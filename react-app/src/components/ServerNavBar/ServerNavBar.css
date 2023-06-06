@@ -1,0 +1,24 @@
+.left-nav-bars-container {
+    display: flex;
+    width: 350px;
+    justify-content: flex-start;
+}
+
+.left-nav-bars {
+    display: flex;
+}
+
+.server-icons {
+    width: 70px;
+    height: 70px;
+}
+
+.channels-header {
+    display: flex;
+    gap: 20px;
+}
+
+.channel-menu-item {
+    display: flex;
+    gap: 10px;
+}
