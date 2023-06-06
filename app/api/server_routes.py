@@ -72,10 +72,15 @@ def create_channel(id):
 @login_required
 def discover_servers():
     all_servers = Server.query.filter(Server.private_status == False).all()
+    # get list of all servers that exist that are public
     user_memberships = Membership.query.filter(Membership.user_id == current_user.id).all()
+    # get list of all memberships that the user has
     owned_servers = Server.query.filter(Server.owner_id == current_user.id).all()
+    #get list of all servers the user owns
     owned_server_ids = [server.id for server in owned_servers]
-    user_membership_ids = [membership.id for membership in user_memberships]
+    # list of server ids for the servers user owns
+    user_membership_ids = [membership.server_id for membership in user_memberships]
+    # ohhhh
     user_discover_servers = []
 
     for server in all_servers:
