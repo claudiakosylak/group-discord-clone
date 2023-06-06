@@ -5,6 +5,8 @@ import { getChannelsThunk } from '../../store/channel';
 
 function ChannelsNavBar() {
     const channelsObj = useSelector(state => state.channel.allChannels)
+    const currentServer = useSelector(state => state.server.currentServer)
+    let serverId = currentServer.id
     const channels = Object.values(channelsObj)
     const dispatch = useDispatch()
 

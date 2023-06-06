@@ -24,6 +24,12 @@ def get_server_channels(id):
         channels_dict[channel.id] = channel.to_dict()
     return channels_dict
 
+@server_routes.route("/<int:id>")
+@login_required
+def get_server(id):
+    current_server = Server.query.filter(Server.server_id == id).first()
+    return current_server.to_dict()
+
 @server_routes.route('')
 @login_required
 def servers_route():

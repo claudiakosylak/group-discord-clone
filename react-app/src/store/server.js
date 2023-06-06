@@ -24,6 +24,19 @@ export const getServersThunk = () =>  async (dispatch) => {
     }
 }
 
+export const getOneServerThunk = serverId => async dispatch => {
+    const res = await fetch(`/api/${serverId}`)
+
+    if (res.ok) {
+        const current_server = await res.json()
+        await dispatch(createNewServerAction(current_server))
+        return current_server
+    } else {
+        const err = await res.json()
+        return err
+    }
+}
+
 export const createNewServerThunk = (server) => async (dispatch) => {
     try {
         const res = await fetch("/api/servers", {
@@ -47,14 +60,14 @@ export const createNewServerThunk = (server) => async (dispatch) => {
 
     }
 }
- 
+
 const initialState = { allServers: {}, currentServer: {} };
 
 const serverReducer = (state = initialState, action) => {
     console.log("ACTION TYPE", action.type)
     switch (action.type) {
         case GET_CURRENT_USERS_SERVERS:
-            const newState = { ...state, allServers: {}, currentServer: {} }
+            const newState = { ...state, allServers: {...state.allServers}, currentServer: {} }
             newState.allServers = action.servers
             console.log("action.servers: ", action.servers)
             return newState;
@@ -62,7 +75,7 @@ const serverReducer = (state = initialState, action) => {
             const createState = {...state, allServers: {...state.allServers}, currentServer: {} }
             createState.currentServer = action.server
             return createState
-        default: 
+        default:
             return state;
     }
 }

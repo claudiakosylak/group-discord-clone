@@ -1,0 +1,14 @@
+.left-nav-bars-container {
+    display: flex;
+    width: 300px;
+    justify-content: flex-start;
+}
+
+.left-nav-bars {
+    display: flex;
+}
+
+.server-icons {
+    width: 70px;
+    height: 70px;
+}
