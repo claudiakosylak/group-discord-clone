@@ -51,6 +51,25 @@ def create_channel(id):
 def get_server(id):
     current_server = Server.query.filter(Server.server_id == id).first()
     return current_server.to_dict()
+@server_routes.route("/<int:id>", methods=["PUT"])
+@login_required
+def update_server(id):
+    form = ServerForm()
+    server = Server.query.get(id)
+    if current_user.id == server.owner_id:
+        server.title = form.data["title"]
+        db.session.commit()
+        return server.to_dict()
+    return {"Only server owner can update information"}
+
+@server_routes.route("/<int:id>", methods=["DELETE"])
+@login_required
+def delete_server(id):
+    server = Server.query.get(id)
+    db.session.delete(server)
+    db.session.commit()
+
+
 
 @server_routes.route('')
 @login_required
