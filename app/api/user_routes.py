@@ -143,7 +143,7 @@ def update_user_image(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     errors = {}
     user = User.query.get(id)
-    prof_pic = request.files['profile_pic']
+    # prof_pic = request.files['profile_pic']
 
 
 
