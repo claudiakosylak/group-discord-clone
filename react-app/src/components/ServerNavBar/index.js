@@ -6,7 +6,7 @@ import NewServerModal from '../NewServerModal';
 import { useModal } from "../../context/Modal";
 import "./ServerNavBar.css"
 import { getChannelsThunk } from '../../store/channel';
-// import './Navigation.css';
+import NewChannelModal from '../CreateChannelModal';
 
 function OpenModalMenuItem({
     modalComponent, // component to render inside the modal
@@ -68,6 +68,12 @@ function ServerNavBar({ isLoaded }) {
             </li>
         </ul>
         <ul>
+          <div className="channels-header"><p>CHANNELS</p>
+          <OpenModalMenuItem
+              itemText="+"
+              modalComponent={ <NewChannelModal serverId={activeServer}/>}
+          />
+          </div>
           {activeServer && (
             channels.map(channel => (
               <li key={channel.id}>{channel.title}</li>

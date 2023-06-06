@@ -47,8 +47,6 @@ export const createNewServerThunk = (server) => async (dispatch) => {
 
         if (res.ok) {
             const newServer = await res.json()
-            console.log("in create new server thing")
-            console.log("NEW SERVER:", newServer)
             await dispatch(createNewServerAction(newServer))
             return newServer
         } else {
