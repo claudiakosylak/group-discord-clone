@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { createNewServerThunk } from "../../store/server"
+import { createNewServerThunk, getServersThunk } from "../../store/server"
 // import "./LoginForm.css";
 
 function NewServerModal() {
@@ -22,7 +22,10 @@ function NewServerModal() {
         if (response.errors) {
             setErrors(response.errors)
             return errors
-        } else closeModal()
+        } else {
+            await dispatch(getServersThunk())
+            closeModal()
+        }
     }
 
     return(
@@ -32,7 +35,7 @@ function NewServerModal() {
             <form onSubmit={handleSubmit}>
                 <label>
                     SERVER NAME
-                <input 
+                <input
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}

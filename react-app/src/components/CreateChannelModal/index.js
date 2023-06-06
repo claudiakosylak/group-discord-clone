@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { createChannelThunk } from "../../store/channel";
+import { createChannelThunk, getChannelsThunk } from "../../store/channel";
 
 function NewChannelModal({serverId}) {
     const dispatch = useDispatch();
@@ -25,7 +25,10 @@ function NewChannelModal({serverId}) {
         if (response.errors) {
             setErrors(response.errors)
             return errors
-        } else closeModal()
+        } else {
+            await dispatch(getChannelsThunk(serverId))
+            closeModal()
+        }
     }
 
     return (
