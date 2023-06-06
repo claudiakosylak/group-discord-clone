@@ -9,6 +9,7 @@ import { getChannelsThunk } from '../../store/channel';
 import NewChannelModal from '../CreateChannelModal';
 import EditChannelModal from '../EditChannelComponent';
 import EditServerModal from '../EditServerModal';
+import ChannelMessages from '../ChannelMessages';
 
 function OpenModalMenuItem({
   modalComponent, // component to render inside the modal
@@ -36,11 +37,9 @@ function ServerNavBar({ isLoaded }) {
   let channels = Object.values(channelsObj)
   const [activeServer, setActiveServer] = useState("")
   const [activeChannel, setActiveChannel] = useState("")
+  const [channelId, setChannelId] = useState(null)
   const user = useSelector(state => state.session.user)
 
-  console.log("&&&&&& SERVERSOBJ: ", serversObj)
-  console.log("^^^^^^ ACTIVE SERVER ID", activeServer)
-  console.log("******** ACTIVE SERVER ", serversObj[activeServer])
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -49,20 +48,19 @@ function ServerNavBar({ isLoaded }) {
 
   useEffect(() => {
     dispatch(getChannelsThunk(activeServer))
-
   }, [dispatch, activeServer])
 
+  useEffect(() => {
+    setChannelId(activeChannel)
+  }, [activeChannel])
+
   const changeServer = (id) => {
-    console.log("INSIDE CHANGE SERVER ID: ", id)
     setActiveServer(id)
   }
 
   const changeChannel = (id) => {
-    console.log("INSIDE CHANGE CHANNEL ID: ", id)
     setActiveChannel(id)
   }
-
-
 
   return (
     <div className="left-nav-bars-container">
@@ -101,15 +99,19 @@ function ServerNavBar({ isLoaded }) {
                       itemText="Edit"
                       modalComponent={<EditChannelModal channel={channel} />} />
                   )}
+                  
                 </div>
               ))
             )}
+            {/* {activeChannel && (
+              <ChannelMessages channel={channelId}/>
+            )} */}
+            {activeChannel && (
+              <ChannelMessages channel={activeChannel}/>
+            )}
           </ul>
-
         </div>
-
       </div>
-
     </div>
   )
 }

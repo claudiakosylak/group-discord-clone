@@ -1,3 +1,7 @@
+from gevent import monkey
+monkey.patch_all()
+from .socketio import socketio
+
 import os
 from flask import Flask, render_template, request, session, redirect
 from flask_cors import CORS
@@ -34,6 +38,8 @@ app.register_blueprint(server_routes, url_prefix='/api/servers')
 app.register_blueprint(channel_routes, url_prefix="/api/channels")
 db.init_app(app)
 Migrate(app, db)
+
+socketio.init_app(app)
 
 # Application Security
 CORS(app)
@@ -93,3 +99,7 @@ def react_root(path):
 @app.errorhandler(404)
 def not_found(e):
     return app.send_static_file('index.html')
+
+
+if __name__ == '__main__':
+    socketio.run(app)

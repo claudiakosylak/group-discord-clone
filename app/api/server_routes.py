@@ -30,15 +30,12 @@ def create_channel(id):
     form = ChannelForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    print("FORM DATA IN ROUTE: ", form.data)
-
     if form.validate_on_submit():
         newChannel = Channel(
             title=form.data["title"],
             server_id=id,
             topic=form.data["topic"]
         )
-        print("NEW CHANNEL IN ROUTE: ", newChannel)
 
         db.session.add(newChannel)
         db.session.commit()

@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Channel, db
+from app.models import Channel, ChannelMessage, db
 from app.forms import ChannelForm
 
 channel_routes = Blueprint("channels", __name__)
@@ -21,8 +21,6 @@ def edit_channel(id):
     form = ChannelForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    print("FORM DATA IN ROUTE: ", form.data)
-
     if form.validate_on_submit():
         channel = Channel.query.filter(Channel.id == id).first()
         channel.title = form.data["title"]
@@ -38,3 +36,18 @@ def delete_channel(id):
     channel = Channel.query.get(id)
     db.session.delete(channel)
     db.session.commit()
+
+
+@channel_routes.route("/<int:id>/messages", methods=["GET"])
+@login_required
+def channel_messages(id):
+    print("######################## hitting the get channel messages route!")
+    messages = ChannelMessage.query.filter(ChannelMessage.channel_id == id).all()
+    print("********** MESSAGES IN ROUTE:", messages[0].to_dict())
+
+    message_dict = []
+
+    for message in messages:
+        message_dict.append(message.to_dict())
+
+    return message_dict
