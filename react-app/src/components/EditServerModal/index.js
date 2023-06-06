@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useModal } from "../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import OpenModalButton from "../OpenModalButton";
@@ -28,6 +28,12 @@ function EditServerModal({ server }) {
             closeModal()
         }
     }
+
+    useEffect(() => {
+        if (!server) {
+            closeModal()
+        }
+    }, [dispatch, server])
 
     return (
         <>
