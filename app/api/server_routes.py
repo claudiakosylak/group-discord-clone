@@ -24,6 +24,19 @@ def get_memberships(id):
         membership_dict[membership.id] = membership.to_dict()
     return membership_dict
 
+@server_routes.route("/<int:id>/memberships", methods=["POST"])
+@login_required
+def create_membership(id):
+    newMembership = Membership(
+        role = "member",
+        server_id = id,
+        user_id = current_user.id
+    )
+
+    db.session.add(newMembership)
+    db.session.commit()
+    return newMembership.to_dict()
+
 @server_routes.route("/<int:id>/channels")
 @login_required
 def get_server_channels(id):
@@ -60,11 +73,8 @@ def create_channel(id):
 def discover_servers():
     all_servers = Server.query.filter(Server.private_status == False).all()
     user_memberships = Membership.query.filter(Membership.user_id == current_user.id).all()
-    print("MEMBERSHIPS BELONG TO USER", user_memberships)
     owned_servers = Server.query.filter(Server.owner_id == current_user.id).all()
-    print("SERVERS USER OWNS", owned_servers)
     owned_server_ids = [server.id for server in owned_servers]
-    print("OWNED SERVER IDS: ", owned_server_ids)
     user_membership_ids = [membership.id for membership in user_memberships]
     user_discover_servers = []
 
