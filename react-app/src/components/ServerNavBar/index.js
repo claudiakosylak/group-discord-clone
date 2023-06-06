@@ -7,6 +7,7 @@ import { useModal } from "../../context/Modal";
 import "./ServerNavBar.css"
 import { getChannelsThunk } from '../../store/channel';
 import NewChannelModal from '../CreateChannelModal';
+import EditChannelModal from '../EditChannelComponent';
 
 function OpenModalMenuItem({
     modalComponent, // component to render inside the modal
@@ -33,6 +34,7 @@ function ServerNavBar({ isLoaded }) {
     let channelsObj = useSelector(state => state.channel.allChannels)
     let channels = Object.values(channelsObj)
     const [activeServer, setActiveServer] = useState("")
+    const [activeChannel, setActiveChannel] = useState("")
 
 
     const dispatch = useDispatch()
@@ -52,6 +54,10 @@ function ServerNavBar({ isLoaded }) {
       setActiveServer(id)
     }
 
+    const changeChannel = (id) => {
+      console.log("INSIDE CHANGE CHANNEL ID: ", id)
+      setActiveChannel(id)
+    }
 
     return (
       <div className="left-nav-bars-container">
@@ -76,7 +82,14 @@ function ServerNavBar({ isLoaded }) {
           </div>
           {activeServer && (
             channels.map(channel => (
-              <li key={channel.id}>{channel.title}</li>
+              <div className="channel-menu-item">
+                <li key={channel.id} ><button onClick={() => changeChannel(channel.id)}>{channel.title}</button></li>
+                {(activeChannel === channel.id) && (
+                  <OpenModalMenuItem
+                  itemText="Edit"
+                  modalComponent={<EditChannelModal channel={channel}/>}/>
+                )}
+              </div>
             ))
           )}
         </ul>

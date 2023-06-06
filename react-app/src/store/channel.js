@@ -1,6 +1,7 @@
 const GET_SERVER_CHANNELS = "channel/GET_SERVER_CHANNELS"
 const GET_CHANNEL = "channel/GET_CHANNEL"
 
+
 const getChannelsAction = (channels) => ({
     type: GET_SERVER_CHANNELS,
     channels
@@ -43,6 +44,23 @@ export const createChannelThunk = (channel, serverId) => async dispatch => {
         }
     } catch(errors) {
         console.log("THIS IS CATCH ERROR: ", errors)
+    }
+}
+
+export const updateChannelThunk = (channelInfo, channelId) => async dispatch => {
+    const res = await fetch(`/api/channels/${channelId}`, {
+        method: "PUT",
+        headers: { "Content-Type" : "application/json" },
+        body: JSON.stringify(channelInfo)
+    })
+
+    if (res.ok) {
+        const updatedChannel = await res.json();
+        await dispatch(getOneChannelAction(updatedChannel))
+        return updatedChannel
+    } else {
+        const err = await res.json()
+        return err
     }
 }
 

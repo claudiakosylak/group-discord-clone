@@ -1,6 +1,6 @@
 .left-nav-bars-container {
     display: flex;
-    width: 300px;
+    width: 350px;
     justify-content: flex-start;
 }
 
@@ -16,4 +16,9 @@
 .channels-header {
     display: flex;
     gap: 20px;
+}
+
+.channel-menu-item {
+    display: flex;
+    gap: 10px;
 }

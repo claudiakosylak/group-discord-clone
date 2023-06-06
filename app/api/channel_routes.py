@@ -15,24 +15,19 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
-@channel_routes.route("", methods=["POST"])
+@channel_routes.route("/<int:id>", methods=["PUT"])
 @login_required
-def create_channel():
+def edit_channel(id):
     form = ChannelForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     print("FORM DATA IN ROUTE: ", form.data)
 
     if form.validate_on_submit():
-        newChannel = Channel(
-            title=form.data["title"],
-            server_id=form.data["server_id"],
-            topic=form.data["topic"]
-        )
-        print("NEW CHANNEL IN ROUTE: ", newChannel)
+        channel = Channel.query.filter(Channel.id == id).first()
+        channel.title = form.data["title"]
+        channel.topic = form.data["topic"]
 
-        db.session.add(newChannel)
         db.session.commit()
-        return newChannel.to_dict()
-
+        return channel.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
