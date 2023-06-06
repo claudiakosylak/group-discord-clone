@@ -79,6 +79,9 @@ function ServerNavBar({ isLoaded }) {
                 modalComponent={<NewServerModal />}
               />
             </li>
+            <li>
+              <NavLink />
+            </li>
           </ul>
           <div>
             {(activeServer && serversObj[activeServer].owner_id === user.id) && (
