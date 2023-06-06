@@ -108,7 +108,7 @@ export const updateUserThunk = (user) => async(dispatch) => {
 	console.log("THIS IS THE USER WE ARE PASSING IN THE THUNK", user)
 	const {id, username, email, password, month, day, year, about, profile_pic} = user
 	console.log('PROFILE_PIC IN THE updateUserThunk ----------------->', profile_pic)
-
+	console.log("THIS IS THE MONTH==================", month)
 	const form_data = new FormData()
 	// form_data.append('test', 'working')
 	// form_data.get(te)

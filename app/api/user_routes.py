@@ -54,10 +54,10 @@ def update_user(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     errors = {}
     user = User.query.get(id)
-    prof_pic = request.files['profile_pic']
+    # prof_pic = request.files['profile_pic']
     # prof_pic_test = request.get_json()
     # print('PROF PIC TEST --------------..>>>>>>>>', prof_pic_test)
-    print('PROF PIC ____+_+_+_+++_>>>>', prof_pic)
+    # print('PROF PIC ____+_+_+_+++_>>>>', prof_pic)
     # print('FORM FOR PROFILE PIC DOT DATA ----------->>>>>', form.profile_pic.data)
     print("THIS IS THE USER IN THE USER ROUTE=====================", user.to_dict())
     print("THIS IS THE FORM . DATA", form.data)
@@ -106,18 +106,18 @@ def update_user(id):
         #     user['about'] = about
         # elif about:
         #     errors['about'] = 'About must less than 200 characters'
-        print('PROFILE PIC DTATATAT ---------------', form.data['profile_pic'])
-        if form.data['profile_pic']:
-            image = form.data["profile_pic"]
-            image.filename = get_unique_filename(image.filename)
-            upload = upload_file_to_s3(image)
-            if 'url' not in upload:
-                errors['profile_pic'] = 'Invalid image url'
-            else:
-                user.profile_pic = upload['url']
+        # print('PROFILE PIC DTATATAT ---------------', form.data['profile_pic'])
+        # if form.data['profile_pic']:
+        #     image = form.data["profile_pic"]
+        #     image.filename = get_unique_filename(image.filename)
+        #     upload = upload_file_to_s3(image)
+        #     if 'url' not in upload:
+        #         errors['profile_pic'] = 'Invalid image url'
+        #     else:
+        #         user.profile_pic = upload['url']
         user = User.query.get(id)
         print("========FORM . DATA USERNAME", form.data["username"])
-        # user["username"] = form.data["username"]
+
         user.username = form.data['username']
         user.email = form.data["email"]
         # user["password"] = form.data["password"]
@@ -136,7 +136,7 @@ def update_user(id):
 
 @user_routes.route('/<int:id>/image', methods=['PUT'])
 @login_required
-def update_user(id):
+def update_user_image(id):
     """Update a users profile image"""
 
     form = UpdateUserForm() #ToDo make the UpdateUserForm in forms folder
