@@ -31,3 +31,10 @@ def edit_channel(id):
         db.session.commit()
         return channel.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+@channel_routes.route("/<int:id>", methods=["DELETE"])
+@login_required
+def delete_channel(id):
+    channel = Channel.query.get(id)
+    db.session.delete(channel)
+    db.session.commit()
