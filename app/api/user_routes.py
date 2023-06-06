@@ -155,3 +155,6 @@ def update_user(id):
                 errors['profile_pic'] = 'Invalid image url'
             else:
                 user.profile_pic = upload['url']
+
+    db.session.commit()
+    return user.to_dict()
