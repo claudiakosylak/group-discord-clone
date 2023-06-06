@@ -1,5 +1,6 @@
 const GET_CURRENT_USERS_SERVERS = "server/GET_CURRENT_USERS_SERVERS"
 const CREATE_NEW_SERVER = "server/CREATE_NEW_SERVER"
+const DELETE_SERVER = "server/DELETE_SERVER"
 
 const getCurrentUsersServers = (servers) => ({
     type: GET_CURRENT_USERS_SERVERS,
@@ -9,6 +10,11 @@ const getCurrentUsersServers = (servers) => ({
 const createNewServerAction = (server) => ({
     type: CREATE_NEW_SERVER,
     server
+})
+
+const deleteServerAction = serverId => ({
+    type: DELETE_SERVER,
+    serverId
 })
 
 export const getServersThunk = () =>  async (dispatch) => {
@@ -65,6 +71,18 @@ export const updateServerThunk = (serverInfo, serverId) => async dispatch => {
     }
 }
 
+export const deleteServerThunk = serverId => async dispatch => {
+    const res = await fetch(`/api/servers/${serverId}`, {method: "DELETE"})
+    if (res.ok) {
+        const successMessage = await res.json();
+        dispatch(deleteServerAction(serverId))
+        return successMessage;
+    } else {
+        const err = await res.json();
+        return err;
+    }
+}
+
 const initialState = { allServers: {}, currentServer: {} };
 
 const serverReducer = (state = initialState, action) => {
@@ -79,6 +97,10 @@ const serverReducer = (state = initialState, action) => {
             const createState = {...state, allServers: {...state.allServers}, currentServer: {} }
             createState.currentServer = action.server
             return createState
+        case DELETE_SERVER:
+            const deleteState = { ...state, allServers: {...state.allServers}, currentServer: {}}
+            delete deleteState.allServers[action.serverId]
+            return deleteState;
         default:
             return state;
     }

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useModal } from "../../context/Modal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import OpenModalButton from "../OpenModalButton";
 import { getServersThunk, updateServerThunk } from "../../store/server";
 
 function EditServerModal({ server }) {
+    const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
     const [title, setTitle] = useState(server.title)
     const [errors, setErrors] = useState("");
@@ -31,7 +32,9 @@ function EditServerModal({ server }) {
         <>
         <div className="server-modal-inner-container">
             <div>
-
+            {(user.id == server.owner_id) && (
+                
+            )}
             </div>
             <div>
             <h2>Server Overview</h2>
