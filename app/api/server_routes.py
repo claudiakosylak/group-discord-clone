@@ -163,10 +163,20 @@ def add_server():
             owner_id=current_user.id
         )
 
-        print("NEW SERVER: ", newServer)
+
 
         db.session.add(newServer)
         db.session.commit()
+
+        generalChannel = Channel(
+            title="general",
+            server_id= newServer.id
+        )
+
+        db.session.add(generalChannel)
+        db.session.commit()
+
+
         return newServer.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
