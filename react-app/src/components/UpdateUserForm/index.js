@@ -12,7 +12,7 @@ function UpdateUser() {
     console.log(currentUser)
 
     const fullDateOfBirth = currentUser?.date_of_birth.split(" ")
-
+    console.log("THIS IS THE FULL DATE OF BIRTH", fullDateOfBirth)
 
     let monthObj = {
         Jan: "January",
@@ -37,7 +37,7 @@ function UpdateUser() {
     const [email, setEmail] = useState(currentUser?.email);
     const [password, setPassword] = useState(currentUser?.password);
     const [month, setMonth] = useState(monthObj[fullDateOfBirth[2]]);
-    const [day, setDay] = useState(fullDateOfBirth[1]);
+    const [day, setDay] = useState(fullDateOfBirth[1][0] !== 0 ? fullDateOfBirth[1]: fullDateOfBirth[1].slice(1));
     const [year, setYear] = useState(fullDateOfBirth[3]);
     const [about, setAbout] = useState(currentUser?.about);
     const [profilePic, setProfilePic] = useState(currentUser?.profilePic);
@@ -78,7 +78,7 @@ function UpdateUser() {
         // formData.append("day", day)
         user.year = year
         // formData.append("year", year)
-        if (about.length > 0) {
+        if (about) {
             user.about = about
             // formData.append("about", about)
         }
@@ -137,6 +137,8 @@ function UpdateUser() {
 		daysOptionArr.push(i)
 	}
 
+    // let daysOptionArrRes = ["01", "02", "03", "04", "05", "06", "07", "08", "09"]
+
 	let yearOptionArr = []
 	for (let i = 1900; i < 2023; i++) {
 		yearOptionArr.push(i)
@@ -145,7 +147,7 @@ function UpdateUser() {
     return (
 		<div>
             <div>
-                <h1>Sign Up</h1>
+                <h1>Update User</h1>
                 <form
                     onSubmit={handleSubmit}
                     encType="multipart/form-data"
@@ -240,6 +242,9 @@ function UpdateUser() {
                             required
                         >
                         <option value="" disabled>Day</option>
+                        {/* {daysOptionArrRes.map(day => (
+                            <option key={day} value={day}>{day}</option>
+                        ))} */}
                         {daysOptionArr.map(day => (
                             <option key={day} value={day}>{day}</option>
                         ))}

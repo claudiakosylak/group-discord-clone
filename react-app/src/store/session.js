@@ -116,6 +116,9 @@ export const updateUserThunk = (user) => async(dispatch) => {
 	console.log('HERE"S THE FORM DATATATATAT ---------->', form_data.get('profile_pic'))
 	const response = await fetch(`/api/users/${user.id}`, {
 		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
 		body: JSON.stringify({
 			id,
 			username,
@@ -133,22 +136,36 @@ export const updateUserThunk = (user) => async(dispatch) => {
 			method: "PUT",
 			body: form_data
 		})
+		console.log("THIS IS THE IMAGE RESPONSE: ", imageResponse)
+		if (imageResponse.ok && response.ok) {
+			const userAndImageRes = await imageResponse.json()
+			console.log("THIS IS THE IMAGE RESPONSE AFTER: ", userAndImageRes)
+			dispatch(updateUser(userAndImageRes))
+			return null
+		} else if (response.status < 500) {
+			const data = await response.json();
+			if (data.errors) {
+				return data.errors;
+			}
+		} else {
+			return ["An error occurred. Please try again."];
+		}
 	}
 
 	console.log("THIS IS THE RESPONSE IN THE UPDATE THUNK", response)
-	if (response.ok) {
-		const data = await response.json();
-		console.log("THIS IS THE DATA IN THE THUNK AFTER RESPONSE OK", data)
-		dispatch(updateUser(data));
-		return null;
-	} else if (response.status < 500) {
-		const data = await response.json();
-		if (data.errors) {
-			return data.errors;
-		}
-	} else {
-		return ["An error occurred. Please try again."];
-	}
+	// if (response.ok) {
+	// 	const data = await response.json();
+	// 	console.log("THIS IS THE DATA IN THE THUNK AFTER RESPONSE OK", data)
+	// 	dispatch(updateUser(data));
+	// 	return null;
+	// } else if (response.status < 500) {
+	// 	const data = await response.json();
+	// 	if (data.errors) {
+	// 		return data.errors;
+	// 	}
+	// } else {
+	// 	return ["An error occurred. Please try again."];
+	// }
 
 }
 

@@ -148,9 +148,11 @@ def update_user_image(id):
 
 
     if form.data['profile_pic']:
+            print("========THIS IS THE PICTURE IN THE IMAGE ROUTE", form.data)
             image = form.data["profile_pic"]
             image.filename = get_unique_filename(image.filename)
             upload = upload_file_to_s3(image)
+            print("+++++++ THIS IS THE PICTURES NEW FILE NAME", image.filename)
             if 'url' not in upload:
                 errors['profile_pic'] = 'Invalid image url'
             else:
