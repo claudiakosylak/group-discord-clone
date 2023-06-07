@@ -19,6 +19,7 @@
     flex-direction: column;
     margin-left: 15px;
     list-style-type: none;
+    align-items: center;
 }
 
 .server-icons {
@@ -31,6 +32,10 @@
     border-radius: 100%;
     border: none;
     box-shadow: none;
+}
+
+.server-icon-buttons:hover {
+    cursor: pointer;
 }
 
 .channels-header {
@@ -46,4 +51,29 @@
 .memberships-list-container {
     display: flex;
     flex-direction: column;
+}
+
+.create-server-button {
+    width: 60px;
+    height: 60px;
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    border-radius: 100%;
+    color: white;
+    margin: 5px;
+}
+
+.discover-button {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    border-radius: 100%;
+    color: white;
+    background-color: red;
 }

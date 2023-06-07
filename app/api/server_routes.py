@@ -116,6 +116,7 @@ def delete_server(id):
     server = Server.query.get(id)
     db.session.delete(server)
     db.session.commit()
+    return {"message": "successful"}
 
 
 

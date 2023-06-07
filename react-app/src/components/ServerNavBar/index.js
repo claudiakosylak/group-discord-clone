@@ -39,6 +39,9 @@ function ServerNavBar({ isLoaded }) {
   const [activeServer, setActiveServer] = useState("")
   const [activeChannel, setActiveChannel] = useState("")
   const user = useSelector(state => state.session.user)
+  const allMemberships = useSelector(state => state.membership.allMemberships)
+  console.log("ALL MEMBERSHIPS: ", allMemberships)
+  const memberships = Object.values(allMemberships)
 
   console.log("&&&&&& SERVERSOBJ: ", serversObj)
   console.log("^^^^^^ ACTIVE SERVER ID", activeServer)
@@ -47,7 +50,7 @@ function ServerNavBar({ isLoaded }) {
 
   useEffect(() => {
     dispatch(getServersThunk())
-  }, [dispatch])
+  }, [dispatch, memberships.length])
 
   useEffect(() => {
     dispatch(getChannelsThunk(activeServer))
@@ -74,21 +77,22 @@ function ServerNavBar({ isLoaded }) {
             {servers.map(server => (
               <li key={server.id}><button className="server-icon-buttons" onClick={() => changeServer(server.id)}><img className="server-icons" src={server.preview_icon}></img></button></li>
             ))}
-            <li>
+            <li className="create-server-button server-icon-buttons">
               <OpenModalMenuItem
-                itemText="Create New Server"
+
+                itemText="+"
                 modalComponent={<NewServerModal />}
               />
             </li>
-            <li>
-                <NavLink to="/discover">Discover</NavLink>
+            <li className="discover-button server-icon-buttons">
+                <NavLink to="/discover">🧭</NavLink>
             </li>
           </ul>
           {activeServer && (
 
           <div>
             <div className="server-dropdown-container">
-              
+
             </div>
             {(activeServer && serversObj[activeServer].owner_id === user.id) && (
 <OpenModalMenuItem
