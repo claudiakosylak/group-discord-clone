@@ -25,14 +25,11 @@ markupsafe = "==2.1.2"
 sqlalchemy = "==1.4.46"
 werkzeug = "==2.2.2"
 wtforms = "==3.0.1"
-<<<<<<< HEAD
 boto3 = "*"
 email-validator = "*"
-=======
 flask-socketio = "*"
 eventlet = "==0.30.2"
 gevent = "*"
->>>>>>> sockets
 
 [dev-packages]
 
