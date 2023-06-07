@@ -5,8 +5,12 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+<<<<<<< HEAD
 import ServerNavBar from "./components/ServerNavBar";
 import DiscoverServersIndex from "./components/DiscoverServersIndex";
+=======
+import UpdateUser from "./components/UpdateUserForm";
+>>>>>>> update-user
 
 function App() {
   const dispatch = useDispatch();
@@ -33,8 +37,13 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+<<<<<<< HEAD
           <Route path="/discover">
             <DiscoverServersIndex />
+=======
+          <Route path="/users/:userId/update">
+            <UpdateUser />
+>>>>>>> update-user
           </Route>
         </Switch>
       )}
