@@ -15,6 +15,12 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
+@channel_routes.route("/<int:id>")
+@login_required
+def get_one_channel(id):
+    current_channel = Channel.query.get(id)
+    return current_channel.to_dict()
+
 @channel_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def edit_channel(id):

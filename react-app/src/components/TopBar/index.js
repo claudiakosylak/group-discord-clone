@@ -28,7 +28,7 @@ function Topbar({server}) {
                         <p>{currentChannel.title}</p>
                     </div>
                 </div>
-                <div>
+                <div className="right-right-icons">
                     { (currentServer.title && currentUser && currentServer.owner_id === currentUser.id) && (
                         <p>Server Settings Icon </p>
                         )

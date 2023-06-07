@@ -5,6 +5,8 @@ import Topbar from '../TopBar';
 import "./ChannelViewIndex.css"
 import { useParams } from 'react-router-dom';
 import { getOneServerThunk } from '../../store/server';
+import { getChannelsThunk, getOneChannelThunk } from '../../store/channel';
+import ChannelList from '../ChannelList';
 
 function ChannelViewIndex() {
     const {serverId, channelId } = useParams()
@@ -15,7 +17,15 @@ function ChannelViewIndex() {
 
     useEffect(() => {
         dispatch(getOneServerThunk(serverId))
-    }, [dispatch])
+        dispatch(getChannelsThunk(serverId))
+    }, [dispatch, serverId])
+
+    useEffect(() => {
+        dispatch(getOneChannelThunk(channelId))
+    }, [dispatch, channelId])
+
+    if (!server.id) return null
+
     return (
         <div className="all-content-container">
             <div className="server-list">
@@ -24,6 +34,9 @@ function ChannelViewIndex() {
             <div className="right-content-container">
                 <div className="top-bar-wrapper">
                     <Topbar server={server}/>
+                </div>
+                <div className="main-content-wrapper">
+                    <ChannelList server={server}/>
                 </div>
             </div>
         </div>

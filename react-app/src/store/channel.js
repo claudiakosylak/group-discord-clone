@@ -18,6 +18,18 @@ const deleteChannelAction = channelId => ({
     channelId
 })
 
+export const getOneChannelThunk = channelId => async dispatch => {
+    const res = await fetch(`/api/channels/${channelId}`)
+    if (res.ok) {
+        const channel = await res.json()
+        dispatch(getOneChannelAction(channel))
+        return channel
+    } else {
+        const err = await res.json();
+        return err;
+    }
+}
+
 export const deleteChannelThunk = channelId => async dispatch => {
     const res = await fetch(`/api/channels/${channelId}`, {method: "DELETE"})
     if (res.ok) {

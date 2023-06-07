@@ -81,9 +81,6 @@ function ServerNavBar({ isLoaded }) {
     dispatch(logout());
   };
 
- 
-
-
 
   return (
     <div className="all-content-container">
@@ -102,9 +99,7 @@ function ServerNavBar({ isLoaded }) {
           {activeServer && (
 
           <div>
-            <div className="server-dropdown-container">
-
-            </div>
+          
             {(activeServer && serversObj[activeServer].owner_id === user.id) && (
 <OpenModalMenuItem
   itemText="Server Settings"
