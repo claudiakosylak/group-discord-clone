@@ -36,6 +36,7 @@ function App() {
           </Route>
           <Route path="/discover">
             <DiscoverServersIndex />
+          </Route>
           <Route path="/users/:userId/update">
             <UpdateUser />
           </Route>
