@@ -98,6 +98,9 @@ def discover_servers():
 @login_required
 def get_server(id):
     current_server = Server.query.get(id)
+    server_channels = Channel.query.filter(Channel.server_id == id)
+    # current_server.to_dict()
+    # current_server["channels"] = server_channels
     return current_server.to_dict()
 
 

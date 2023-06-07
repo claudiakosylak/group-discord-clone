@@ -25,8 +25,7 @@ function NewServerModal() {
             setErrors(response.errors)
             return errors
         } else {
-            let newServer = await dispatch(getServersThunk())
-            history.push(`/${newServer.id}/1`)
+            await dispatch(getServersThunk())
             closeModal()
         }
     }
