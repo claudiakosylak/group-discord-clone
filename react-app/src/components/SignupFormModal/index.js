@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useModal } from "../../context/Modal";
+import { useDispatch, useSelector } from "react-redux";
+// import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import "./SignupForm.css";
+import { useHistory, Redirect } from "react-router-dom";
+
 
 function SignupFormModal() {
 	const dispatch = useDispatch();
@@ -15,7 +17,10 @@ function SignupFormModal() {
 	const [year, setYear] = useState("");
 	const [errors, setErrors] = useState([]);
 	const [hasSubmitted, setHasSubmitted] = useState(false)
-	const { closeModal } = useModal();
+	// const { closeModal } = useModal();
+	const sessionUser = useSelector((state) => state.session.user);
+	// const history = useHistory()
+
 
 	useEffect(() => {
 		const errors = {}
@@ -44,6 +49,8 @@ function SignupFormModal() {
 	// 	}
 	// };
 
+	if (sessionUser) return <Redirect to="/" />;
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setHasSubmitted(true)
@@ -68,7 +75,7 @@ function SignupFormModal() {
 			setErrors(data);
 		} else {
 			setHasSubmitted(false)
-			closeModal();
+			// history.push('/')
 		}
 
 	};
