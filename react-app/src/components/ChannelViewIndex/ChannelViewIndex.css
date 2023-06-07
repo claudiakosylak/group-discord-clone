@@ -1,0 +1,9 @@
+.all-content-container {
+    display: flex;
+}
+
+.right-content-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

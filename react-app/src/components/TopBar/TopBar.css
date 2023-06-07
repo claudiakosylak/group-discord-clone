@@ -1,14 +1,20 @@
 .top-bar-container {
     height: 50px;
     display: flex;
-
+    background-color: darkgrey;
+    color: white;
+    align-items: center;
+    width: 100%;
 }
 
 .topbar-server-title {
     width: 200px;
+    display: flex;
+    align-items: center;
 }
 
 .top-bar-right-half {
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }

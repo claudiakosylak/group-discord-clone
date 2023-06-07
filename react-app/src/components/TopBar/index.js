@@ -4,11 +4,13 @@ import './TopBar.css'
 
 
 
-function Topbar() {
+function Topbar({server}) {
 
     const currentServer = useSelector(state => state.server.currentServer)
     const currentChannel = useSelector(state => state.channel.currentChannel)
     const currentUser = useSelector(state => state.session.user)
+
+    // console.log("CURRENT SERVER: ",currentServer)
 
     return (
         <div className="top-bar-container">
@@ -27,7 +29,7 @@ function Topbar() {
                     </div>
                 </div>
                 <div>
-                    { (currentServer.title && currentServer.owner_id === currentUser.id) && (
+                    { (currentServer.title && currentUser && currentServer.owner_id === currentUser.id) && (
                         <p>Server Settings Icon </p>
                         )
                     }

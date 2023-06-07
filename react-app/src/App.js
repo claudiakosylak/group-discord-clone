@@ -10,6 +10,7 @@ import DiscoverServersIndex from "./components/DiscoverServersIndex";
 import UpdateUser from "./components/UpdateUserForm";
 import TopBar from "./components/TopBar";
 import ServersList from "./components/ServersList";
+import ChannelViewIndex from "./components/ChannelViewIndex";
 
 
 function App() {
@@ -29,6 +30,9 @@ function App() {
             {sessionUser && (
               <ServerNavBar isLoaded={isLoaded} />
             )}
+          </Route>
+          <Route path="/:serverId/:channelId">
+            <ChannelViewIndex />
           </Route>
           <Route path="/login" >
             <LoginFormPage />

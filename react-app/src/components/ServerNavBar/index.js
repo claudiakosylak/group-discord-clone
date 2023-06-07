@@ -14,6 +14,7 @@ import LeaveServerModal from '../LeaveServerModal';
 import { logout } from "../../store/session";
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import ServersList from '../ServersList';
+import Topbar from '../TopBar';
 
 
 function OpenModalMenuItem({
@@ -80,13 +81,24 @@ function ServerNavBar({ isLoaded }) {
     dispatch(logout());
   };
 
+ 
+
 
 
   return (
     <div className="all-content-container">
-      <div className="left-nav-bars-container">
-        <div className="left-nav-bars">
+      <div className="server-list">
           <ServersList />
+
+      </div>
+
+      <div className="left-nav-bars-container">
+        <div className="top-bar-wrapper">
+          <Topbar />
+        </div>
+        <div className="left-nav-bars">
+
+
           {activeServer && (
 
           <div>

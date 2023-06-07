@@ -97,8 +97,10 @@ def discover_servers():
 @server_routes.route("/<int:id>")
 @login_required
 def get_server(id):
-    current_server = Server.query.filter(Server.server_id == id).first()
+    current_server = Server.query.get(id)
     return current_server.to_dict()
+
+
 @server_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def update_server(id):
