@@ -13,7 +13,6 @@ function ChannelMessages({ channel, server }) {
     const [chatInput, setChatInput] = useState("");
     const user = useSelector(state => state.session.user);
     const channelMessages = useSelector(state => state.channelMessages.allChannelMessages);
-    // const [deleting, setDeleteting] = useState(false);
 
     let messageList;
 
@@ -21,10 +20,8 @@ function ChannelMessages({ channel, server }) {
         messageList = Object.values(channelMessages);
     }
 
-    // const deleteMessage = (channel, messageId) => {
-    //     dispatch(deleteOneChannelMessageThunk(channel, messageId))
-    //     setDeleteting(true)
-    // }
+
+    console.log("MESSAGELIST: ", messageList)
 
     useEffect(() => {
         // open socket connection
@@ -103,7 +100,7 @@ function ChannelMessages({ channel, server }) {
             <h1>hii from channel messages</h1>
             <div>
                 {server && channel && messageList.length > 0 && messageList.map((message, ind) => (
-                    <div key={ind}>{`${message.user_id}: ${message.content}`} <span onClick={(() => deleteChat(message.id))}>X</span></div>
+                    <div key={ind}>{`${message.user.username}: ${message.content}`} <span onClick={(() => deleteChat(message.id))}>X</span></div>
                 ))}
             </div>
             <form onSubmit={sendChat}>
