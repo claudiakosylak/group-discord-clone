@@ -14,9 +14,23 @@
     display: flex;
 }
 
+.server-icons-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+    list-style-type: none;
+}
+
 .server-icons {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+}
+
+.server-icon-buttons {
+    border-radius: 100%;
+    border: none;
+    box-shadow: none;
 }
 
 .channels-header {

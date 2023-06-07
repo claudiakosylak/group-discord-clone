@@ -1,0 +1,25 @@
+.server-modal-inner-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.modal {
+    width: 100%;
+    height: 100%;
+}
+
+.modal-content {
+    width: 100%;
+    height: 100%;
+}
+
+.top-edit-server-modal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.exit-x {
+    font-size: 40px;
+}

@@ -70,9 +70,9 @@ function ServerNavBar({ isLoaded }) {
     <div className="all-content-container">
       <div className="left-nav-bars-container">
         <div className="left-nav-bars">
-          <ul>
+          <ul className="server-icons-container">
             {servers.map(server => (
-              <li key={server.id}><button onClick={() => changeServer(server.id)}><img className="server-icons" src={server.preview_icon}></img></button></li>
+              <li key={server.id}><button className="server-icon-buttons" onClick={() => changeServer(server.id)}><img className="server-icons" src={server.preview_icon}></img></button></li>
             ))}
             <li>
               <OpenModalMenuItem
@@ -84,12 +84,17 @@ function ServerNavBar({ isLoaded }) {
                 <NavLink to="/discover">Discover</NavLink>
             </li>
           </ul>
+          {activeServer && (
+
           <div>
+            <div className="server-dropdown-container">
+              
+            </div>
             {(activeServer && serversObj[activeServer].owner_id === user.id) && (
-              <OpenModalMenuItem
-                itemText="Server Settings"
-                modalComponent={<EditServerModal server={serversObj[activeServer]} />}
-              />
+<OpenModalMenuItem
+  itemText="Server Settings"
+  modalComponent={<EditServerModal server={serversObj[activeServer]} />}
+/>
             )}
             {(activeServer && serversObj[activeServer].owner_id !== user.id) && (
               <OpenModalMenuItem
@@ -119,6 +124,7 @@ function ServerNavBar({ isLoaded }) {
             </ul>
 
           </div>
+          )}
 
         </div>
 
