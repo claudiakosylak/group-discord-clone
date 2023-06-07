@@ -15,6 +15,16 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
+@channel_routes.route("/<int:channel_id>/messages/<int:channel_message_id>", methods=["DELETE"])
+@login_required
+def delete_channel_messages(channel_id, channel_message_id):
+    message = ChannelMessage.query.filter(ChannelMessage.id == channel_message_id).first()
+    db.session.delete(message)
+    db.session.commit()
+
+    return message
+
+
 @channel_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def edit_channel(id):
@@ -41,9 +51,7 @@ def delete_channel(id):
 @channel_routes.route("/<int:id>/messages", methods=["GET"])
 @login_required
 def channel_messages(id):
-    print("######################## hitting the get channel messages route!")
     messages = ChannelMessage.query.filter(ChannelMessage.channel_id == id).all()
-    # print("********** MESSAGES IN ROUTE:", messages[0].to_dict())
 
     message_dict = []
 
@@ -51,3 +59,4 @@ def channel_messages(id):
         message_dict.append(message.to_dict())
 
     return message_dict
+

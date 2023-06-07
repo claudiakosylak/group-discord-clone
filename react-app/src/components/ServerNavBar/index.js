@@ -48,6 +48,7 @@ function ServerNavBar({ isLoaded }) {
 
   useEffect(() => {
     dispatch(getChannelsThunk(activeServer))
+    setActiveChannel(null)
   }, [dispatch, activeServer])
 
   useEffect(() => {
@@ -103,11 +104,8 @@ function ServerNavBar({ isLoaded }) {
                 </div>
               ))
             )}
-            {/* {activeChannel && (
-              <ChannelMessages channel={channelId}/>
-            )} */}
             {activeChannel && (
-              <ChannelMessages channel={activeChannel}/>
+              <ChannelMessages channel={activeChannel} server={activeServer} />
             )}
           </ul>
         </div>
