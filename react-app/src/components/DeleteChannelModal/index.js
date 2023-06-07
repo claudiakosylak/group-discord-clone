@@ -1,12 +1,11 @@
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 import {useModal} from "../../context/Modal";
 import { deleteChannelThunk, getChannelsThunk } from "../../store/channel";
 
 function DeleteChannelModal({channel}) {
     const dispatch = useDispatch()
     const {closeModal} = useModal();
-    const history = useHistory();
+
 
 
     const handleDelete = () => {

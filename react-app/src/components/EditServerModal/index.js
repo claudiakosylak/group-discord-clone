@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import OpenModalButton from "../OpenModalButton";
 import { getServersThunk, updateServerThunk } from "../../store/server";
 import DeleteServerModal from "../DeleteServerModal";
+import "./EditServerModal.css"
 
 function EditServerModal({ server }) {
     const user = useSelector(state => state.session.user)
@@ -47,7 +48,10 @@ function EditServerModal({ server }) {
                     )}
                 </div>
                 <div>
+                    <div className="top-edit-server-modal">
                     <h2>Server Overview</h2>
+                    <p className="exit-x" onClick={closeModal}>x</p>
+                    </div>
                     <form onSubmit={handleSubmit}>
                         <label>
                             SERVER NAME

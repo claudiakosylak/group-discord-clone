@@ -1,6 +1,7 @@
 const GET_CURRENT_USERS_SERVERS = "server/GET_CURRENT_USERS_SERVERS"
 const CREATE_NEW_SERVER = "server/CREATE_NEW_SERVER"
 const DELETE_SERVER = "server/DELETE_SERVER"
+const GET_DISCOVER_SERVERS = "server/GET_DISCOVER_SERVERS"
 
 const getCurrentUsersServers = (servers) => ({
     type: GET_CURRENT_USERS_SERVERS,
@@ -17,6 +18,11 @@ const deleteServerAction = serverId => ({
     serverId
 })
 
+const getDiscoverServersAction = servers => ({
+    type: GET_DISCOVER_SERVERS,
+    servers
+})
+
 export const getServersThunk = () =>  async (dispatch) => {
     const res = await fetch("/api/servers")
 
@@ -30,8 +36,23 @@ export const getServersThunk = () =>  async (dispatch) => {
     }
 }
 
+export const getDiscoverServersThunk = () => async dispatch => {
+    const res = await fetch("/api/servers/discover")
+    console.log("WE ARE IN THUNK")
+
+    if (res.ok) {
+        const servers = await res.json()
+        console.log("SERVERS IN THUNK: ", servers)
+        await dispatch(getDiscoverServersAction(servers))
+        return servers
+    } else {
+        const err = await res.json()
+        return err
+    }
+}
+
 export const getOneServerThunk = serverId => async dispatch => {
-    const res = await fetch(`/api/${serverId}`)
+    const res = await fetch(`/api/servers/${serverId}`)
 
     if (res.ok) {
         const current_server = await res.json()
@@ -97,24 +118,27 @@ export const deleteServerThunk = (serverId) => async dispatch => {
     }
 }
 
-const initialState = { allServers: {}, currentServer: {} };
+const initialState = { allServers: {}, currentServer: {}, discoverServers: {}};
 
 const serverReducer = (state = initialState, action) => {
-    console.log("ACTION TYPE", action.type)
+    console.log("IN REDUCER ACTION SERVERS: ", action.servers)
     switch (action.type) {
         case GET_CURRENT_USERS_SERVERS:
-            const newState = { ...state, allServers: {...state.allServers}, currentServer: {} }
+            const newState = { ...state, allServers: {...state.allServers}, currentServer: {}, discoverServers: {}}
             newState.allServers = action.servers
-            console.log("action.servers: ", action.servers)
             return newState;
         case CREATE_NEW_SERVER:
-            const createState = {...state, allServers: {...state.allServers}, currentServer: {} }
+            const createState = {...state, allServers: {...state.allServers}, currentServer: {}, discoverServers: {...state.discoverServers} }
             createState.currentServer = action.server
             return createState
         case DELETE_SERVER:
-            const deleteState = { ...state, allServers: {...state.allServers}, currentServer: {}}
+            const deleteState = { ...state, allServers: {...state.allServers}, currentServer: {}, discoverServers: {...state.discoverServers}}
             delete deleteState.allServers[action.serverId]
             return deleteState;
+        case GET_DISCOVER_SERVERS:
+            const discoverState = {...state, allServers: {...state.allServers}, currentServer: {}, discoverServers: {}}
+            discoverState.discoverServers = action.servers
+            return discoverState;
         default:
             return state;
     }

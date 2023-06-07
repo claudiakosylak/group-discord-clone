@@ -1,0 +1,17 @@
+.memberships-list-container {
+    list-style-type: none;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.member-list-item {
+    display: flex;
+    align-items: center;
+}
+
+.members-pic {
+    width: 40px;
+    height: 40px;
+}

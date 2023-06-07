@@ -15,10 +15,33 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
+@server_routes.route("/<int:id>/memberships")
+@login_required
+def get_memberships(id):
+    memberships = Membership.query.filter(Membership.server_id == id).all()
+    membership_dict = {}
+    for membership in memberships:
+        membership_dict[membership.id] = membership.to_dict()
+    return membership_dict
+
+@server_routes.route("/<int:id>/memberships", methods=["POST"])
+@login_required
+def create_membership(id):
+    newMembership = Membership(
+        role = "member",
+        server_id = id,
+        user_id = current_user.id
+    )
+
+    db.session.add(newMembership)
+    db.session.commit()
+    return newMembership.to_dict()
+
 @server_routes.route("/<int:id>/channels")
 @login_required
 def get_server_channels(id):
     server_channels = Channel.query.filter(Channel.server_id == id).all()
+    print('Server Channels in the backend route', server_channels)
     channels_dict = {}
     for channel in server_channels:
         channels_dict[channel.id] = channel.to_dict()
@@ -30,21 +53,44 @@ def create_channel(id):
     form = ChannelForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    print("FORM DATA IN ROUTE: ", form.data)
-
     if form.validate_on_submit():
         newChannel = Channel(
             title=form.data["title"],
             server_id=id,
             topic=form.data["topic"]
         )
-        print("NEW CHANNEL IN ROUTE: ", newChannel)
 
         db.session.add(newChannel)
         db.session.commit()
         return newChannel.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+@server_routes.route("/discover")
+@login_required
+def discover_servers():
+    all_servers = Server.query.filter(Server.private_status == False).all()
+    # get list of all servers that exist that are public
+    user_memberships = Membership.query.filter(Membership.user_id == current_user.id).all()
+    # get list of all memberships that the user has
+    owned_servers = Server.query.filter(Server.owner_id == current_user.id).all()
+    #get list of all servers the user owns
+    owned_server_ids = [server.id for server in owned_servers]
+    # list of server ids for the servers user owns
+    user_membership_ids = [membership.server_id for membership in user_memberships]
+    # ohhhh
+    user_discover_servers = []
+
+    for server in all_servers:
+        if server.id not in user_membership_ids and server.id not in owned_server_ids:
+            user_discover_servers.append(server)
+
+    # filtered_servers = [server for server in all_servers if server.id in user_discover_ids]
+    servers_dict = {}
+    for server in user_discover_servers:
+        servers_dict[server.id] = server.to_dict()
+
+    return servers_dict
 
 @server_routes.route("/<int:id>")
 @login_required
@@ -68,6 +114,7 @@ def delete_server(id):
     server = Server.query.get(id)
     db.session.delete(server)
     db.session.commit()
+    return {"message": "successful"}
 
 
 
