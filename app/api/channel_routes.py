@@ -43,7 +43,7 @@ def delete_channel(id):
 def channel_messages(id):
     print("######################## hitting the get channel messages route!")
     messages = ChannelMessage.query.filter(ChannelMessage.channel_id == id).all()
-    print("********** MESSAGES IN ROUTE:", messages[0].to_dict())
+    # print("********** MESSAGES IN ROUTE:", messages[0].to_dict())
 
     message_dict = []
 

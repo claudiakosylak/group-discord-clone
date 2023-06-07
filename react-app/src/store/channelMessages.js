@@ -26,7 +26,7 @@ const initalState = { allChannelMessages: {} };
 const channelMessagesReducer = (state = initalState, action) => {
     switch (action.type) {
         case GET_ALL_CHANNEL_MESSAGES:
-            const newState = {...state, allChannelMessages: {...state.allChannelMessages}}
+            const newState = {...state, allChannelMessages: {}}
             newState.allChannelMessages = action.channelMessages
             return newState
 

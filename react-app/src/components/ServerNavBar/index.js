@@ -99,7 +99,7 @@ function ServerNavBar({ isLoaded }) {
                       itemText="Edit"
                       modalComponent={<EditChannelModal channel={channel} />} />
                   )}
-                  
+
                 </div>
               ))
             )}

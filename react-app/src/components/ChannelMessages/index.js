@@ -13,7 +13,7 @@ function ChannelMessages({ channel }) {
     const channelMessages = useSelector(state => state.channelMessages.allChannelMessages);
 
     let messageList;
-    
+
     console.log("CHANNEL:", channel)
 
     if (channelMessages) {
@@ -22,10 +22,13 @@ function ChannelMessages({ channel }) {
 
     console.log("CHANNEL MESSAGES: ", channelMessages)
     console.log("CHANNEL MESSAGELIST: ", messageList)
+    console.log('messages ===========>', )
 
+    //useeffect
     useEffect(() => {
+        dispatch(getAllChannelMessagesThunk(channel));
         setMessages(messageList);
-    }, [channelMessages])
+    }, [channel])
 
 
     useEffect(() => {
@@ -46,7 +49,7 @@ function ChannelMessages({ channel }) {
             // when we recieve a chat, add it into our messages array in state
             setMessages(messages => [...messages, chat])
         })
-        
+
         // when component unmounts, disconnect
         return (() => {
             socket.disconnect()
@@ -69,7 +72,7 @@ function ChannelMessages({ channel }) {
         <div>
             <h1>hii from channel messages</h1>
             <div>
-                {channelMessages && messageList.length > 0 && messages.map((message, ind) => (
+                {messageList.length > 0 && messageList.map((message, ind) => (
                     <div key={ind}>{`${message.user_id}: ${message.content}`}</div>
                 ))}
             </div>

@@ -19,6 +19,7 @@ def validation_errors_to_error_messages(validation_errors):
 @login_required
 def get_server_channels(id):
     server_channels = Channel.query.filter(Channel.server_id == id).all()
+    print('Server Channels in the backend route', server_channels)
     channels_dict = {}
     for channel in server_channels:
         channels_dict[channel.id] = channel.to_dict()
