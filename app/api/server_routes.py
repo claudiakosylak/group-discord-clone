@@ -41,6 +41,7 @@ def create_membership(id):
 @login_required
 def get_server_channels(id):
     server_channels = Channel.query.filter(Channel.server_id == id).all()
+    print('Server Channels in the backend route', server_channels)
     channels_dict = {}
     for channel in server_channels:
         channels_dict[channel.id] = channel.to_dict()
@@ -52,15 +53,12 @@ def create_channel(id):
     form = ChannelForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    print("FORM DATA IN ROUTE: ", form.data)
-
     if form.validate_on_submit():
         newChannel = Channel(
             title=form.data["title"],
             server_id=id,
             topic=form.data["topic"]
         )
-        print("NEW CHANNEL IN ROUTE: ", newChannel)
 
         db.session.add(newChannel)
         db.session.commit()
