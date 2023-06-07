@@ -1,0 +1,14 @@
+.top-bar-container {
+    height: 50px;
+    display: flex;
+
+}
+
+.topbar-server-title {
+    width: 200px;
+}
+
+.top-bar-right-half {
+    display: flex;
+    justify-content: space-between;
+}

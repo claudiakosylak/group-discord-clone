@@ -11,15 +11,12 @@ function SignupFormModal() {
 	const [email, setEmail] = useState("");
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
-	// const [confirmPassword, setConfirmPassword] = useState("");
 	const [month, setMonth] = useState("");
 	const [day, setDay] = useState("");
 	const [year, setYear] = useState("");
 	const [errors, setErrors] = useState([]);
 	const [hasSubmitted, setHasSubmitted] = useState(false)
-	// const { closeModal } = useModal();
 	const sessionUser = useSelector((state) => state.session.user);
-	// const history = useHistory()
 
 
 	useEffect(() => {
@@ -69,13 +66,12 @@ function SignupFormModal() {
 			"December": 12,
 		}
 
-		// const dateOfBirth = `${year}-${monthObj[month]}-${day}`
 		const data = await dispatch(signUp(username, email, password, month, day, year));
 		if (data) {
 			setErrors(data);
 		} else {
 			setHasSubmitted(false)
-			// history.push('/')
+
 		}
 
 	};

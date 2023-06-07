@@ -8,6 +8,8 @@ import Navigation from "./components/Navigation";
 import ServerNavBar from "./components/ServerNavBar";
 import DiscoverServersIndex from "./components/DiscoverServersIndex";
 import UpdateUser from "./components/UpdateUserForm";
+import TopBar from "./components/TopBar";
+import ServersList from "./components/ServersList";
 
 
 function App() {
@@ -22,7 +24,6 @@ function App() {
   return (
     <>
       {/* <Navigation isLoaded={isLoaded} /> */}
-
         <Switch>
           <Route exact path="/">
             {sessionUser && (
@@ -40,6 +41,9 @@ function App() {
           </Route>
           <Route path="/users/:userId/update">
             <UpdateUser />
+          </Route>
+          <Route path="/testtopbar">
+              <TopBar />
           </Route>
         </Switch>
 

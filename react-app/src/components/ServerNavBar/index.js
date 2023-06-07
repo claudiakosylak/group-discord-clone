@@ -13,6 +13,7 @@ import MembershipNavBar from '../MemberNavBar';
 import LeaveServerModal from '../LeaveServerModal';
 import { logout } from "../../store/session";
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+import ServersList from '../ServersList';
 
 
 function OpenModalMenuItem({
@@ -85,21 +86,7 @@ function ServerNavBar({ isLoaded }) {
     <div className="all-content-container">
       <div className="left-nav-bars-container">
         <div className="left-nav-bars">
-          <ul className="server-icons-container">
-            {servers.map(server => (
-              <li key={server.id}><button className="server-icon-buttons" onClick={() => changeServer(server.id)}><img className="server-icons" src={server.preview_icon}></img></button></li>
-            ))}
-            <li className="create-server-button server-icon-buttons">
-              <OpenModalMenuItem
-
-                itemText="+"
-                modalComponent={<NewServerModal />}
-              />
-            </li>
-            <li className="discover-button server-icon-buttons">
-                <NavLink to="/discover">🧭</NavLink>
-            </li>
-          </ul>
+          <ServersList />
           {activeServer && (
 
           <div>
