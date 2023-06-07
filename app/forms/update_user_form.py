@@ -25,7 +25,7 @@ def username_exists(form, field):
 
 # adding this below
 months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-days = [str(num_day) for num_day in range(1, 32)]
+days = [num_day for num_day in range(1, 32)]
 
 current_year = datetime.date.today()
 year_only = current_year.year
