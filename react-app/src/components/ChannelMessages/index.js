@@ -13,7 +13,7 @@ function ChannelMessages({ channel, server }) {
     const [chatInput, setChatInput] = useState("");
     const user = useSelector(state => state.session.user);
     const channelMessages = useSelector(state => state.channelMessages.allChannelMessages);
-    const [deleting, setDeleteting] = useState(false);
+    // const [deleting, setDeleteting] = useState(false);
 
     let messageList;
 
@@ -21,10 +21,10 @@ function ChannelMessages({ channel, server }) {
         messageList = Object.values(channelMessages);
     }
 
-    const deleteMessage = (channel, messageId) => {
-        dispatch(deleteOneChannelMessageThunk(channel, messageId))
-        setDeleteting(true)
-    }
+    // const deleteMessage = (channel, messageId) => {
+    //     dispatch(deleteOneChannelMessageThunk(channel, messageId))
+    //     setDeleteting(true)
+    // }
 
     useEffect(() => {
         // open socket connection
@@ -39,6 +39,14 @@ function ChannelMessages({ channel, server }) {
             // when we recieve a chat, add it into our messages array in state
             setMessages(messages => [...messages, chat])
             console.log("CHAT",chat)
+            // dispatch(getAllChannelMessagesThunk(channel));
+        })
+
+        // listen for delete events
+        socket.on("delete_message", (delete_message) => {
+            // when we recieve a chat, add it into our messages array in state
+            setMessages(messages => messages.filter(message => message.id !== delete_message.id))
+            console.log("DELETE message from component", delete_message)
             // dispatch(getAllChannelMessagesThunk(channel));
         })
 
@@ -62,10 +70,10 @@ function ChannelMessages({ channel, server }) {
         dispatch(getAllChannelMessagesThunk(channel));
       }, [server])
 
-      useEffect(() => {
-        dispatch(getAllChannelMessagesThunk(channel));
-        setDeleteting(false)
-    }, [deleting])
+    //   useEffect(() => {
+    //     dispatch(getAllChannelMessagesThunk(channel));
+    //     setDeleteting(false)
+    // }, [deleting])
 
 
     const updateChatInput = (e) => {
@@ -82,12 +90,20 @@ function ChannelMessages({ channel, server }) {
         setChatInput("")
     }
 
+    const deleteChat = (messageId) => {
+        // emit a message
+        socket.emit("delete_message", { id : messageId  });
+
+        // clear the input field after the message is sent
+        setChatInput("")
+    }
+
     return (
         <div>
             <h1>hii from channel messages</h1>
             <div>
                 {server && channel && messageList.length > 0 && messageList.map((message, ind) => (
-                    <div key={ind}>{`${message.user_id}: ${message.content}`} <span onClick={(() => deleteMessage(channel, message.id))}>X</span></div>
+                    <div key={ind}>{`${message.user_id}: ${message.content}`} <span onClick={(() => deleteChat(message.id))}>X</span></div>
                 ))}
             </div>
             <form onSubmit={sendChat}>
@@ -95,7 +111,7 @@ function ChannelMessages({ channel, server }) {
                     value={chatInput}
                     onChange={updateChatInput}
                 />
-                <button type="submit">Send</button>
+                <button disabled={chatInput.length === 0} type="submit">Send</button>
             </form>
         </div>
     )
