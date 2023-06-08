@@ -11,17 +11,20 @@ function ServersList() {
     const serversObj = useSelector((state) => state.server.allServers);
     const servers = Object.values(serversObj);
 
+
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getServersThunk())
     }, [dispatch])
 
+
+
     return(
         <div>
             <ul className="server-icons-container">
             {servers.map(server => (
-              <li key={server.id}><NavLink to={`/${server.id}/1`} className="server-icon-buttons" ><img className="server-icons" src={server.preview_icon}></img></NavLink></li>
+              <li key={server.id}><NavLink to={`/${server.id}/${server.channels[0].id}`} className="server-icon-buttons" ><img className="server-icons" src={server.preview_icon}></img></NavLink></li>
             ))}
             <li className="create-server-button server-icon-buttons">
               <OpenModalButton

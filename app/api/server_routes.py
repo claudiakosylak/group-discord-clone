@@ -99,9 +99,11 @@ def discover_servers():
 def get_server(id):
     current_server = Server.query.get(id)
     server_channels = Channel.query.filter(Channel.server_id == id)
+    dict_server = current_server.to_dict()
+    dict_server["channels"] = [channel.to_dict() for channel in server_channels]
     # current_server.to_dict()
     # current_server["channels"] = server_channels
-    return current_server.to_dict()
+    return dict_server
 
 
 @server_routes.route("/<int:id>", methods=["PUT"])
@@ -149,8 +151,15 @@ def servers_route():
     server_dict = {}
 
     for server in filtered_servers:
-        server_dict[server.id] = server.to_dict()
+        dict_server = server.to_dict()
+        print("🍎DICT SERVER: ", dict_server)
+        channels = Channel.query.filter(Channel.server_id == dict_server["id"]).all()
+        print("🍎CHANNELS: ", channels)
+        dict_server["channels"] = [channel.to_dict() for channel in channels]
+        print("🍎DICT SERVER WITH CHANNELS?", dict_server)
+        server_dict[server.id] = dict_server
 
+    print("✌🏻SERVER DICTIONARY : ", server_dict)
     return server_dict
 
 
@@ -179,7 +188,11 @@ def add_server():
         db.session.add(generalChannel)
         db.session.commit()
 
+        dict_new_server = newServer.to_dict()
 
-        return newServer.to_dict()
+        dict_new_server["channels"] = [generalChannel.to_dict()]
+
+
+        return dict_new_server
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

@@ -26,6 +26,7 @@ function NewServerModal() {
             return errors
         } else {
             await dispatch(getServersThunk())
+            history.push(`/${response.id}/${response.channels[0].id}`)
             closeModal()
         }
     }
