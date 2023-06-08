@@ -6,12 +6,16 @@
 
 .left-nav-bars-container {
     display: flex;
-    width: 350px;
-    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
 }
 
 .left-nav-bars {
     display: flex;
+}
+
+.server-list {
+    align-self: flex-start;
 }
 
 .server-icons-container {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getOneServerThunk, getServersThunk } from '../../store/server';
 import NewServerModal from '../NewServerModal';
@@ -12,6 +12,10 @@ import EditServerModal from '../EditServerModal';
 import MembershipNavBar from '../MemberNavBar';
 import LeaveServerModal from '../LeaveServerModal';
 import ChannelMessages from '../ChannelMessages';
+import { logout } from "../../store/session";
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+import ServersList from '../ServersList';
+import Topbar from '../TopBar';
 
 function OpenModalMenuItem({
   modalComponent, // component to render inside the modal
@@ -44,8 +48,13 @@ function ServerNavBar({ isLoaded }) {
   const allMemberships = useSelector(state => state.membership.allMemberships)
   console.log("ALL MEMBERSHIPS: ", allMemberships)
   const memberships = Object.values(allMemberships)
+  const history = useHistory()
 
   const dispatch = useDispatch()
+
+  // if (!user) {
+  //   <Redirect to='/login'/>
+  // }
 
   useEffect(() => {
     dispatch(getServersThunk())
@@ -68,32 +77,42 @@ function ServerNavBar({ isLoaded }) {
     setActiveChannel(id)
   }
 
+  const handleLogout = (e) => {
+    e.preventDefault();
+    dispatch(logout());
+  };
+
   return (
     <div className="all-content-container">
-      <div className="left-nav-bars-container">
-        <div className="left-nav-bars">
-          <ul className="server-icons-container">
-            {servers.map(server => (
-              <li key={server.id}><button className="server-icon-buttons" onClick={() => changeServer(server.id)}><img className="server-icons" src={server.preview_icon}></img></button></li>
-            ))}
-            <li className="create-server-button server-icon-buttons">
-              <OpenModalMenuItem
+      <div className="server-list">
+          <ServersList />
 
-                itemText="+"
-                modalComponent={<NewServerModal />}
-              />
-            </li>
-            <li className="discover-button server-icon-buttons">
-              <NavLink to="/discover">🧭</NavLink>
-            </li>
-          </ul>
+      </div>
+
+      <div className="left-nav-bars-container">
+        <div className="top-bar-wrapper">
+          <Topbar />
+        </div>
+        <div className="left-nav-bars">
+
           {activeServer && (
 
-            <div>
-              <div className="server-dropdown-container">
-
-              </div>
-              {(activeServer && serversObj[activeServer].owner_id === user.id) && (
+          <div>
+          
+            {(activeServer && serversObj[activeServer].owner_id === user.id) && (
+<OpenModalMenuItem
+  itemText="Server Settings"
+  modalComponent={<EditServerModal server={serversObj[activeServer]} />}
+/>
+            )}
+            {(activeServer && serversObj[activeServer].owner_id !== user.id) && (
+              <OpenModalMenuItem
+                itemText="Leave Server"
+                modalComponent={<LeaveServerModal server={serversObj[activeServer]}/>}
+              />
+            )}
+            <ul>
+              <div className="channels-header"><p>CHANNELS</p>
                 <OpenModalMenuItem
                   itemText="Server Settings"
                   modalComponent={<EditServerModal server={serversObj[activeServer]} />}
@@ -126,8 +145,11 @@ function ServerNavBar({ isLoaded }) {
                 )}
               </ul>
 
-            </div>
+          </div>
           )}
+          <div>
+            <button onClick={handleLogout}>Log Out</button>
+          </div>
 
         </div>
         {activeChannel && (
