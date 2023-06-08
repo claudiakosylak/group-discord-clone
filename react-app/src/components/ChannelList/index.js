@@ -39,7 +39,7 @@ function ChannelList({server}) {
 
                     <img src={user.profile_pic} className="user-profile-pic"></img>
                     <p>{user.username}</p>
-                    <p>User Settings</p>
+                    <NavLink to={`/users/${user.id}`}>User Settings</NavLink>
             </div>
                 )}
 

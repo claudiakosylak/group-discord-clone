@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
+import { getServersThunk } from "../../store/server";
+import { logout } from "../../store/session";
 
 
 function UserProfilePage() {
@@ -8,6 +10,7 @@ function UserProfilePage() {
     const user = useSelector(state => state.session.user);
     const servers = useSelector(state => state.server.allServers)
     const history = useHistory();
+    const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getServersThunk())
       }, [])
@@ -40,7 +43,7 @@ function UserProfilePage() {
                             Object.values(servers).map(server => (
                                 <li key={server.id}>
                                         <img src={server.preview_image}/>
-                                        <NavLink to={`/${server.id}/${channelId}`}> {server.title}</NavLink>
+                                        <NavLink to={`/${server.id}/${server.channels[0].id}`}> {server.title}</NavLink>
                                 </li>
                             ))
                             :

@@ -51,19 +51,6 @@ function UpdateUser() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // const user = {
-        //     id: userId,
-        //     username,
-        //     email,
-        //     password,
-        //     month,
-        //     day,
-        //     year,
-        //     about,
-        //     profilePic
-        // }
-        // const formData = new FormData();
-
         user.username = username
         // formData.append("username", username)
         user.email = email
@@ -92,43 +79,7 @@ function UpdateUser() {
         console.log("THIS IS THE USER IN THE COMPONENT", user)
         const data = await dispatch(updateUserThunk(user));
         console.log("THIS IS THE DATA IN THE HANDLE SUBMIT", data)
-        // const formData = new FormData();
-        // console.log('This is our form data in the handle submit ', formData)
-        // formData.append("profile_pic", profilePic);
-
-
-
-
-        // // aws uploads can be a bit slow—displaying
-        // // some sort of loading message is a good idea
-        // setImageLoading(true);
-
-        // const res = await fetch(`/api/users/${userId}`, {
-        //     method: "PUT",
-        //     body: {
-        //         // id: userId,
-        //         username,
-        //         email,
-        //         password,
-        //         month,
-        //         day,
-        //         year,
-        //         about,
-        //         profile_pic: profilePic
-        //     },
-        // });
-        // console.log("THIS IS RES", res)
-        // if (res.ok) {
-        //     await res.json();
-        //     setImageLoading(false);
-        //     history.push(`/users/${userId}`);
-        // }
-        // else {
-        //     setImageLoading(false);
-        //     // a real app would probably use more advanced
-        //     // error handling
-        //     console.log("error");
-        // }
+        history.push(`/users/${user.id}`)
 
     }
 

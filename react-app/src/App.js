@@ -11,6 +11,7 @@ import UpdateUser from "./components/UpdateUserForm";
 import TopBar from "./components/TopBar";
 import ServersList from "./components/ServersList";
 import ChannelViewIndex from "./components/ChannelViewIndex";
+import UserProfilePage from "./components/UserProfilePage";
 
 
 function App() {
@@ -31,6 +32,12 @@ function App() {
               <ServerNavBar isLoaded={isLoaded} />
             )}
           </Route>
+          <Route path="/users/:userId/update">
+            <UpdateUser />
+          </Route>
+          <Route path="/users/:userId">
+            <UserProfilePage />
+          </Route>
           <Route path="/:serverId/:channelId">
             <ChannelViewIndex />
           </Route>
@@ -42,11 +49,6 @@ function App() {
           </Route>
           <Route path="/discover">
             <DiscoverServersIndex />
-          </Route>
-          <Route path="/users/:userId/update">
-            <UpdateUser />
-          </Route>
-          <Route path="/users/:userId">
           </Route>
         </Switch>
 
