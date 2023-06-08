@@ -95,48 +95,12 @@ function ServerNavBar({ isLoaded }) {
         </div>
         <div className="left-nav-bars">
 
-          {activeServer && (
-
-          <div>
-              <ul>
-                <div className="channels-header"><p>CHANNELS</p>
-                  <OpenModalMenuItem
-                    itemText="+"
-                    modalComponent={<NewChannelModal serverId={activeServer} />}
-                  />
-                </div>
-                {activeServer && (
-                  channels.map(channel => (
-                    <div className="channel-menu-item">
-                      <li key={channel.id} ><button onClick={() => changeChannel(channel.id)}>{channel.title}</button></li>
-                      {(activeChannel === channel.id) && (
-                        <OpenModalMenuItem
-                          itemText="Edit"
-                          modalComponent={<EditChannelModal channel={channel} />} />
-                      )}
-                    </div>
-                  ))
-                )}
-              </ul>
-
-          </div>
-
-          )}
           <div>
             <button onClick={handleLogout}>Log Out</button>
           </div>
 
         </div>
-        {activeChannel && (
-          <ChannelMessages channel={activeChannel} server={activeServer} />
-        )}
-        {/* </ul> */}
-      </div>
-      {/* </div > */}
-      <div>
-        {activeServer && (
-          <MembershipNavBar server={serversObj[activeServer]} />
-        )}
+        
       </div>
     </div >
   )
