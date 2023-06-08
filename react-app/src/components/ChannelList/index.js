@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import OpenModalButton from '../OpenModalButton';
 import NewChannelModal from '../CreateChannelModal';
 import EditChannelModal from '../EditChannelComponent';
+import "./ChannelList.css"
 
 function ChannelList({server}) {
     const channelsObj = useSelector(state => state.channel.allChannels)
@@ -14,7 +15,7 @@ function ChannelList({server}) {
 
 
     return (
-        <div>
+        <div className="channel-list-container">
             <ul>
                 <div className="channels-header"><p>CHANNELS</p>
                     <OpenModalButton

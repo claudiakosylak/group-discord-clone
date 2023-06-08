@@ -7,6 +7,8 @@ import { useParams } from 'react-router-dom';
 import { getOneServerThunk } from '../../store/server';
 import { getChannelsThunk, getOneChannelThunk } from '../../store/channel';
 import ChannelList from '../ChannelList';
+import ChannelMessages from '../ChannelMessages';
+import MembershipNavBar from '../MemberNavBar';
 
 function ChannelViewIndex() {
     const {serverId, channelId } = useParams()
@@ -37,6 +39,8 @@ function ChannelViewIndex() {
                 </div>
                 <div className="main-content-wrapper">
                     <ChannelList server={server}/>
+                    <ChannelMessages channel={channelId} server={serverId}/>
+                    <MembershipNavBar server={server}/>
                 </div>
             </div>
         </div>
