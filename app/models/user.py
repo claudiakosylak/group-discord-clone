@@ -11,9 +11,9 @@ class User(db.Model, UserMixin):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(40), nullable=False, unique=True)
-    email = db.Column(db.String(255), nullable=False, unique=True)
-    hashed_password = db.Column(db.String(255), nullable=False)
+    username = db.Column(db.String(30), nullable=False, unique=True)
+    email = db.Column(db.String(30), nullable=False, unique=True)
+    hashed_password = db.Column(db.String(30), nullable=False)
     date_of_birth = db.Column(db.Date, nullable=False)
     about = db.Column(db.String(2000))
     profile_pic = db.Column(db.String(255), default='https://t4.ftcdn.net/jpg/04/00/24/31/360_F_400243185_BOxON3h9avMUX10RsDkt3pJ8iQx72kS3.jpg')
