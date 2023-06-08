@@ -98,32 +98,6 @@ function ServerNavBar({ isLoaded }) {
           {activeServer && (
 
           <div>
-          
-            {(activeServer && serversObj[activeServer].owner_id === user.id) && (
-<OpenModalMenuItem
-  itemText="Server Settings"
-  modalComponent={<EditServerModal server={serversObj[activeServer]} />}
-/>
-            )}
-            {(activeServer && serversObj[activeServer].owner_id !== user.id) && (
-              <OpenModalMenuItem
-                itemText="Leave Server"
-                modalComponent={<LeaveServerModal server={serversObj[activeServer]}/>}
-              />
-            )}
-            <ul>
-              <div className="channels-header"><p>CHANNELS</p>
-                <OpenModalMenuItem
-                  itemText="Server Settings"
-                  modalComponent={<EditServerModal server={serversObj[activeServer]} />}
-                />
-              )}
-              {(activeServer && serversObj[activeServer].owner_id !== user.id) && (
-                <OpenModalMenuItem
-                  itemText="Leave Server"
-                  modalComponent={<LeaveServerModal server={serversObj[activeServer]} />}
-                />
-              )}
               <ul>
                 <div className="channels-header"><p>CHANNELS</p>
                   <OpenModalMenuItem
@@ -146,6 +120,7 @@ function ServerNavBar({ isLoaded }) {
               </ul>
 
           </div>
+
           )}
           <div>
             <button onClick={handleLogout}>Log Out</button>
