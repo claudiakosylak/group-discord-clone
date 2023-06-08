@@ -46,6 +46,8 @@ function App() {
           <Route path="/users/:userId/update">
             <UpdateUser />
           </Route>
+          <Route path="/users/:userId">
+          </Route>
         </Switch>
 
 

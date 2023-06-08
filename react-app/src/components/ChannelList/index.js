@@ -10,7 +10,7 @@ import "./ChannelList.css"
 function ChannelList({server}) {
     const channelsObj = useSelector(state => state.channel.allChannels)
     const channels = Object.values(channelsObj)
-    // const server = useSelector(state => state.session.currentServer)
+    const user = useSelector(state => state.session.user)
 
 
 
@@ -34,6 +34,16 @@ function ChannelList({server}) {
                 ))}
 
             </ul>
+                {user && (
+            <div className="user-info-wrapper">
+
+                    <img src={user.profile_pic} className="user-profile-pic"></img>
+                    <p>{user.username}</p>
+                    <p>User Settings</p>
+            </div>
+                )}
+
+
         </div>
     )
 

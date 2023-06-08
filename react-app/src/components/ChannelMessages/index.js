@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllChannelMessagesThunk } from '../../store/channelMessages';
 import { getChannelsThunk } from '../../store/channel';
 import { deleteOneChannelMessageThunk } from '../../store/channelMessages';
+import "./ChannelMessages.css"
 
 let socket;
 
@@ -96,7 +97,7 @@ function ChannelMessages({ channel, server }) {
     }
 
     return (
-        <div>
+        <div className="channel-messages-container">
             <h1>hii from channel messages</h1>
             <div>
                 {server && channel && messageList.length > 0 && messageList.map((message, ind) => (
