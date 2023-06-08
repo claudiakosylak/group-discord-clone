@@ -32,7 +32,7 @@ years = [num_year for num_year in range(1900, year_only)]
 class SignUpForm(FlaskForm):
     username = StringField(
         'username', validators=[DataRequired(), username_exists])
-    email = StringField('email', validators=[DataRequired(), user_exists])
+    email = StringField('email', validators=[DataRequired(), user_exists, Email()])
     password = StringField('password', validators=[DataRequired()])
     month = SelectField("Month", choices=months, default="Month", validators=[DataRequired()])
     day = SelectField("Day", choices=days, default="Day", validators=[DataRequired()])

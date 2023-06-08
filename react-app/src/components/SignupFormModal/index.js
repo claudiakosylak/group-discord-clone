@@ -16,6 +16,7 @@ function SignupFormModal() {
 	const [year, setYear] = useState("");
 	const [errors, setErrors] = useState([]);
 	const [hasSubmitted, setHasSubmitted] = useState(false)
+	const [hasErrors, setHasErrors] = useState(false)
 	const sessionUser = useSelector((state) => state.session.user);
 
 
@@ -23,28 +24,17 @@ function SignupFormModal() {
 		const errors = {}
 		// if (!month.length || !day.length || !year.length) errors.dateOfBirth = "Date of birth is required"
 
-		if (month === "Month" || day === "Day" || year === "Year") errors.dateOfBirth = "Valid date of birth required"
+		// if (month === "Month" || day === "Day" || year === "Year") errors.dateOfBirth = "Valid date of birth required"
+		if (username.length > 30) errors.username = "Please enter a username below 30 characters"
+		if (password.length > 30) errors.password = "Please enter a password below 30 characters"
+		if (email.length > 30) errors.email = "Please enter an email below 30 characters"
 
 
 		setErrors(errors)
+		// console.log("ERROR OBJ IN THE USEEFFECT", errors)
 
-	}, [month, day, year])
+	}, [month, day, year, username, password, email])
 
-	// const handleSubmit = async (e) => {
-	// 	e.preventDefault();
-	// 	if (password === confirmPassword) {
-	// 		const data = await dispatch(signUp(username, email, password));
-	// 		if (data) {
-	// 			setErrors(data);
-	// 		} else {
-	// 			closeModal();
-	// 		}
-	// 	} else {
-	// 		setErrors([
-	// 			"Confirm Password field must be the same as the Password field",
-	// 		]);
-	// 	}
-	// };
 
 	if (sessionUser) return <Redirect to="/" />;
 
@@ -65,14 +55,28 @@ function SignupFormModal() {
 			"November": 11,
 			"December": 12,
 		}
+		// const errors = {}
 
-		const data = await dispatch(signUp(username, email, password, month, day, year));
-		if (data) {
-			setErrors(data);
+		// if (username.length > 30) errors.username = "Please enter a username below 30 characters"
+		// if (password.length > 30) errors.password = "Please enter a password below 30 characters"
+		// if (email.length > 30) errors.email = "Please enter an email below 30 characters"
+
+
+		// setErrors(errors)
+
+		if (Object.values(errors).length) {
+			// console.log("OBJECT . VALUES OF ERRORS IN HANDLE SUB", Object.values(errors))
+			setHasErrors(true)
 		} else {
-			setHasSubmitted(false)
+			const data = await dispatch(signUp(username, email, password, month, day, year));
+			if (data) {
+				setErrors(data);
+			} else {
+				setHasSubmitted(false)
 
+			}
 		}
+
 
 	};
 
@@ -93,9 +97,12 @@ function SignupFormModal() {
 		<>
 			<h1>Sign Up</h1>
 			<form onSubmit={handleSubmit}>
+					{errors.email ? <p style={{color:"darkred"}}>{errors.email}</p> : ""}
+					{errors.username ? <p style={{color:"darkred"}}>{errors.username}</p> : ""}
+					{errors.password ? <p style={{color:"darkred"}}>{errors.password}</p> : ""}
 				<ul>
 					{(hasSubmitted && errors.length) && (errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
+						<li key={idx} style={{color:"darkred"}}>{error}</li>
 					)))}
 
 				</ul>
@@ -126,15 +133,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{/* <label>
-					Confirm Password
-					<input
-						type="password"
-						value={confirmPassword}
-						onChange={(e) => setConfirmPassword(e.target.value)}
-						required
-					/>
-				</label> */}
+
 				<label>
 					Month
 					<select
