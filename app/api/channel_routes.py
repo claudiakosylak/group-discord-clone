@@ -24,7 +24,12 @@ def delete_channel_messages(channel_id, channel_message_id):
 
     return message
 
-
+@channel_routes.route("/<int:id>")
+@login_required
+def get_one_channel(id):
+    current_channel = Channel.query.get(id)
+    return current_channel.to_dict()
+  
 @channel_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def edit_channel(id):

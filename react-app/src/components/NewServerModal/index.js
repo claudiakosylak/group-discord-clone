@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { createNewServerThunk, getServersThunk } from "../../store/server"
+import { useHistory } from "react-router-dom";
 // import "./LoginForm.css";
 
 function NewServerModal() {
@@ -9,6 +10,7 @@ function NewServerModal() {
     const [title, setTitle] = useState("");
     const [errors, setErrors] = useState("");
     const { closeModal } = useModal();
+    const history = useHistory()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,6 +26,7 @@ function NewServerModal() {
             return errors
         } else {
             await dispatch(getServersThunk())
+            history.push(`/${response.id}/${response.channels[0].id}`)
             closeModal()
         }
     }
