@@ -46,7 +46,7 @@ function UpdateUser() {
     const [hasSubmitted, setHasSubmitted] = useState(false)
 
     const user = useSelector(state => state.session.user)
-
+    console.log("THIS IS THE DAY=======", day)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
