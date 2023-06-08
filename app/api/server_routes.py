@@ -88,8 +88,15 @@ def discover_servers():
     # filtered_servers = [server for server in all_servers if server.id in user_discover_ids]
     servers_dict = {}
     for server in user_discover_servers:
-        servers_dict[server.id] = server.to_dict()
+        server_dict = server.to_dict()
+        print('🍕 SERVER DICT', server_dict)
+        channels = Channel.query.filter(Channel.server_id == server_dict["id"]).all()
+        print('🍕 channels', channels)
+        server_dict["channels"] = [channel.to_dict() for channel in channels]
+        print('🍕 SERVER DICT WITH CHANNELS', server_dict)
+        servers_dict[server.id] = server_dict
 
+    print('🍕 SERVERs_DICT', servers_dict)
     return servers_dict
 
 @server_routes.route("/<int:id>")

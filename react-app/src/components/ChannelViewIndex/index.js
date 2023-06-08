@@ -9,13 +9,15 @@ import { getChannelsThunk, getOneChannelThunk } from '../../store/channel';
 import ChannelList from '../ChannelList';
 import ChannelMessages from '../ChannelMessages';
 import MembershipNavBar from '../MemberNavBar';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function ChannelViewIndex() {
     const {serverId, channelId } = useParams()
     const dispatch = useDispatch()
     const server = useSelector(state => state.server.currentServer)
+    const user = useSelector(state => state.session.user)
     console.log("CURRENT SERVER: ", server)
-
+    const history = useHistory()
 
     useEffect(() => {
         dispatch(getOneServerThunk(serverId))
@@ -26,6 +28,9 @@ function ChannelViewIndex() {
         dispatch(getOneChannelThunk(channelId))
     }, [dispatch, channelId])
 
+    if (!user) {
+        history.push('/login')
+      }
     if (!server.id) return null
 
     return (

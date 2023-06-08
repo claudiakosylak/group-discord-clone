@@ -37,44 +37,19 @@ function OpenModalMenuItem({
 }
 
 function ServerNavBar({ isLoaded }) {
-  const serversObj = useSelector(state => state.server.allServers)
-  const servers = Object.values(serversObj)
-  let channelsObj = useSelector(state => state.channel.allChannels)
-  let channels = Object.values(channelsObj)
-  const [activeServer, setActiveServer] = useState("")
-  const [activeChannel, setActiveChannel] = useState("")
-  const [channelId, setChannelId] = useState(null)
   const user = useSelector(state => state.session.user)
-  const allMemberships = useSelector(state => state.membership.allMemberships)
-  console.log("ALL MEMBERSHIPS: ", allMemberships)
-  const memberships = Object.values(allMemberships)
-  const history = useHistory()
 
+  const history = useHistory()
   const dispatch = useDispatch()
 
-  // if (!user) {
-  //   <Redirect to='/login'/>
-  // }
 
-  useEffect(() => {
-    dispatch(getServersThunk())
-  }, [dispatch, memberships.length])
 
-  useEffect(() => {
-    dispatch(getChannelsThunk(activeServer))
-    setActiveChannel(null)
-  }, [dispatch, activeServer])
 
-  useEffect(() => {
-    setChannelId(activeChannel)
-  }, [activeChannel])
 
-  const changeServer = (id) => {
-    setActiveServer(id)
-  }
 
-  const changeChannel = (id) => {
-    setActiveChannel(id)
+
+  if (!user) {
+    history.push('/login')
   }
 
   const handleLogout = (e) => {
@@ -83,26 +58,31 @@ function ServerNavBar({ isLoaded }) {
   };
 
   return (
-    <div className="all-content-container">
-      <div className="server-list">
+
+      <div className="all-content-container">
+        {user && (
+          <div className="server-list">
           <ServersList />
 
-      </div>
-
-      <div className="left-nav-bars-container">
-        <div className="top-bar-wrapper">
-          <Topbar />
-        </div>
-        <div className="left-nav-bars">
-
-          <div>
-            <button onClick={handleLogout}>Log Out</button>
           </div>
+        ) }
 
-        </div>
-        
-      </div>
-    </div >
+        {user && (
+          <div className="left-nav-bars-container">
+            <div className="top-bar-wrapper">
+              <Topbar />
+            </div>
+            <div className="left-nav-bars">
+
+              <div>
+                <button onClick={handleLogout}>Log Out</button>
+              </div>
+
+            </div>
+
+          </div>
+        )}
+      </div >
   )
 }
 
