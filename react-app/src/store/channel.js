@@ -100,7 +100,7 @@ const initialState = { allChannels: {}, currentChannel: {}}
 const channelReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_SERVER_CHANNELS:
-            const channelState = {...state, allChannels: {}, currentChannel: {}}
+            const channelState = {...state, allChannels: {}, currentChannel: {...state.currentChannel}}
             channelState.allChannels = action.channels
             return channelState;
         case GET_CHANNEL:
