@@ -20,7 +20,6 @@ function DiscoverServersIndex () {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getServersThunk())
         dispatch(getDiscoverServersThunk())
     }, [dispatch])
 
@@ -41,18 +40,28 @@ function DiscoverServersIndex () {
             <div>
                 <ServersList />
             </div>
-            <ul>
-            {discoverServers.map(server => (
-                <li key={server.id}>
-                    <div>
-                    {server.title}
-                    <button onClick={() => handleJoin(server.id)}>Join</button>
+            {user && (
+            <div className="user-info-wrapper">
 
-                    </div>
-                    </li>
-            ))}
+                    <img src={user.profile_pic} className="user-profile-pic"></img>
+                    <p>{user.username}</p>
+                    <p>User Settings</p>
+            </div>
+                )}
+            <div>
 
-            </ul>
+                <ul>
+                {discoverServers.map(server => (
+                    <li key={server.id}>
+                        <div>
+                        {server.title}
+                        <button onClick={() => handleJoin(server.id)}>Join</button>
+
+                        </div>
+                        </li>
+                ))}
+                </ul>
+            </div>
         </div>
     )
 }
