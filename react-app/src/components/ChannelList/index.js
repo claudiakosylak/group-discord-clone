@@ -33,13 +33,14 @@ function ChannelList({server}) {
                         modalComponent={<NewChannelModal serverId={server.id} />}
                     />
                 </div>
-                {channels.map(channel => (
+                {channels.map((channel, idx) => (
                     <div className="channel-menu-item">
                         <li key={channel.id} ><NavLink to={`/${server.id}/${channel.id}`}>{channel.title}</NavLink></li>
-                        <OpenModalButton
-                            buttonText="Edit"
-                            modalComponent={<EditChannelModal channel={channel} />} />
-
+                        {idx !== 0 && (
+                            <OpenModalButton
+                                buttonText="Edit"
+                                modalComponent={<EditChannelModal channel={channel} />} />
+                        )}
                     </div>
                 ))}
 
