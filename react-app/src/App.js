@@ -27,9 +27,9 @@ function App() {
       {/* <Navigation isLoaded={isLoaded} /> */}
         <Switch>
           <Route exact path="/">
-            {sessionUser && (
+
               <ServerNavBar isLoaded={isLoaded} />
-            )}
+            
           </Route>
           <Route path="/:serverId/:channelId">
             <ChannelViewIndex />

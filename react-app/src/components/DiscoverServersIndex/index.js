@@ -23,16 +23,20 @@ function DiscoverServersIndex () {
         dispatch(getDiscoverServersThunk())
     }, [dispatch])
 
-    const handleJoin = async (serverId) => {
+    if (!user) {
+        history.push('/login')
+    }
+
+    const handleJoin = async (server) => {
         const membership = {
             role: "member",
-            server_id: serverId,
+            server_id: server.id,
             user_id: user.id
         }
 
-        await dispatch(createMembershipThunk(membership, serverId))
+        await dispatch(createMembershipThunk(membership, server.id))
         await dispatch(getDiscoverServersThunk())
-        history.push("/")
+        history.push(`/${server.id}/${server.channels[0].id}`)
     }
 
     return (
@@ -55,7 +59,7 @@ function DiscoverServersIndex () {
                     <li key={server.id}>
                         <div>
                         {server.title}
-                        <button onClick={() => handleJoin(server.id)}>Join</button>
+                        <button onClick={() => handleJoin(server)}>Join</button>
 
                         </div>
                         </li>
