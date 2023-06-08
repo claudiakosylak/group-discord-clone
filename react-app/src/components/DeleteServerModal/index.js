@@ -12,7 +12,7 @@ function DeleteServerModal({ server }) {
 
     console.log("SERVER IN MODAL", server)
     console.log("SERVERID IN MODAL", server.id)
-
+    const history = useHistory();
 
     const handleDelete = () => {
 
@@ -20,6 +20,7 @@ function DeleteServerModal({ server }) {
             dispatch(deleteServerThunk(server.id))
             dispatch(getServersThunk())
             closeModal()
+            history.push('/')
         } else {
             setError("You didn't enter the server name correctly")
         }

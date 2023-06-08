@@ -29,7 +29,7 @@ def delete_channel_messages(channel_id, channel_message_id):
 def get_one_channel(id):
     current_channel = Channel.query.get(id)
     return current_channel.to_dict()
-  
+
 @channel_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def edit_channel(id):
@@ -51,6 +51,7 @@ def delete_channel(id):
     channel = Channel.query.get(id)
     db.session.delete(channel)
     db.session.commit()
+    return {"message": "successful"}
 
 
 @channel_routes.route("/<int:id>/messages", methods=["GET"])
@@ -64,4 +65,3 @@ def channel_messages(id):
         message_dict.append(message.to_dict())
 
     return message_dict
-
