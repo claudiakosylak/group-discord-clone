@@ -1,4 +1,25 @@
 .channel-list-container {
     width: 200px;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.user-profile-pic {
+    width: 30px;
+    height: 30px;
+}
+
+.all-content-container {
+    height: 100%;
+}
+
+.user-info-wrapper {
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
