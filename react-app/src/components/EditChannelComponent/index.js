@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useModal } from "../../context/Modal";
 import { useDispatch } from "react-redux";
 import { getChannelsThunk, updateChannelThunk } from "../../store/channel";
@@ -11,7 +11,17 @@ function EditChannelModal({ channel }) {
     const [title, setTitle] = useState(channel.title)
     const [topic, setTopic] = useState(channel.topic)
     const [errors, setErrors] = useState("");
+    const [hasErrors, setHasErrors] = useState(false)
     const { closeModal } = useModal();
+
+    useEffect(() => {
+        const errors = {}
+
+        if (title.length > 40) errors.title = "Please enter a channel name that is less than 40 characters"
+        if (topic.length > 255) errors.topic = "Please enter a topic that is less than 255 characters"
+
+        setErrors(errors)
+    }, [title, topic, hasErrors])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,14 +31,15 @@ function EditChannelModal({ channel }) {
             topic
         }
 
-        const response = await dispatch(updateChannelThunk(channelInfo, channel.id))
-        if (response.errors) {
-            setErrors(response.errors)
-            return errors
+        if (Object.values(errors).length) {
+            setHasErrors(true)
         } else {
+            const response = await dispatch(updateChannelThunk(channelInfo, channel.id))
             await dispatch(getChannelsThunk(channel.server_id))
+            setHasErrors(false)
             closeModal()
         }
+
     }
 
     return (
@@ -44,6 +55,8 @@ function EditChannelModal({ channel }) {
             <div>
             <h2>Overview</h2>
             <form onSubmit={handleSubmit}>
+            {errors.title ? <p style={{color:"darkred"}}>{errors.title}</p> : ""}
+            {errors.topic ? <p style={{color:"darkred"}}>{errors.topic}</p> : ""}
                 <label>
                     CHANNEL NAME
                     <input

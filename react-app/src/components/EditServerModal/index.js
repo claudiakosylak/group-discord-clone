@@ -11,7 +11,16 @@ function EditServerModal({ server }) {
     const dispatch = useDispatch()
     const [title, setTitle] = useState(server.title)
     const [errors, setErrors] = useState("");
+    const [hasErrors, setHasErrors] = useState(false)
     const { closeModal } = useModal();
+
+    useEffect(() => {
+        const errors = {}
+
+        if (title.length > 40) errors.title = "Please enter a title that is less than 40 characters"
+
+        setErrors(errors)
+    }, [title, hasErrors])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -20,14 +29,15 @@ function EditServerModal({ server }) {
             title
         }
 
-        const response = await dispatch(updateServerThunk(serverInfo, server.id))
-        if (response.errors) {
-            setErrors(response.errors)
-            return errors
+        if (Object.values(errors).length) {
+            setHasErrors(true)
         } else {
+            const response = await dispatch(updateServerThunk(serverInfo, server.id))
             await dispatch(getServersThunk())
             closeModal()
+
         }
+
     }
 
     useEffect(() => {
@@ -53,6 +63,7 @@ function EditServerModal({ server }) {
                     <p className="exit-x" onClick={closeModal}>x</p>
                     </div>
                     <form onSubmit={handleSubmit}>
+                    {errors.title ? <p style={{color:"darkred"}}>{errors.title}</p> : ""}
                         <label>
                             SERVER NAME
                             <input
