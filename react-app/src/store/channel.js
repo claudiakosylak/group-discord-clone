@@ -44,7 +44,7 @@ export const deleteChannelThunk = channelId => async dispatch => {
 
 export const getChannelsThunk = serverId => async dispatch => {
     const res = await fetch(`/api/servers/${serverId}/channels`)
-
+    // console.log('RES IN GET CHANNELS THUNK !!!!!!!!!!!!', res)
     if (res.ok) {
         const channels = await res.json()
         await dispatch(getChannelsAction(channels))

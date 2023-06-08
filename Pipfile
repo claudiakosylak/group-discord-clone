@@ -28,6 +28,8 @@ wtforms = "==3.0.1"
 boto3 = "*"
 email-validator = "*"
 flask-socketio = "*"
+eventlet = "==0.30.2"
+gevent = "*"
 
 [dev-packages]
 
