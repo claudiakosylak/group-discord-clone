@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { createChannelThunk, getChannelsThunk } from "../../store/channel";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function NewChannelModal({serverId}) {
     const dispatch = useDispatch();
@@ -12,6 +13,8 @@ function NewChannelModal({serverId}) {
     const { closeModal } = useModal();
 
     console.log("THE SERVER ID: ", serverId)
+
+    const history = useHistory();
 
     useEffect(() => {
         const errors = {}
@@ -36,6 +39,7 @@ function NewChannelModal({serverId}) {
             const response = await dispatch(createChannelThunk(channelInfo, serverId))
             await dispatch(getChannelsThunk(serverId))
             setHasErrors(false)
+            history.push(`/${serverId}/${response.id}`)
             closeModal()
 
         }
