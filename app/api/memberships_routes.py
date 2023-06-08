@@ -11,3 +11,4 @@ def delete_membership(id):
     membership = Membership.query.get(id)
     db.session.delete(membership)
     db.session.commit()
+    return {"message": "successful"}
