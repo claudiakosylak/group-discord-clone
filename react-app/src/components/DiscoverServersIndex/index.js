@@ -5,7 +5,7 @@ import { createMembershipThunk } from '../../store/membership';
 import { useHistory } from "react-router-dom";
 import ServersList from '../ServersList';
 import "./DiscoverServersIndex.css"
-
+import { logout } from "../../store/session";
 
 
 function DiscoverServersIndex () {
@@ -26,6 +26,11 @@ function DiscoverServersIndex () {
     if (!user) {
         history.push('/login')
     }
+
+    const handleLogout = (e) => {
+        e.preventDefault();
+        dispatch(logout());
+    };
 
     const handleJoin = async (server) => {
         const membership = {
@@ -50,6 +55,7 @@ function DiscoverServersIndex () {
                     <img src={user.profile_pic} className="user-profile-pic"></img>
                     <p>{user.username}</p>
                     <p>User Settings</p>
+                    <button onClick={handleLogout}>Logout</button>
             </div>
                 )}
             <div>

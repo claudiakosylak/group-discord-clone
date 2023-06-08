@@ -6,12 +6,22 @@ import OpenModalButton from '../OpenModalButton';
 import NewChannelModal from '../CreateChannelModal';
 import EditChannelModal from '../EditChannelComponent';
 import "./ChannelList.css"
+import { logout } from "../../store/session";
+
+
 
 function ChannelList({server}) {
     const channelsObj = useSelector(state => state.channel.allChannels)
     const channels = Object.values(channelsObj)
     const user = useSelector(state => state.session.user)
 
+    const dispatch = useDispatch()
+
+
+    const handleLogout = (e) => {
+        e.preventDefault();
+        dispatch(logout());
+      };
 
 
     return (
@@ -40,6 +50,7 @@ function ChannelList({server}) {
                     <img src={user.profile_pic} className="user-profile-pic"></img>
                     <p>{user.username}</p>
                     <p>User Settings</p>
+                    <button onClick={handleLogout}>Logout</button>
             </div>
                 )}
 

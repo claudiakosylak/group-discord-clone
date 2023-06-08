@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import "./SignupForm.css";
-import { useHistory, Redirect } from "react-router-dom";
-
+import { Redirect, NavLink } from "react-router-dom";
 
 function SignupFormModal() {
 	const dispatch = useDispatch();
@@ -94,7 +93,7 @@ function SignupFormModal() {
 
 
 	return (
-		<>
+		<div>
 			<h1>Sign Up</h1>
 			<form onSubmit={handleSubmit}>
 					{errors.email ? <p style={{color:"darkred"}}>{errors.email}</p> : ""}
@@ -215,7 +214,8 @@ function SignupFormModal() {
 
 				<button type="submit" disabled={month === "" || day === "" || year === ""}>Sign Up</button>
 			</form>
-		</>
+			<NavLink to='/login'><p>Already have an Account?</p></NavLink>
+		</div>
 	);
 }
 
