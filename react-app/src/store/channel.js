@@ -18,6 +18,18 @@ const deleteChannelAction = channelId => ({
     channelId
 })
 
+export const getOneChannelThunk = channelId => async dispatch => {
+    const res = await fetch(`/api/channels/${channelId}`)
+    if (res.ok) {
+        const channel = await res.json()
+        dispatch(getOneChannelAction(channel))
+        return channel
+    } else {
+        const err = await res.json();
+        return err;
+    }
+}
+
 export const deleteChannelThunk = channelId => async dispatch => {
     const res = await fetch(`/api/channels/${channelId}`, {method: "DELETE"})
     if (res.ok) {
@@ -88,7 +100,7 @@ const initialState = { allChannels: {}, currentChannel: {}}
 const channelReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_SERVER_CHANNELS:
-            const channelState = {...state, allChannels: {}, currentChannel: {}}
+            const channelState = {...state, allChannels: {}, currentChannel: {...state.currentChannel}}
             channelState.allChannels = action.channels
             return channelState;
         case GET_CHANNEL:

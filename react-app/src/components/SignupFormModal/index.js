@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useModal } from "../../context/Modal";
+import { useDispatch, useSelector } from "react-redux";
+// import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import "./SignupForm.css";
+import { useHistory, Redirect } from "react-router-dom";
+
 
 function SignupFormModal() {
 	const dispatch = useDispatch();
 	const [email, setEmail] = useState("");
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
-	// const [confirmPassword, setConfirmPassword] = useState("");
 	const [month, setMonth] = useState("");
 	const [day, setDay] = useState("");
 	const [year, setYear] = useState("");
 	const [errors, setErrors] = useState([]);
 	const [hasSubmitted, setHasSubmitted] = useState(false)
-	const { closeModal } = useModal();
+	const sessionUser = useSelector((state) => state.session.user);
+
 
 	useEffect(() => {
 		const errors = {}
@@ -44,6 +46,8 @@ function SignupFormModal() {
 	// 	}
 	// };
 
+	if (sessionUser) return <Redirect to="/" />;
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setHasSubmitted(true)
@@ -62,13 +66,12 @@ function SignupFormModal() {
 			"December": 12,
 		}
 
-		// const dateOfBirth = `${year}-${monthObj[month]}-${day}`
 		const data = await dispatch(signUp(username, email, password, month, day, year));
 		if (data) {
 			setErrors(data);
 		} else {
 			setHasSubmitted(false)
-			closeModal();
+
 		}
 
 	};

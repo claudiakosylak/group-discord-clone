@@ -41,7 +41,7 @@ app.register_blueprint(membership_routes, url_prefix="/api/memberships")
 db.init_app(app)
 Migrate(app, db)
 
-socketio.init_app(app)
+socketio.init_app(app, async_mode='gevent')
 
 # Application Security
 CORS(app)

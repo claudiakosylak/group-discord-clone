@@ -1,0 +1,28 @@
+.top-bar-container {
+    height: 50px;
+    display: flex;
+    background-color: darkgrey;
+    color: white;
+    align-items: center;
+    width: 100%;
+}
+
+.topbar-server-title {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.top-bar-right-half {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.right-right-icons {
+    display: flex;
+    gap: 20px;
+    padding-right: 20px;
+}

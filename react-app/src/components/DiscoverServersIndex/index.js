@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getDiscoverServersThunk, getServersThunk } from '../../store/server';
 import { createMembershipThunk } from '../../store/membership';
 import { useHistory } from "react-router-dom";
+import ServersList from '../ServersList';
+import "./DiscoverServersIndex.css"
 
 
 
@@ -35,7 +37,10 @@ function DiscoverServersIndex () {
     }
 
     return (
-        <div>
+        <div className="discover-index-wrapper">
+            <div>
+                <ServersList />
+            </div>
             <ul>
             {discoverServers.map(server => (
                 <li key={server.id}>

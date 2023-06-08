@@ -124,7 +124,7 @@ const serverReducer = (state = initialState, action) => {
     console.log("IN REDUCER ACTION SERVERS: ", action.servers)
     switch (action.type) {
         case GET_CURRENT_USERS_SERVERS:
-            const newState = { ...state, allServers: {...state.allServers}, currentServer: {}, discoverServers: {}}
+            const newState = { ...state, allServers: {...state.allServers}, currentServer: {...state.currentServer}, discoverServers: {}}
             newState.allServers = action.servers
             return newState;
         case CREATE_NEW_SERVER:
