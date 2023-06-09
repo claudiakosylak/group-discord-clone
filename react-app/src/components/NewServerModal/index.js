@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { createNewServerThunk, getServersThunk } from "../../store/server"
 import { useHistory } from "react-router-dom";
-// import "./LoginForm.css";
+import "./NewServerModal.css";
 
 function NewServerModal() {
     const dispatch = useDispatch();
@@ -44,12 +44,15 @@ function NewServerModal() {
 
 
     return(
-        <>
+        <div className="create-server-wrapper">
+            <p className="exit-x" onClick={closeModal}>x</p>
             <h2>Create your server</h2>
-            <p>Give your new server personality with a name and an icon.</p>
-            <form onSubmit={handleSubmit}>
+            <p className="create-server-subtext">Give your new server personality with a name and an icon.</p>
+            <form onSubmit={handleSubmit} className="create-server-form">
+                <div className="form-top-half">
+            <i class="fa-solid fa-camera"></i>
                 {errors.title ? <p style={{color:"darkred"}}>{errors.title}</p> : ""}
-                <label>
+                <label className="server-name-label">
                     SERVER NAME
                 <input
                     type="text"
@@ -58,9 +61,14 @@ function NewServerModal() {
                     required
                 ></input>
                 </label>
-                <button type="submit">Create</button>
+
+                </div>
+                <div className="server-bottom-form">
+                <button disabled={title.length > 40} type="submit">Create</button>
+
+                </div>
             </form>
-        </>
+        </div>
     )
 }
 

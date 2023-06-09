@@ -43,9 +43,9 @@ function ChannelViewIndex() {
                     <Topbar server={server}/>
                 </div>
                 <div className="main-content-wrapper">
-                    <ChannelList server={server}/>
-                    <ChannelMessages channel={channelId} server={serverId}/>
-                    <MembershipNavBar server={server}/>
+                    <ChannelList id='channel-list-component' server={server}/>
+                    <ChannelMessages id='channel-messages-component' channel={channelId} server={serverId}/>
+                    <MembershipNavBar id='membership-navbar-component' server={server}/>
                 </div>
             </div>
         </div>

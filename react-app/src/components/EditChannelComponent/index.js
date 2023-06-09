@@ -76,7 +76,7 @@ function EditChannelModal({ channel }) {
                         required
                     ></input>
                 </label>
-                <button type="submit">Save Changes</button>
+                <button disabled={title.length > 40 || topic.length > 255} type="submit">Save Changes</button>
             </form>
 
             </div>

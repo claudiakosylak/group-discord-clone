@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useModal } from "../../context/Modal";
-import { getMembershipsThunk } from '../../store/membership';
+import membershipReducer, { getMembershipsThunk } from '../../store/membership';
 import "./MemberNavBar.css"
 
 
@@ -19,9 +19,9 @@ function MembershipNavBar ({server}) {
     return (
         <div>
             <ul className="memberships-list-container">
-                <li className="member-list-item"><img className="members-pic" src={server.user.profile_pic}></img>{server.user.username}👑</li>
+                <li className="member-list-item"><img className="members-pic" src={server.user.profile_pic}></img><span className="members-username">{server.user.username}</span><span className="crown">👑</span></li>
             {memberships.map(membership => (
-                <li className="member-list-item" key={membership.id}><img className="members-pic" src={membership.user.profile_pic}></img>{membership.user.username}</li>
+                <li className="member-list-item " key={membership.id}><img className="members-pic" src={membership.user.profile_pic}></img><span className="members-username">{membership.user.username.length < 12 ? membership.user.username : membership.user.username.substring(0, 12) + "..."}</span></li>
             ))}
             </ul>
         </div>

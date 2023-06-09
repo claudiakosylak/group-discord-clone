@@ -1,5 +1,5 @@
 .top-bar-container {
-    height: 50px;
+    height: 45px;
     display: flex;
     background-color: darkgrey;
     color: white;
@@ -8,10 +8,13 @@
 }
 
 .topbar-server-title {
-    width: 200px;
+    width: 300px;
+    height: 100%;
     display: flex;
     align-items: center;
     padding-left: 20px;
+    background-color:  #2a2c31;
+    color: white;
 }
 
 .top-bar-right-half {
@@ -19,10 +22,65 @@
     justify-content: space-between;
     width: 100%;
     align-items: center;
+    background-color: #323537;
+    color: white;
+    height: 100%;
 }
 
 .right-right-icons {
     display: flex;
     gap: 20px;
     padding-right: 20px;
+}
+
+.channel-title {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.fa-hashtag {
+    color: #686a70;
+    font-size: 22px;
+    margin: 10px;
+}
+
+.leave-server-button {
+    background-color: #111214;
+    color:  #DA373C;
+    border: none;
+    padding: 5px 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.leave-server-button:hover {
+    background-color: #DA373C;
+    color: white;
+    cursor: pointer;
+}
+
+.fa-circle-arrow-left {
+    font-size: 17px;
+}
+
+.fa-gear {
+    font-size: 17px;
+}
+
+.server-settings-button {
+    background-color: #111214;
+    padding: 5px 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    border: none;
+    color: rgb(189, 189, 189);
+}
+
+.server-settings-button:hover {
+    background-color: #4752C4;
+    color: white;
+    cursor: pointer;
 }

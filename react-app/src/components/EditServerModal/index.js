@@ -73,7 +73,7 @@ function EditServerModal({ server }) {
                                 required
                             ></input>
                         </label>
-                        <button type="submit">Save Changes</button>
+                        <button disabled={title.length > 40} type="submit">Save Changes</button>
                     </form>
 
                 </div>

@@ -14,7 +14,7 @@ function ChannelMessages({ channel, server }) {
     const [chatInput, setChatInput] = useState("");
     const user = useSelector(state => state.session.user);
     const channelMessages = useSelector(state => state.channelMessages.allChannelMessages);
-
+    const currentChannel = useSelector(state => state.channel.currentChannel)
     let messageList;
 
     if (channelMessages) {
@@ -97,21 +97,36 @@ function ChannelMessages({ channel, server }) {
     }
 
     return (
-        <div className="channel-messages-container">
-            <h1>hii from channel messages</h1>
-            <div>
-                {server && channel && messageList.length > 0 && messageList.map((message, ind) => (
-                    <div key={ind}>{`${message.user.username}: ${message.content}`} <span onClick={(() => deleteChat(message.id))}>X</span></div>
-                ))}
+            <div className="channel-messages-container">
+                <div id="channel-message-scroll">
+                <p>Welcome to #{currentChannel.title}!</p>
+                    <div id='channel-messages'>
+                        {server && channel && messageList.length > 0 && messageList.map((message, ind) => (
+                            <div className="channel-messages-message-div" key={ind}>
+                                    <img src={message.user.profile_pic} className="message-user-pic" />
+                                    <div className="message-content">
+                                        <div className="message-header">
+                                          <span className="message-username">{message.user.username}</span>
+                                          <span className="message-time">{message.created_at.split(" ")[4]}</span>
+                                        </div>
+                                        <p>{message.content} { message.user.id === user.id ? <span onClick={(() => deleteChat(message.id))}>
+                                            <i class="fa-regular fa-trash-can"></i></span> : ''}</p>
+                                    </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <form id='chat-input-form' onSubmit={sendChat}>
+                    <div>
+                        <input id='chat-input'
+                                value={chatInput}
+                                onChange={updateChatInput}
+                        />
+                        <button id='chat-send-button' disabled={chatInput.length === 0 || chatInput.length > 1000} type="submit">Send</button>
+                    </div>
+                    <div id="message-warning">{chatInput.length > 1000 ? <p>Please keep your message below 1000 characters</p> : ''}</div>
+                </form>
             </div>
-            <form onSubmit={sendChat}>
-                <input
-                    value={chatInput}
-                    onChange={updateChatInput}
-                />
-                <button disabled={chatInput.length === 0} type="submit">Send</button>
-            </form>
-        </div>
     )
 
 }
