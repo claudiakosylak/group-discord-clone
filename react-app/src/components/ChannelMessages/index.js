@@ -97,25 +97,23 @@ function ChannelMessages({ channel, server }) {
     }
 
     return (
-        <>
             <div className="channel-messages-container">
+                <div id="channel-message-scroll">
                 <p>Welcome to #{currentChannel.title}!</p>
-                <div>
                     <div id='channel-messages'>
                         {server && channel && messageList.length > 0 && messageList.map((message, ind) => (
-                            <div key={ind}>{`${message.user.username}: ${message.content}`} <span onClick={(() => deleteChat(message.id))}>X</span></div>
+                            <div className="channel-messages-message-div" key={ind}>{`${message.user.username}: ${message.content}`}{ message.user.id === user.id ? <span onClick={(() => deleteChat(message.id))}><i class="fa-regular fa-trash-can"></i></span> : ''}</div>
                         ))}
                     </div>
-                    <form id='chat-input-form' onSubmit={sendChat}>
+                </div>
+                <form id='chat-input-form' onSubmit={sendChat}>
                         <input id='chat-input'
                             value={chatInput}
                             onChange={updateChatInput}
                         />
                         <button id='chat-send-button' disabled={chatInput.length === 0} type="submit">Send</button>
-                    </form>
-                </div>
+                </form>
             </div>
-        </>
     )
 
 }

@@ -9,12 +9,33 @@
 #chat-input-form {
     margin-top: 1em;
     width: 100%;
+    display: flex;
+    gap: 0.5em;
 }
 
 #chat-input {
     width: 90%;
+    height: 2.5em;
 }
 
 #chat-send-button {
-    width:10;
+    width:10%;
+    height: 2.5em;
+}
+
+#channel-message-scroll {
+    border: 2px dotted hotpink;
+    overflow-y: scroll;
+    position: relative;
+}
+
+
+.channel-messages-container i {
+    margin-left: 0.5em;
+    opacity: 0;
+}
+
+.channel-messages-message-div:hover i {
+    opacity: 1;
+    cursor: pointer;
 }
