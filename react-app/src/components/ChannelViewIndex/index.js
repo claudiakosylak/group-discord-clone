@@ -28,9 +28,9 @@ function ChannelViewIndex() {
         dispatch(getOneChannelThunk(channelId))
     }, [dispatch, channelId])
 
-    if (!user) {
-        history.push('/login')
-      }
+    // if (!user) {
+    //     history.push('/login')
+    //   }
     if (!server.id) return null
 
     return (
