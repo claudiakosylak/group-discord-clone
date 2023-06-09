@@ -94,3 +94,7 @@ h4 {
     background-color: #4752C4;
     cursor: pointer;
 }
+
+.discover-right-side-wrapper .user-info-wrapper {
+    margin: 1em;
+}

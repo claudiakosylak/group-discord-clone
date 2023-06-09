@@ -46,7 +46,7 @@ function ServerNavBar({ isLoaded }) {
 
                     <img src={user.profile_pic} className="user-profile-pic"></img>
                     <p>{user.username}</p>
-                    <p>User Settings</p>
+                    {/* <p>User Settings</p> */}
                     <button onClick={handleLogout}>Logout</button>
             </div>
               )}

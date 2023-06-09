@@ -26,7 +26,7 @@
 }
 
 #channel-message-scroll {
-    overflow-y: scroll;
+    overflow-y: auto;
     position: relative;
     height: 90%;
     display: flex;

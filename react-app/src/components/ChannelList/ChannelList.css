@@ -1,5 +1,5 @@
 .channel-list-container {
-    width: 200px;
+    min-width: 250px;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -16,10 +16,67 @@
 }
 
 .user-info-wrapper {
+    color: white;
     position: fixed;
     bottom: 0;
     margin-bottom: 20px;
     display: flex;
     align-items: center;
-    gap: 15px;
+    width: 210px;
+    justify-content: space-between;
+    background-color: #1E1F22;
+    padding: 0.5em;
+}
+
+.user-info-wrapper-userinfo {
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+}
+
+.user-info-wrapper button i{
+    font-size: 1.5em;
+    margin-top: 2px;
+ }
+
+ .user-info-wrapper button i:hover {
+    color: darkred;
+    cursor: pointer;
+ }
+.user-info-wrapper img {
+    border-radius: 50%;
+}
+
+.channel-list-container li {
+    list-style: none;
+    width: 100%;
+}
+
+.channel-list-container li:hover {
+    background-color: #313338;
+}
+
+.channel-list-container i {
+    font-size: 0.9em;
+}
+
+.channel-list-container a {
+    color: #B5BAC1;
+}
+
+.channel-list-container button {
+    background-color: transparent;
+    border: none;
+    color: #B5BAC1;
+}
+
+.channels-header button {
+    font-size: 1.3em;
+}
+
+.channels-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #B5BAC1;
 }
