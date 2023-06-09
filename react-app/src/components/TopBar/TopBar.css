@@ -1,5 +1,5 @@
 .top-bar-container {
-    height: 50px;
+    height: 45px;
     display: flex;
     background-color: darkgrey;
     color: white;
@@ -8,10 +8,13 @@
 }
 
 .topbar-server-title {
-    width: 200px;
+    width: 300px;
+    height: 100%;
     display: flex;
     align-items: center;
     padding-left: 20px;
+    background-color:  #313338;
+    color: white;
 }
 
 .top-bar-right-half {
@@ -19,6 +22,9 @@
     justify-content: space-between;
     width: 100%;
     align-items: center;
+    background-color: #3a3c3e;
+    color: white;
+    height: 100%;
 }
 
 .right-right-icons {
