@@ -3,7 +3,7 @@ import { useModal } from "../../context/Modal";
 import { useDispatch } from "react-redux";
 import { getChannelsThunk, updateChannelThunk } from "../../store/channel";
 import "./EditChannelComponent.css";
-import OpenModalButton from "../OpenModalButton";
+import OpenDeleteChannelButton from "../OpenDeleteChannelButton";
 import DeleteChannelModal from "../DeleteChannelModal";
 
 function EditChannelModal({ channel }) {
@@ -44,44 +44,44 @@ function EditChannelModal({ channel }) {
 
     return (
         <>
-        <div className="channel-modal-inner-container">
-            <div>
-                <OpenModalButton
-                    buttonText="Delete Channel"
-                    modalComponent={<DeleteChannelModal channel={channel}/>}
+            <div className="channel-modal-inner-container">
+                <div className="edit-channel-left">
+                    <OpenDeleteChannelButton
+                        buttonText="Delete Channel"
+                        modalComponent={<DeleteChannelModal channel={channel} />}
 
-                />
+                    />
+                </div>
+                <div className="edit-channel-right">
+                    <h2>Overview</h2>
+                    <form className="edit-channel-form" onSubmit={handleSubmit}>
+                        {errors.title ? <p style={{ color: "darkred" }}>{errors.title}</p> : ""}
+                        {errors.topic ? <p style={{ color: "darkred" }}>{errors.topic}</p> : ""}
+                        <label className="edit-channel-labels">
+                            CHANNEL NAME
+                            <input
+                                type="text"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                                required
+                            ></input>
+                        </label>
+
+                        <label className="edit-channel-labels">
+                            CHANNEL TOPIC
+                            <input
+                                type="text"
+                                value={topic}
+                                onChange={(e) => setTopic(e.target.value)}
+                                required
+                            ></input>
+                        </label>
+                        <button className="edit-channel-submit" disabled={title.length > 40 || topic.length > 255} type="submit">Save Changes</button>
+                    </form>
+
+                </div>
+
             </div>
-            <div>
-            <h2>Overview</h2>
-            <form onSubmit={handleSubmit}>
-            {errors.title ? <p style={{color:"darkred"}}>{errors.title}</p> : ""}
-            {errors.topic ? <p style={{color:"darkred"}}>{errors.topic}</p> : ""}
-                <label>
-                    CHANNEL NAME
-                    <input
-                        type="text"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        required
-                    ></input>
-                </label>
-
-                <label>
-                    CHANNELTOPIC
-                    <input
-                        type="text"
-                        value={topic}
-                        onChange={(e) => setTopic(e.target.value)}
-                        required
-                    ></input>
-                </label>
-                <button disabled={title.length > 40 || topic.length > 255} type="submit">Save Changes</button>
-            </form>
-
-            </div>
-
-        </div>
         </>
     )
 }
