@@ -55,7 +55,7 @@ function ServerNavBar({ isLoaded }) {
           </div>
 
           <div className="home-main-content-wrapper">
-            <img className="home-page-image" src="https://mcdn.wallpapersafari.com/medium/48/64/VQ9gG1.jpg"></img>
+            {/* <img className="home-page-image" src="https://mcdn.wallpapersafari.com/medium/48/64/VQ9gG1.jpg"></img> */}
 
             {( serversArray[0] && serversArray[0].id) ? (
               <div className="home-main-content-text">
