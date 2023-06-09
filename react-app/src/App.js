@@ -11,6 +11,7 @@ import UpdateUser from "./components/UpdateUserForm";
 import TopBar from "./components/TopBar";
 import ServersList from "./components/ServersList";
 import ChannelViewIndex from "./components/ChannelViewIndex";
+import { Redirect } from "react-router-dom/cjs/react-router-dom";
 
 
 function App() {
@@ -27,12 +28,22 @@ function App() {
       {/* <Navigation isLoaded={isLoaded} /> */}
         <Switch>
           <Route exact path="/">
+              {sessionUser ? (
+                <ServerNavBar isLoaded={isLoaded} />
+               ) : (
+                  <Redirect to="/login" />
+                )
 
-              <ServerNavBar isLoaded={isLoaded} />
-            
+              }
+
           </Route>
           <Route path="/:serverId/:channelId">
-            <ChannelViewIndex />
+            {sessionUser ? (
+              <ChannelViewIndex />
+
+            ) : (
+              <Redirect to="/login" />
+            )}
           </Route>
           <Route path="/login" >
             <LoginFormPage />

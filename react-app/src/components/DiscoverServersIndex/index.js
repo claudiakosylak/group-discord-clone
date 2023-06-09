@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import ServersList from '../ServersList';
 import "./DiscoverServersIndex.css"
 import { logout } from "../../store/session";
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 function DiscoverServersIndex () {
@@ -23,9 +24,9 @@ function DiscoverServersIndex () {
         dispatch(getDiscoverServersThunk())
     }, [dispatch])
 
-    if (!user) {
-        history.push('/login')
-    }
+    // if (!user) {
+    //     return <Redirect to="/login"/>
+    // }
 
     const handleLogout = (e) => {
         e.preventDefault();

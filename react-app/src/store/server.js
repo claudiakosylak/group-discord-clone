@@ -2,6 +2,11 @@ const GET_CURRENT_USERS_SERVERS = "server/GET_CURRENT_USERS_SERVERS"
 const CREATE_NEW_SERVER = "server/CREATE_NEW_SERVER"
 const DELETE_SERVER = "server/DELETE_SERVER"
 const GET_DISCOVER_SERVERS = "server/GET_DISCOVER_SERVERS"
+const CLEAR_CURRENT_SERVER = "server/CLEAR_CURRENT_SERVER"
+
+export const clearCurrentServer = () => ({
+    type: CLEAR_CURRENT_SERVER
+})
 
 const getCurrentUsersServers = (servers) => ({
     type: GET_CURRENT_USERS_SERVERS,
@@ -139,6 +144,9 @@ const serverReducer = (state = initialState, action) => {
             const discoverState = {...state, allServers: {...state.allServers}, currentServer: {}, discoverServers: {}}
             discoverState.discoverServers = action.servers
             return discoverState;
+        case CLEAR_CURRENT_SERVER:
+            const clearState = {...state, allServers: {...state.allServers}, currentServer: {}, discoverServers: {}}
+            return clearState;
         default:
             return state;
     }
