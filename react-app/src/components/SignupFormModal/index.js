@@ -214,7 +214,7 @@ function SignupFormModal() {
 
 				<button type="submit" disabled={username.length > 30 || password.length > 30 || email.length > 30 || month === "" || day === "" || year === ""}>Sign Up</button>
 			</form>
-			<NavLink to='/login'><p>Already have an Account?</p></NavLink>
+			<NavLink id="reroute-login-link" to='/login'>Already have an Account?</NavLink>
 		</div>
 	);
 }

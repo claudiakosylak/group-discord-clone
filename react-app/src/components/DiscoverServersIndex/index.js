@@ -65,8 +65,8 @@ function DiscoverServersIndex() {
                 <div className="discover-header-wrapper">
                     <img className="discover-main-image" src="https://cdn.wallpapersafari.com/90/60/HPfrKl.png"></img>
                     <div className="discover-header-text">
-                    <h2>Find your community on Discordia</h2>
-                    <p>From gaming, to music, to learning, there's a place for you.</p>
+                        <h2>Find your community on Discordia</h2>
+                        <p>From gaming, to music, to learning, there's a place for you.</p>
                     </div>
                 </div>
                 <h3>Featured communities</h3>

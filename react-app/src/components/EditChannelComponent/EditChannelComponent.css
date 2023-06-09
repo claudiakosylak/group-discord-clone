@@ -1,3 +1,96 @@
 .channel-modal-inner-container {
     display: flex;
+    height: 250px;
+    border-radius: 10px;
+}
+
+.edit-channel-left {
+    background-color: #2f3132;
+    border-radius: 10px 0 0 10px;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.edit-channel-right {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+     background-color: #3a3c3e;
+     color: white;
+     border-radius: 0 10px 10px 0;
+}
+
+.edit-channel-form {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    height: 100%;
+}
+
+.edit-channel-labels {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.edit-channel-labels > input {
+    background-color: #1E1F22;
+    border: none;
+    color: white;
+    width: 100%;
+    border-radius: 5px;
+    height: 35px;
+    margin-top: 5px;
+
+}
+
+.edit-channel-labels > input:focus {
+    outline: none;
+}
+
+.delete-channel-button {
+    background-color: #111214;
+    color:  #DA373C;
+    border: none;
+    padding: 5px 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    border-radius: 3px;
+}
+
+.delete-channel-button:hover {
+    background-color: #DA373C;
+    color: white;
+    cursor: pointer;
+}
+
+.fa-trash-can {
+    font-size: 12px;
+}
+
+.edit-channel-submit {
+    justify-self: flex-end;
+    align-self: flex-end;
+    background-color: #4752C4;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 3px;
+    margin-top: 20px;
+}
+
+.edit-channel-submit:hover {
+    cursor: pointer;
+}
+
+.edit-channel-right > h2 {
+    margin-left: 15px;
+    margin-top: 10px;
 }
