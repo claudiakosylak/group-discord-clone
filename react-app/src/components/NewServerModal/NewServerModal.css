@@ -1,0 +1,97 @@
+.create-server-wrapper {
+    width: 400px;
+    height: 350px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.create-server-subtext {
+    text-align: center;
+    margin: 10px 30px;
+}
+
+.exit-x {
+    position: absolute;
+    right: 20px;
+    top: 0px;
+    font-size: 25px;
+    color: #686a70;
+}
+
+.exit-x:hover {
+    cursor: pointer;
+}
+
+.create-server-form {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.server-name-label {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    width: 100%;
+    padding: 0 15px;
+    font-size: 12px;
+}
+
+.server-name-label > input {
+    width: 100%;
+    height: 35px;
+    border: none;
+    background-color: #dbdbdd;
+}
+
+.server-name-label > input:focus {
+    outline: none;
+}
+
+.fa-camera {
+    font-size: 40px;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+}
+
+.server-bottom-form {
+    background-color: lightgrey;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-radius: 0 0 10px 10px;
+}
+
+.server-bottom-form > button {
+    margin: 10px;
+    background-color: #4752C4;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 90px;
+    border-radius: 5px;
+}
+
+.server-bottom-form > button:hover {
+    cursor: pointer;
+}
+
+.form-top-half {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
