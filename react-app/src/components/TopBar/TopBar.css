@@ -13,7 +13,7 @@
     display: flex;
     align-items: center;
     padding-left: 20px;
-    background-color:  #313338;
+    background-color:  #2a2c31;
     color: white;
 }
 
@@ -22,7 +22,7 @@
     justify-content: space-between;
     width: 100%;
     align-items: center;
-    background-color: #3a3c3e;
+    background-color: #323537;
     color: white;
     height: 100%;
 }
@@ -31,4 +31,36 @@
     display: flex;
     gap: 20px;
     padding-right: 20px;
+}
+
+.channel-title {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.fa-hashtag {
+    color: #686a70;
+    font-size: 22px;
+    margin: 10px;
+}
+
+.leave-server-button {
+    background-color: #111214;
+    color:  #DA373C;
+    border: none;
+    padding: 5px 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.leave-server-button:hover {
+    background-color: #DA373C;
+    color: white;
+    cursor: pointer;
+}
+
+.fa-circle-arrow-left {
+    font-size: 17px;
 }

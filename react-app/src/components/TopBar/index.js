@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux"
+import OpenLeaveServerButton from "../OpenLeaveServerButton"
 import OpenModalButton from "../OpenModalButton"
 import React from 'react'
 import './TopBar.css'
@@ -30,8 +31,8 @@ function Topbar({server}) {
                 <div>
                     <div>
                         {channelId && (
-                            <div>
-                                <p># Icon</p>
+                            <div className="channel-title">
+                                <i class="fa-regular fa-hashtag"></i>
 
                                 <p>{currentChannel.title}</p>
                             </div>
@@ -46,7 +47,7 @@ function Topbar({server}) {
                         )
                     }
                     { ((currentServer.title && currentUser) && currentServer.owner_id !== currentUser.id) && (
-                        <OpenModalButton
+                        <OpenLeaveServerButton
                         buttonText="Leave Server"
                         modalComponent={<LeaveServerModal server={currentServer}/>}/>
                     )
