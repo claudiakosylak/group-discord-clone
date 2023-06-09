@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {useModal} from "../../context/Modal";
 import { deleteMembershipThunk, getMembershipsThunk } from "../../store/membership";
 import { useHistory } from "react-router-dom";
+import { clearCurrentServer } from "../../store/server";
 
 function LeaveServerModal ({server}) {
     const dispatch = useDispatch()
@@ -19,6 +20,7 @@ function LeaveServerModal ({server}) {
     const handleDelete = () => {
         dispatch(deleteMembershipThunk(membershipId))
         dispatch(getMembershipsThunk(server.id))
+        dispatch(clearCurrentServer())
         history.push('/')
         closeModal()
     }
