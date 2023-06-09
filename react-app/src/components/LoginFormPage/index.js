@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import './LoginForm.css';
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import backgroundImage from './discord-login-background.png'
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -35,39 +36,47 @@ function LoginFormPage() {
   };
 
   return (
-    <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Log In</button>
-        <button onClick={() => demoUserLogin()}>Demo User</button>
-        <button onClick={() => demoUserLoginTwo()}>Demo User Two</button>
-      </form>
-      <p>Need an account?</p>
-      <NavLink to='/signup'>Register</NavLink>
-    </>
+    <div className='login-page-container'>
+      <img className='login-background-image' src={backgroundImage}/>
+      <div className='login-form-container'>
+        <form className='login-form' onSubmit={handleSubmit}>
+          <h1 id='login-form-header'>Welcome back!</h1>
+          <p id='login-form-tag'>We're so excited to see you again!</p>
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+          <label className='login-form-label'>
+            EMAIL
+            <input
+              className='login-form-input'
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
+          <label className='login-form-label'>
+            PASSWORD
+            <input
+              className='login-form-input'
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+          <button className='login-form-button' type="submit">Log In</button>
+        </form>
+          <button className='login-form-demo-button' onClick={() => demoUserLogin()}>Login as Demo User One</button>
+          <button className='login-form-demo-button' onClick={() => demoUserLoginTwo()}>Login as Demo User Two</button>
+        <div className='login-form-register'>
+          <p id='login-form-need-account'>Need an account?</p>
+          <NavLink id='login-register-link' to='/signup'>Register</NavLink>
+        </div>
+      </div>
+    </div>
   );
 }
 
