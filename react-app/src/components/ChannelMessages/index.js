@@ -107,11 +107,14 @@ function ChannelMessages({ channel, server }) {
                     </div>
                 </div>
                 <form id='chat-input-form' onSubmit={sendChat}>
+                    <div>
                         <input id='chat-input'
-                            value={chatInput}
-                            onChange={updateChatInput}
+                                value={chatInput}
+                                onChange={updateChatInput}
                         />
-                        <button id='chat-send-button' disabled={chatInput.length === 0} type="submit">Send</button>
+                        <button id='chat-send-button' disabled={chatInput.length === 0 || chatInput.length > 1000} type="submit">Send</button>
+                    </div>
+                    <div id="message-warning">{chatInput.length > 1000 ? <p>Please keep your message below 1000 characters</p> : ''}</div>
                 </form>
             </div>
     )

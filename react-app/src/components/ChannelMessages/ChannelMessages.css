@@ -1,6 +1,6 @@
 .channel-messages-container {
     width: 500px;
-    padding: 20px;
+    padding: 20px 20px 2px 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -11,6 +11,7 @@
     width: 100%;
     display: flex;
     gap: 0.5em;
+    flex-direction: column;
 }
 
 #chat-input {
@@ -38,4 +39,10 @@
 .channel-messages-message-div:hover i {
     opacity: 1;
     cursor: pointer;
+}
+
+#message-warning {
+    height: 2em;
+    width: 100%;
+    font-size: 0.8em;
 }
