@@ -104,12 +104,12 @@
 
 .login-form-button:hover {
     cursor: pointer;
-    opacity: 70%;
+    /* opacity: 70%; */
 }
 
 .login-form-demo-button:hover {
     cursor: pointer;
-    opacity: 70%;
+    /* opacity: 70%; */
 }
 
 #login-register-link:hover{
