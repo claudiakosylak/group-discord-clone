@@ -102,7 +102,17 @@ function ChannelMessages({ channel, server }) {
                 <p>Welcome to #{currentChannel.title}!</p>
                     <div id='channel-messages'>
                         {server && channel && messageList.length > 0 && messageList.map((message, ind) => (
-                            <div className="channel-messages-message-div" key={ind}>{`${message.user.username}: ${message.content}`}{ message.user.id === user.id ? <span onClick={(() => deleteChat(message.id))}><i class="fa-regular fa-trash-can"></i></span> : ''}</div>
+                            <div className="channel-messages-message-div" key={ind}>
+                                    <img src={message.user.profile_pic} className="message-user-pic" />
+                                    <div className="message-content">
+                                        <div className="message-header">
+                                          <span className="message-username">{message.user.username}</span>
+                                          <span className="message-time">{message.created_at.split(" ")[4]}</span>
+                                        </div>
+                                        <p>{message.content} { message.user.id === user.id ? <span onClick={(() => deleteChat(message.id))}>
+                                            <i class="fa-regular fa-trash-can"></i></span> : ''}</p>
+                                    </div>
+                            </div>
                         ))}
                     </div>
                 </div>
