@@ -66,7 +66,7 @@ function NewChannelModal({serverId}) {
                         required
                     ></input>
                 </label>
-                <button type="submit">Create Channel</button>
+                <button disabled={title.length > 40 || topic.length > 255} type="submit">Create Channel</button>
             </form>
         </>
     )
