@@ -10,6 +10,8 @@ import Topbar from '../TopBar';
 
 function ServerNavBar({ isLoaded }) {
   const user = useSelector(state => state.session.user)
+  const servers = useSelector(state => state.server.allServers)
+  const serversArray = Object.values(servers)
 
   const history = useHistory()
   const dispatch = useDispatch()
@@ -26,36 +28,46 @@ function ServerNavBar({ isLoaded }) {
 
   return (
 
-      <div className="all-content-container">
-        {user && (
-          <div className="server-list">
+    <div className="all-content-container">
+      {user && (
+        <div className="server-list">
           <ServersList />
 
-          </div>
-        ) }
+        </div>
+      )}
 
-        {user && (
-          <div className="left-nav-bars-container">
-            <div className="top-bar-wrapper">
-              <Topbar />
-            </div>
-            <div className="left-nav-bars">
+      {user && (
+        <div className="left-nav-bars-container">
+          <div className="top-bar-wrapper">
+            <Topbar />
+          </div>
+          <div className="left-nav-bars">
 
             {user && (
-            <div className="user-info-wrapper">
+              <div className="user-info-wrapper">
 
-                    <img src={user.profile_pic} className="user-profile-pic"></img>
-                    <p>{user.username}</p>
-                    <p>User Settings</p>
-                    <button onClick={handleLogout}>Logout</button>
-            </div>
-              )}
+                <img src={user.profile_pic} className="user-profile-pic"></img>
+                <p>{user.username}</p>
+                <p>User Settings</p>
+                <button onClick={handleLogout}>Logout</button>
+              </div>
+            )}
+            <div className="home-main-content-wrapper">
+              <img className="home-page-image" src="https://cdna.artstation.com/p/assets/images/images/004/187/762/large/alena-aenami-7p-m-1k.jpg?1481159743"></img>
 
+              {/* {serversArray[0] ? (
+              <div>
+
+              </div>
+
+              )} */}
             </div>
 
           </div>
-        )}
-      </div >
+
+        </div>
+      )}
+    </div >
   )
 }
 
