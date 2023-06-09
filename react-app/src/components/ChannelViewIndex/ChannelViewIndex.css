@@ -12,4 +12,28 @@
 
 .main-content-wrapper {
     display: flex;
+    border: red 2px dotted ;
+    width: 100%;
+    height: 100%;
+}
+
+.channel-list-container {
+    /* min-width: 200px; */
+    border: green 2px solid;
+    background-color: #2B2D31;
+}
+
+.memberships-list-container {
+    /* width: 20%; */
+    border: blue 2px solid;
+    background-color: #2B2D31;
+    height: 100%;
+}
+
+.channel-messages-container {
+    /* width: 60%; */
+    border:  yellow 2px solid;
+    flex-grow: 2;
+    color: #B5BAC1;
+    background-color: #313338;
 }

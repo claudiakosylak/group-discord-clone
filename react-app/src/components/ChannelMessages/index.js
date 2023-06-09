@@ -14,7 +14,7 @@ function ChannelMessages({ channel, server }) {
     const [chatInput, setChatInput] = useState("");
     const user = useSelector(state => state.session.user);
     const channelMessages = useSelector(state => state.channelMessages.allChannelMessages);
-
+    const currentChannel = useSelector(state => state.channel.currentChannel)
     let messageList;
 
     if (channelMessages) {
@@ -97,21 +97,25 @@ function ChannelMessages({ channel, server }) {
     }
 
     return (
-        <div className="channel-messages-container">
-            <h1>hii from channel messages</h1>
-            <div>
-                {server && channel && messageList.length > 0 && messageList.map((message, ind) => (
-                    <div key={ind}>{`${message.user.username}: ${message.content}`} <span onClick={(() => deleteChat(message.id))}>X</span></div>
-                ))}
+        <>
+            <div className="channel-messages-container">
+                <p>Welcome to #{currentChannel.title}!</p>
+                <div>
+                    <div id='channel-messages'>
+                        {server && channel && messageList.length > 0 && messageList.map((message, ind) => (
+                            <div key={ind}>{`${message.user.username}: ${message.content}`} <span onClick={(() => deleteChat(message.id))}>X</span></div>
+                        ))}
+                    </div>
+                    <form id='chat-input-form' onSubmit={sendChat}>
+                        <input id='chat-input'
+                            value={chatInput}
+                            onChange={updateChatInput}
+                        />
+                        <button id='chat-send-button' disabled={chatInput.length === 0} type="submit">Send</button>
+                    </form>
+                </div>
             </div>
-            <form onSubmit={sendChat}>
-                <input
-                    value={chatInput}
-                    onChange={updateChatInput}
-                />
-                <button disabled={chatInput.length === 0} type="submit">Send</button>
-            </form>
-        </div>
+        </>
     )
 
 }
