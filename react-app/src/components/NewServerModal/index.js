@@ -58,7 +58,7 @@ function NewServerModal() {
                     required
                 ></input>
                 </label>
-                <button type="submit">Create</button>
+                <button disabled={title.length > 40} type="submit">Create</button>
             </form>
         </>
     )

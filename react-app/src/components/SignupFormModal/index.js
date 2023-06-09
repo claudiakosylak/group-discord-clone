@@ -212,7 +212,7 @@ function SignupFormModal() {
 					</select>
 				</label>
 
-				<button type="submit" disabled={month === "" || day === "" || year === ""}>Sign Up</button>
+				<button type="submit" disabled={username.length > 30 || password.length > 30 || email.length > 30 || month === "" || day === "" || year === ""}>Sign Up</button>
 			</form>
 			<NavLink to='/login'><p>Already have an Account?</p></NavLink>
 		</div>
