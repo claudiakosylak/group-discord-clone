@@ -1,0 +1,71 @@
+.server-icons-container {
+    background-color: #1E1F22;
+    height: 100vh;
+    padding: 10px;
+}
+
+.server-icons-container {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    align-items: center;
+}
+
+.server-icons {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+
+.server-icon-buttons {
+    border-radius: 100%;
+    border: none;
+    box-shadow: none;
+}
+
+.server-icon-buttons:hover {
+    cursor: pointer;
+}
+
+.create-server-button {
+    width: 50px;
+    height: 50px;
+    background-color: #3a3c3e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    border-radius: 100%;
+    color:  #23A559;
+    border: none;
+}
+
+.create-server-button:hover {
+    background-color:  #23A559;
+    color: white;
+}
+
+.discover-button {
+    margin-top: 5px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    border-radius: 100%;
+    background-color: #3a3c3e;
+}
+
+.discover-button:hover {
+    background-color:  #23A559;
+    color: white;
+}
+
+.discover-button-link {
+    color: #23A559;
+}
+
+.discover-button-link:hover {
+    color: white;
+}
