@@ -55,10 +55,9 @@ function DiscoverServersIndex() {
 
                 {user && (
                     <div className="user-info-wrapper discover-user-info">
-
                         <img src={user.profile_pic} className="user-profile-pic"></img>
                         <p>{user.username}</p>
-                        <p>User Settings</p>
+                        {/* <p>User Settings</p> */}
                         <button onClick={handleLogout}>Logout</button>
                     </div>
                 )}
