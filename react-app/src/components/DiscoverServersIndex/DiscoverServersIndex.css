@@ -13,6 +13,13 @@
     padding-top: 20px;
 }
 
+.discover-right-side-wrapper > h3 {
+    color: white;
+    align-self: flex-start;
+    margin-left: 55px;
+    margin-top: 20px;
+}
+
 .discover-main-image {
     position: absolute;
     width: 850px;
@@ -41,4 +48,49 @@
     margin: 20px;
     display: flex;
     justify-content: center;
+}
+
+.discover-index-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    grid-template-rows: repeat(2, 25%);
+    height: 1000px;
+    width: 850px;
+}
+
+.discover-item {
+    background-color: #1E1F22;
+    margin: 10px;
+    border-radius: 10px;
+    list-style-type: none;
+}
+
+.discover-item-image {
+    height: 45%;
+    width: 100%;
+    border-radius: 10px 10px 0 0 ;
+}
+
+h4 {
+    color: white;
+    margin-top: 20px;
+}
+
+.discover-item-text {
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.discover-join-button {
+    background-color: #3a3c3e;
+    border: none;
+    color: white;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.discover-join-button:hover {
+    background-color: #4752C4;
+    cursor: pointer;
 }

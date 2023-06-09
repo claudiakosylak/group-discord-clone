@@ -70,13 +70,15 @@ function DiscoverServersIndex() {
                     <p>From gaming, to music, to learning, there's a place for you.</p>
                     </div>
                 </div>
+                <h3>Featured communities</h3>
 
-                <ul>
+                <ul className='discover-index-grid'>
                     {discoverServers.map(server => (
-                        <li key={server.id}>
-                            <div>
-                                {server.title}
-                                <button onClick={() => handleJoin(server)}>Join</button>
+                        <li key={server.id} className="discover-item">
+                            <img className="discover-item-image" src={server.preview_icon}></img>
+                            <div className="discover-item-text">
+                                <h4>{server.title}</h4>
+                                <button className="discover-join-button" onClick={() => handleJoin(server)}>Join</button>
 
                             </div>
                         </li>
