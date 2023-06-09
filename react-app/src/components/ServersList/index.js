@@ -5,12 +5,14 @@ import { NavLink } from 'react-router-dom';
 import OpenCreateServerButton from '../OpenCreateServerButton';
 import NewServerModal from '../NewServerModal';
 import "./ServersList.css"
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 
 function ServersList() {
     const serversObj = useSelector((state) => state.server.allServers);
     const servers = Object.values(serversObj);
+    const serverId = useParams()
 
 
     const dispatch = useDispatch();

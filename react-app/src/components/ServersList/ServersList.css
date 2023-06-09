@@ -17,6 +17,14 @@
     border-radius: 100%;
 }
 
+.server-icons:hover {
+    border-radius: 35%;
+}
+
+#selected-server-icon {
+    border-radius: 35%;
+}
+
 .server-icon-buttons {
     border-radius: 100%;
     border: none;
@@ -43,6 +51,7 @@
 .create-server-button:hover {
     background-color:  #23A559;
     color: white;
+    border-radius: 35%;
 }
 
 .discover-button {
@@ -60,6 +69,7 @@
 .discover-button:hover {
     background-color:  #23A559;
     color: white;
+    border-radius: 35%;
 }
 
 .discover-button-link {

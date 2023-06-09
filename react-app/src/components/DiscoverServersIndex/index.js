@@ -24,9 +24,9 @@ function DiscoverServersIndex () {
         dispatch(getDiscoverServersThunk())
     }, [dispatch])
 
-    // if (!user) {
-    //     return <Redirect to="/login"/>
-    // }
+    if (!user) {
+        return <Redirect to="/login"/>
+    }
 
     const handleLogout = (e) => {
         e.preventDefault();
