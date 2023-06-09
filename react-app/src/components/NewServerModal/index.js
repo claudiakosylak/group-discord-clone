@@ -32,39 +32,39 @@ function NewServerModal() {
         if (Object.values(errors).length) {
             setHasErrors(true)
         } else {
-                const response = await dispatch(createNewServerThunk(serverInfo))
-                await dispatch(getServersThunk())
-                history.push(`/${response.id}/${response.channels[0].id}`)
-                setHasErrors(false)
-                closeModal()
-            }
-
+            const response = await dispatch(createNewServerThunk(serverInfo))
+            await dispatch(getServersThunk())
+            history.push(`/${response.id}/${response.channels[0].id}`)
+            setHasErrors(false)
+            closeModal()
         }
 
+    }
 
 
-    return(
+
+    return (
         <div className="create-server-wrapper">
             <p className="exit-x" onClick={closeModal}>x</p>
             <h2>Create your server</h2>
             <p className="create-server-subtext">Give your new server personality with a name and an icon.</p>
             <form onSubmit={handleSubmit} className="create-server-form">
                 <div className="form-top-half">
-            <i class="fa-solid fa-camera"></i>
-                {errors.title ? <p style={{color:"darkred"}}>{errors.title}</p> : ""}
-                <label className="server-name-label">
-                    SERVER NAME
-                <input
-                    type="text"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    required
-                ></input>
-                </label>
+                    <i class="fa-solid fa-camera"></i>
+                    {errors.title ? <p style={{ color: "darkred" }}>{errors.title}</p> : ""}
+                    <label className="server-name-label">
+                        SERVER NAME
+                        <input
+                            type="text"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            required
+                        ></input>
+                    </label>
 
                 </div>
                 <div className="server-bottom-form">
-                <button disabled={title.length > 40} type="submit">Create</button>
+                    <button disabled={title.length > 40} type="submit">Create</button>
 
                 </div>
             </form>

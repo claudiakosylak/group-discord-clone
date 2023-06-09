@@ -1,10 +1,10 @@
 .memberships-list-container {
     list-style-type: none;
-    width: 200px;
+    width: 250px;
     display: flex;
     flex-direction: column;
     padding: 20px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .member-list-item {

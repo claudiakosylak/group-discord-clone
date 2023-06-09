@@ -29,16 +29,17 @@ function ChannelList({server}) {
             <ul>
                 <div className="channels-header"><p>CHANNELS</p>
                     <OpenModalButton
+                        id="new-channel-button"
                         buttonText="+"
                         modalComponent={<NewChannelModal serverId={server.id} />}
                     />
                 </div>
                 {channels.map((channel, idx) => (
                     <div className="channel-menu-item">
-                        <li key={channel.id} ><NavLink to={`/${server.id}/${channel.id}`}>{channel.title}</NavLink></li>
-                        {idx !== 0 && (
+                        <li key={channel.id} ><i class="fa-solid fa-hashtag"></i><NavLink to={`/${server.id}/${channel.id}`}>{channel.title}</NavLink></li>
+                        {user.id === server.owner_id && idx !== 0 && (
                             <OpenModalButton
-                                buttonText="Edit"
+                                buttonText={<i class="fa-solid fa-gear"></i>}
                                 modalComponent={<EditChannelModal channel={channel} />} />
                         )}
                     </div>
@@ -47,12 +48,13 @@ function ChannelList({server}) {
             </ul>
                 {user && (
             <div className="user-info-wrapper">
-
-                    <img src={user.profile_pic} className="user-profile-pic"></img>
-                    <p>{user.username}</p>
-                    <p>User Settings</p>
-                    <button onClick={handleLogout}>Logout</button>
-            </div>
+                    <div className="user-info-wrapper-userinfo">
+                        <img src={user.profile_pic} className="user-profile-pic"></img>
+                        <p>{user.username}</p>
+                    </div>
+                    {/* <p>User Settings</p> */}
+                    <button onClick={handleLogout}><i class="fa-solid fa-person-through-window"></i></button>
+                </div>
                 )}
 
 

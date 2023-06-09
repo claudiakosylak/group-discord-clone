@@ -1,0 +1,91 @@
+.create-channel-modal-wrapper {
+    background-color: #3a3c3e;
+    border-radius: 10px;
+    height: 300px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding: 20px 0 0 0;
+}
+
+.create-channel-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+
+}
+
+.channel-name-label {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.channel-name-input-box {
+    background-color: #1E1F22;
+    border: none;
+    color: white;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.channel-name-input-box:focus {
+    outline: none;
+
+}
+
+.channel-name-input-chunk {
+    display: flex;
+    background-color: #1E1F22;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+#create-channel-hashtag {
+    color: white;
+    font-size: 15px;
+}
+
+.topic-input {
+    height: 35px;
+    padding: 0 10px;
+}
+
+.channel-form-bottom {
+    background-color: #2f3132;
+    height: 70px;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    padding-right: 15px;
+}
+
+.channel-form-bottom > button {
+    background-color: #4752C4;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.channel-form-bottom > button:hover {
+    cursor: pointer;
+}
+
+.channel-form-bottom > p:hover {
+    cursor: pointer;
+}
+
+.channel-form-top-half {
+    padding: 0 15px;
+}
+
+.create-channel-header {
+    padding-left: 15px;
+}
