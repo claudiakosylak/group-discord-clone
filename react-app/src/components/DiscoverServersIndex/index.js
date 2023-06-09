@@ -7,9 +7,10 @@ import ServersList from '../ServersList';
 import "./DiscoverServersIndex.css"
 import { logout } from "../../store/session";
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+import kitty from "../../images/discordia-kitty.jpg";
 
 
-function DiscoverServersIndex () {
+function DiscoverServersIndex() {
     const memberServersObj = useSelector(state => state.server.allServers)
     const memberServers = Object.values(memberServersObj)
     const discoverServersObj = useSelector(state => state.server.discoverServers)
@@ -25,7 +26,7 @@ function DiscoverServersIndex () {
     }, [dispatch])
 
     if (!user) {
-        return <Redirect to="/login"/>
+        return <Redirect to="/login" />
     }
 
     const handleLogout = (e) => {
@@ -50,28 +51,40 @@ function DiscoverServersIndex () {
             <div>
                 <ServersList />
             </div>
-            {user && (
-            <div className="user-info-wrapper">
+            <div className="discover-right-side-wrapper">
 
-                    <img src={user.profile_pic} className="user-profile-pic"></img>
-                    <p>{user.username}</p>
-                    <p>User Settings</p>
-                    <button onClick={handleLogout}>Logout</button>
-            </div>
+                {user && (
+                    <div className="user-info-wrapper discover-user-info">
+
+                        <img src={user.profile_pic} className="user-profile-pic"></img>
+                        <p>{user.username}</p>
+                        <p>User Settings</p>
+                        <button onClick={handleLogout}>Logout</button>
+                    </div>
                 )}
-            <div>
 
-                <ul>
-                {discoverServers.map(server => (
-                    <li key={server.id}>
-                        <div>
-                        {server.title}
-                        <button onClick={() => handleJoin(server)}>Join</button>
+                <div className="discover-header-wrapper">
+                    <img className="discover-main-image" src="https://cdn.wallpapersafari.com/90/60/HPfrKl.png"></img>
+                    <div className="discover-header-text">
+                    <h2>Find your community on Discordia</h2>
+                    <p>From gaming, to music, to learning, there's a place for you.</p>
+                    </div>
+                </div>
+                <h3>Featured communities</h3>
 
-                        </div>
+                <ul className='discover-index-grid'>
+                    {discoverServers.map(server => (
+                        <li key={server.id} className="discover-item">
+                            <img className="discover-item-image" src={server.preview_icon}></img>
+                            <div className="discover-item-text">
+                                <h4>{server.title}</h4>
+                                <button className="discover-join-button" onClick={() => handleJoin(server)}>Join</button>
+
+                            </div>
                         </li>
-                ))}
+                    ))}
                 </ul>
+
             </div>
         </div>
     )
