@@ -1,3 +1,44 @@
 .discover-index-wrapper {
     display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    background-color: #313338;
+}
+
+.discover-right-side-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-top: 20px;
+}
+
+.discover-main-image {
+    position: absolute;
+    width: 850px;
+    height: 350px;
+    border-radius: 10px;
+}
+
+.discover-header-text {
+    width: 850px;
+    height: 350px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 50px;
+    z-index: 1;
+}
+
+.discover-user-info {
+    align-self: flex-start;
+}
+
+.discover-header-wrapper {
+    width: 100%;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
 }
