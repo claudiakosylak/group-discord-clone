@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux"
 import OpenLeaveServerButton from "../OpenLeaveServerButton"
-import OpenModalButton from "../OpenModalButton"
 import React from 'react'
 import './TopBar.css'
 import LeaveServerModal from "../LeaveServerModal"
 import EditServerModal from "../EditServerModal"
 import { useParams } from "react-router-dom"
+import OpenServerSettingsButton from "../OpenServerSettingsButton"
 
 
 
@@ -41,8 +41,8 @@ function Topbar({server}) {
                 </div>
                 <div className="right-right-icons">
                     { (currentServer.title && currentUser && currentServer.owner_id === currentUser.id) && (
-                        <OpenModalButton
-                        buttonText="Server Settings Icon"
+                        <OpenServerSettingsButton
+                        buttonText="Server Settings"
                         modalComponent={<EditServerModal server={currentServer}/>} />
                         )
                     }

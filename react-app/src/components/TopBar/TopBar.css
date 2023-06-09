@@ -64,3 +64,23 @@
 .fa-circle-arrow-left {
     font-size: 17px;
 }
+
+.fa-gear {
+    font-size: 17px;
+}
+
+.server-settings-button {
+    background-color: #111214;
+    padding: 5px 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    border: none;
+    color: rgb(189, 189, 189);
+}
+
+.server-settings-button:hover {
+    background-color: #4752C4;
+    color: white;
+    cursor: pointer;
+}
