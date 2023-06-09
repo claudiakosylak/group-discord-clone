@@ -3,8 +3,9 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { createChannelThunk, getChannelsThunk } from "../../store/channel";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import "./CreateChannelModal.css";
 
-function NewChannelModal({serverId}) {
+function NewChannelModal({ serverId }) {
     const dispatch = useDispatch();
     const [title, setTitle] = useState("");
     const [topic, setTopic] = useState("")
@@ -47,32 +48,45 @@ function NewChannelModal({serverId}) {
     }
 
     return (
-        <>
-            <h2>Create Channel</h2>
-            <form onSubmit={handleSubmit}>
-            {errors.title ? <p style={{color:"darkred"}}>{errors.title}</p> : ""}
-            {errors.topic ? <p style={{color:"darkred"}}>{errors.topic}</p> : ""}
-                <label>
-                    CHANNEL NAME
-                    <input
-                        type="text"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        required
-                    ></input>
-                </label>
-                <label>
-                    TOPIC
-                    <input
-                        type="text"
-                        value={topic}
-                        onChange={(e) => setTopic(e.target.value)}
-                        required
-                    ></input>
-                </label>
-                <button disabled={title.length > 40 || topic.length > 255} type="submit">Create Channel</button>
+        <div className="create-channel-modal-wrapper">
+            <h2 className="create-channel-header">Create Channel</h2>
+            <form onSubmit={handleSubmit} className="create-channel-form">
+                <div className="channel-form-top-half">
+                    {errors.title ? <p style={{ color: "darkred" }}>{errors.title}</p> : ""}
+                    {errors.topic ? <p style={{ color: "darkred" }}>{errors.topic}</p> : ""}
+                    <label className="channel-name-label">
+                        CHANNEL NAME
+                        <div className="channel-name-input-chunk">
+                            <i class="fa-regular fa-hashtag" id="create-channel-hashtag"></i>
+                            <input
+                                className="channel-name-input-box"
+                                type="text"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                                placeholder="new-channel"
+                                required
+                            ></input>
+                        </div>
+                    </label>
+                    <label className="channel-name-label">
+                        TOPIC
+                        <input
+                            className="channel-name-input-box topic-input"
+                            placeholder="enter a topic for your channel"
+                            type="text"
+                            value={topic}
+                            onChange={(e) => setTopic(e.target.value)}
+                            required
+                        ></input>
+                    </label>
+
+                </div>
+                <div className="channel-form-bottom">
+                    <p onClick={closeModal}>Cancel</p>
+                    <button disabled={title.length > 40 || topic.length > 255} type="submit">Create Channel</button>
+                </div>
             </form>
-        </>
+        </div>
     )
 }
 

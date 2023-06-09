@@ -81,7 +81,7 @@
     border: none;
     padding: 10px;
     width: 90px;
-    border-radius: 5px;
+    border-radius: 3px;
 }
 
 .server-bottom-form > button:hover {
