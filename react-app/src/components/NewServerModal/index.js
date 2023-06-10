@@ -51,7 +51,6 @@ function NewServerModal() {
             <form onSubmit={handleSubmit} className="create-server-form">
                 <div className="form-top-half">
                     <i class="fa-solid fa-camera"></i>
-                    {errors.title ? <p style={{ color: "darkred" }}>{errors.title}</p> : ""}
                     <label className="server-name-label">
                         SERVER NAME
                         <input
@@ -59,8 +58,9 @@ function NewServerModal() {
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
                             required
-                        ></input>
+                            ></input>
                     </label>
+                            {errors.title ? <p className="create-server-errors">{errors.title}</p> : ""}
 
                 </div>
                 <div className="server-bottom-form">
