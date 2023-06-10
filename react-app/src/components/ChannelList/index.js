@@ -28,11 +28,14 @@ function ChannelList({server}) {
         <div className="channel-list-container">
             <ul>
                 <div className="channels-header"><p>CHANNELS</p>
+                {user.id === server.owner_id && (
                     <OpenModalButton
                         id="new-channel-button"
                         buttonText="+"
                         modalComponent={<NewChannelModal serverId={server.id} />}
                     />
+
+                )}
                 </div>
                 {channels.map((channel, idx) => (
                     <div className="channel-menu-item">

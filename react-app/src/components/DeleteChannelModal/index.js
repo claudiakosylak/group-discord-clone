@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import {useModal} from "../../context/Modal";
-import { deleteChannelThunk, getChannelsThunk } from "../../store/channel";
+import { deleteChannelThunk, getChannelsThunk, getOneChannelThunk } from "../../store/channel";
 import { useHistory } from "react-router-dom";
 import "./DeleteChannelModal.css";
 
@@ -14,6 +14,7 @@ function DeleteChannelModal({channel}) {
         dispatch(deleteChannelThunk(channel.id))
         dispatch(getChannelsThunk(channel.server_id))
         history.push(`/${currentServer.id}/${currentServer.channels[0].id}`)
+        dispatch(getOneChannelThunk(currentServer.channels[0].id))
         closeModal()
     }
 

@@ -64,7 +64,7 @@ function ChannelMessages({ channel, server }) {
     }, [messages])
 
     useEffect(() => {
-        dispatch(getChannelsThunk(server));
+        // dispatch(getChannelsThunk(server));
         dispatch(getAllChannelMessagesThunk(channel));
       }, [server])
 
@@ -99,7 +99,7 @@ function ChannelMessages({ channel, server }) {
     return (
             <div className="channel-messages-container">
                 <div id="channel-message-scroll">
-                <p>Welcome to #{currentChannel.title}!</p>
+                    <p>Welcome to #{currentChannel.title}!</p>
                     <div id='channel-messages'>
                         {server && channel && messageList.length > 0 && messageList.map((message, ind) => (
                             <div className="channel-messages-message-div" key={ind}>

@@ -74,9 +74,17 @@
     font-size: 1.3em;
 }
 
+.channels-header button:hover {
+    cursor: pointer;
+}
+
 .channels-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: #B5BAC1;
+}
+
+.channel-menu-item button:hover {
+    cursor: pointer;
 }
