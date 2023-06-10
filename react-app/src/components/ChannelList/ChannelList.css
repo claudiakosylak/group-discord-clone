@@ -1,6 +1,6 @@
 .channel-list-container {
     min-width: 250px;
-    padding: 20px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -50,9 +50,21 @@
 .channel-list-container li {
     list-style: none;
     width: 100%;
+    border-radius: 3px;
 }
 
-.channel-list-container li:hover {
+.channel-list-item {
+    width: 100%;
+    border-radius: 3px;
+}
+
+.channel-menu-item {
+    border-radius: 3px;
+}
+
+
+
+.channel-menu-item:hover {
     background-color: #313338;
 }
 
@@ -87,4 +99,8 @@
 
 .channel-menu-item button:hover {
     cursor: pointer;
+}
+
+.fa-gear {
+    padding: 10px;
 }
