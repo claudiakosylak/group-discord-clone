@@ -57,9 +57,10 @@ function EditChannelModal({ channel }) {
                 </div>
                 <div className="edit-channel-right">
                     <h2>Overview</h2>
+                    <p className="exit-x" onClick={closeModal}>x</p>
                     <form className="edit-channel-form" onSubmit={handleSubmit}>
-                        {errors.title ? <p style={{ color: "darkred" }}>{errors.title}</p> : ""}
-                        {errors.topic ? <p style={{ color: "darkred" }}>{errors.topic}</p> : ""}
+                        <div className="edit-channel-top">
+
                         <label className="edit-channel-labels">
                             CHANNEL NAME
                             <input
@@ -67,8 +68,9 @@ function EditChannelModal({ channel }) {
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
                                 required
-                            ></input>
+                                ></input>
                         </label>
+                                {errors.title ? <p className="edit-channel-errors" >{errors.title}</p> : ""}
 
                         <label className="edit-channel-labels">
                             CHANNEL TOPIC
@@ -77,8 +79,10 @@ function EditChannelModal({ channel }) {
                                 value={topic}
                                 onChange={(e) => setTopic(e.target.value)}
                                 required
-                            ></input>
+                                ></input>
                         </label>
+                                {errors.topic ? <p className="edit-channel-errors">{errors.topic}</p> : ""}
+                                </div>
                         <button className="edit-channel-submit" disabled={title.length > 40 || topic.length > 255} type="submit">Save Changes</button>
                     </form>
 
