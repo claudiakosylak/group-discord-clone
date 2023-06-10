@@ -71,3 +71,7 @@
     cursor: pointer;
     text-decoration: underline;
 }
+
+.delete-server-error {
+    margin-left: 15px;
+}

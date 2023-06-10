@@ -54,7 +54,7 @@ function DeleteServerModal({ server }) {
                     />
                 </label>
                 {errors && (
-                    <p style={{ color: "darkred" }}>{errors}</p>
+                    <p className="create-server-errors delete-server-error">{errors}</p>
                 )}
                 <div className="delete-server-buttons">
 
