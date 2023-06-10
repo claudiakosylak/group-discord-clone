@@ -1,0 +1,51 @@
+.leave-server-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #3a3c3e;
+    color: white;
+    border-radius: 10px;
+    height: 200px;
+    width: 430px;
+    justify-content: space-between;
+}
+
+.leave-server-container > h1 {
+    font-size: 20px;
+    padding: 15px;
+}
+
+.leave-server-container > p {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.leave-server-buttons {
+    display: flex;
+    background-color: #2f3132;
+    width: 100%;
+    justify-content: flex-end;
+    border-radius: 0 0 10px 10px;
+    height: 70px;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+}
+
+.leave-server-leave {
+    background-color: #DA373C;
+    color: white;
+    border-radius: 3px;
+    border: none;
+    padding: 10px 15px;
+}
+
+.leave-server-leave:hover {
+    cursor: pointer;
+    background-color: #a52327;
+}
+
+.leave-server-cancel:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
