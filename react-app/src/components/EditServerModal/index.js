@@ -63,7 +63,6 @@ function EditServerModal({ server }) {
                     <p className="exit-x" onClick={closeModal}>x</p>
                 </div>
                 <form onSubmit={handleSubmit} className="edit-server-form">
-                    {errors.title ? <p style={{ color: "darkred" }}>{errors.title}</p> : ""}
                     <div className="edit-server-form-top">
                         <i class="fa-solid fa-camera"></i>
                         <label className="edit-server-labels">
@@ -73,8 +72,9 @@ function EditServerModal({ server }) {
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
                                 required
-                            ></input>
+                                ></input>
                         </label>
+                                {errors.title ? <p className="create-server-errors">{errors.title}</p> : ""}
                     </div>
                     <div className="edit-server-form-bottom">
 

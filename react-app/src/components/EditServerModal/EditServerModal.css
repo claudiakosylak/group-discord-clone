@@ -107,3 +107,9 @@
     display: flex;
     justify-content: flex-end;
 }
+
+.create-server-errors {
+    font-size: 12px;
+    color: red;
+    margin-bottom: 10px;
+}
