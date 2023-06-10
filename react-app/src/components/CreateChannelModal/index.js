@@ -52,8 +52,6 @@ function NewChannelModal({ serverId }) {
             <h2 className="create-channel-header">Create Channel</h2>
             <form onSubmit={handleSubmit} className="create-channel-form">
                 <div className="channel-form-top-half">
-                    {errors.title ? <p style={{ color: "darkred" }}>{errors.title}</p> : ""}
-                    {errors.topic ? <p style={{ color: "darkred" }}>{errors.topic}</p> : ""}
                     <label className="channel-name-label">
                         CHANNEL NAME
                         <div className="channel-name-input-chunk">
@@ -65,9 +63,10 @@ function NewChannelModal({ serverId }) {
                                 onChange={(e) => setTitle(e.target.value)}
                                 placeholder="new-channel"
                                 required
-                            ></input>
+                                ></input>
                         </div>
                     </label>
+                                {errors.title ? <p className="create-server-errors">{errors.title}</p> : ""}
                     <label className="channel-name-label">
                         TOPIC
                         <input
@@ -77,8 +76,9 @@ function NewChannelModal({ serverId }) {
                             value={topic}
                             onChange={(e) => setTopic(e.target.value)}
                             required
-                        ></input>
+                            ></input>
                     </label>
+                            {errors.topic ? <p className="create-server-errors">{errors.topic}</p> : ""}
 
                 </div>
                 <div className="channel-form-bottom">
