@@ -5,6 +5,7 @@ import OpenModalButton from "../OpenModalButton";
 import { getServersThunk, updateServerThunk } from "../../store/server";
 import DeleteServerModal from "../DeleteServerModal";
 import "./EditServerModal.css"
+import OpenDeleteChannelButton from "../OpenDeleteChannelButton";
 
 function EditServerModal({ server }) {
     const user = useSelector(state => state.session.user)
@@ -47,24 +48,25 @@ function EditServerModal({ server }) {
     }, [dispatch, server])
 
     return (
-        <>
-            <div className="server-modal-inner-container">
-                <div>
-                    {(user.id == server.owner_id) && (
-                        <OpenModalButton
-                            buttonText="Delete Server"
-                            modalComponent={<DeleteServerModal server={server}/>}
-                        />
-                    )}
-                </div>
-                <div>
-                    <div className="top-edit-server-modal">
+        <div className="server-modal-inner-container">
+            <div className="edit-server-left">
+                {(user.id == server.owner_id) && (
+                    <OpenDeleteChannelButton
+                        buttonText="Delete Server"
+                        modalComponent={<DeleteServerModal server={server} />}
+                    />
+                )}
+            </div>
+            <div className="edit-server-right">
+                <div className="top-edit-server-modal">
                     <h2>Server Overview</h2>
                     <p className="exit-x" onClick={closeModal}>x</p>
-                    </div>
-                    <form onSubmit={handleSubmit}>
-                    {errors.title ? <p style={{color:"darkred"}}>{errors.title}</p> : ""}
-                        <label>
+                </div>
+                <form onSubmit={handleSubmit} className="edit-server-form">
+                    {errors.title ? <p style={{ color: "darkred" }}>{errors.title}</p> : ""}
+                    <div className="edit-server-form-top">
+                        <i class="fa-solid fa-camera"></i>
+                        <label className="edit-server-labels">
                             SERVER NAME
                             <input
                                 type="text"
@@ -73,13 +75,17 @@ function EditServerModal({ server }) {
                                 required
                             ></input>
                         </label>
-                        <button disabled={title.length > 40} type="submit">Save Changes</button>
-                    </form>
+                    </div>
+                    <div className="edit-server-form-bottom">
 
-                </div>
+                        <button className="edit-server-submit" disabled={title.length > 40} type="submit">Save Changes</button>
+                    </div>
+                </form>
 
             </div>
-        </>
+
+        </div>
+
     )
 }
 
