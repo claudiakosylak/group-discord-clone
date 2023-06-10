@@ -5,6 +5,7 @@ import { getChannelsThunk, updateChannelThunk } from "../../store/channel";
 import "./EditChannelComponent.css";
 import OpenDeleteChannelButton from "../OpenDeleteChannelButton";
 import DeleteChannelModal from "../DeleteChannelModal";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function EditChannelModal({ channel }) {
     const dispatch = useDispatch()
@@ -13,6 +14,7 @@ function EditChannelModal({ channel }) {
     const [errors, setErrors] = useState("");
     const [hasErrors, setHasErrors] = useState(false)
     const { closeModal } = useModal();
+    const history = useHistory()
 
     useEffect(() => {
         const errors = {}
@@ -37,6 +39,7 @@ function EditChannelModal({ channel }) {
             const response = await dispatch(updateChannelThunk(channelInfo, channel.id))
             await dispatch(getChannelsThunk(channel.server_id))
             setHasErrors(false)
+            history.push(`/${channel.server_id}/${channel.id}`)
             closeModal()
         }
 
