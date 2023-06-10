@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { deleteServerThunk, getServersThunk } from "../../store/server";
 import { useState, useEffect } from "react";
+import "./DeleteServerModal.css";
 
 function DeleteServerModal({ server }) {
     const dispatch = useDispatch()
@@ -40,9 +41,9 @@ function DeleteServerModal({ server }) {
 
     return (
 
-        <div>
-            <h1>Delete '{server.name}'</h1>
-            <p>Are you sure you want to delete {server.title}? This action cannot be undone.</p>
+        <div className="delete-server-container">
+            <h1>Delete {`'${server.title}'`}</h1>
+            <p className="delete-server-text">Are you sure you want to delete {server.title}? This action cannot be undone.</p>
             <div>
                 <label>
                     ENTER SERVER NAME
@@ -53,10 +54,13 @@ function DeleteServerModal({ server }) {
                     />
                 </label>
                 {errors && (
-                    <p style={{color:"darkred"}}>{errors}</p>
+                    <p style={{ color: "darkred" }}>{errors}</p>
                 )}
-                <button onClick={closeModal}>Cancel</button>
-                <button onClick={handleDelete} type="submit">Delete Server</button>
+                <div className="delete-server-buttons">
+
+                    <p className="delete-server-cancel" onClick={closeModal}>Cancel</p>
+                    <button className="delete-server-delete" onClick={handleDelete} type="submit">Delete Server</button>
+                </div>
             </div>
 
         </div>
