@@ -13,6 +13,7 @@ function EditServerModal({ server }) {
     const [title, setTitle] = useState(server.title)
     const [errors, setErrors] = useState("");
     const [hasErrors, setHasErrors] = useState(false)
+    const [previewIcon, setPreviewIcon] = useState(null);
     const { closeModal } = useModal();
 
     useEffect(() => {
@@ -27,7 +28,8 @@ function EditServerModal({ server }) {
         e.preventDefault();
 
         const serverInfo = {
-            title
+            title,
+            previewIcon
         }
 
         if (Object.values(errors).length) {
@@ -64,7 +66,23 @@ function EditServerModal({ server }) {
                 </div>
                 <form onSubmit={handleSubmit} className="edit-server-form">
                     <div className="edit-server-form-top">
-                        <i class="fa-solid fa-camera"></i>
+                        <label>
+                        <div>
+                            <div>
+                            <i class="fa-solid fa-camera"></i>
+                            </div>
+                            <input
+                                className="server-image-upload"
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => setPreviewIcon(e.target.files[0])}
+                            />
+                        </div>
+                        </label>
+
+
+
+
                         <label className="edit-server-labels">
                             SERVER NAME
                             <input
@@ -72,9 +90,9 @@ function EditServerModal({ server }) {
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
                                 required
-                                ></input>
+                            ></input>
                         </label>
-                                {errors.title ? <p className="create-server-errors">{errors.title}</p> : ""}
+                        {errors.title ? <p className="create-server-errors">{errors.title}</p> : ""}
                     </div>
                     <div className="edit-server-form-bottom">
 

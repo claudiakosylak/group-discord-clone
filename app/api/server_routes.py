@@ -44,6 +44,27 @@ def add_image_to_create_server(id):
     print("🔥🔥🔥 THIS IS THE CREATE SERVER WITH IMAGE", server.to_dict())
     return server.to_dict()
 
+@server_routes.route("/<int:id>/image", methods=["PUT"])
+@login_required
+def update_image_to_server(id):
+    """
+    Update a server image
+    """
+    form = ServerForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    errors = {}
+    server = Server.query.get(id)
+
+    if form.data["preview_icon"]:
+        image = form.data["preview_icon"]
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+        if 'url' not in upload:
+            errors['preview_icon'] = 'Invalid image url'
+        else:
+            server.preview_icon = upload['url']
+    db.session.commit()
+    return server.to_dict()
 
 @server_routes.route("/<int:id>/memberships")
 @login_required
