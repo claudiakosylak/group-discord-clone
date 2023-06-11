@@ -100,7 +100,9 @@ export const signUp = (username, email, password, month, day, year) => async (di
 			return data.errors;
 		}
 	} else {
-		return ["An error occurred. Please try again."];
+
+		return ["Please enter a valid birth date"];
+		// return ["An error occurred. Please try again."];
 	}
 };
 
