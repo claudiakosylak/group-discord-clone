@@ -58,6 +58,11 @@
     display: none;
 }
 
+.server-image-label {
+    height: 4rem;
+    margin-bottom: 1rem;
+}
+
 .fa-camera {
     font-size: 40px;
     width: 70px;

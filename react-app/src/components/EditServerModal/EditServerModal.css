@@ -99,6 +99,9 @@
 .fa-camera {
     align-self: center;
     margin-bottom: 20px;
+    font-size: 40px;
+    width: 70px;
+    height: 70px;
 }
 
 .edit-server-form-bottom {
@@ -116,4 +119,10 @@
 
 .server-image-upload {
     display: none;
+}
+
+.server-image-label {
+    height: 4rem;
+    margin-bottom: 1rem;
+    width: 4rem;
 }
