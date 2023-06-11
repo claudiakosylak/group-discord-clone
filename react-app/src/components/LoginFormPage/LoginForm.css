@@ -21,6 +21,15 @@
     border-radius: 5px;
 }
 
+.login-form-container-errors {
+    background-color: #2A2D31;
+    color: #F2F3F5;
+    width: 450px;
+    height: 550px;
+    margin-top: 150px;
+    border-radius: 5px;
+}
+
 .login-form {
     padding: 25px;
     display: flex;
@@ -114,4 +123,11 @@
 
 #login-register-link:hover{
     text-decoration: underline;
+}
+
+.wtf-validation {
+    margin-bottom: 1rem;
+    list-style-type: none;
+    text-align: center;
+    color: red;
 }
