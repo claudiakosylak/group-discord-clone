@@ -1,7 +1,11 @@
 #reroute-login-link {
     width: 200px;
-    color: #B5BAC1;
+    color: #00A8FC;
     margin-left: 1.6rem;
+}
+
+#reroute-login-link:hover {
+    text-decoration: underline;
 }
 
 .birthday-container {
@@ -108,6 +112,11 @@
     margin-left: 1.6rem;
     cursor: pointer;
     margin-bottom: 1rem;
+}
+
+.signup-form-button:hover {
+    background-color: #333a8d;
+
 }
 
 .signup-form-button:disabled {

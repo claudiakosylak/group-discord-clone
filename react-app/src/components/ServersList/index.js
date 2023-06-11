@@ -24,7 +24,7 @@ function ServersList() {
 
 
     return(
-        <div>
+        <div id='server-list-wrapper'>
             <ul className="server-icons-container">
             {servers.map(server => (
               <li key={server.id}><NavLink to={`/${server.id}/${server.channels[0].id}`} className="server-icon-buttons" ><img className="server-icons" src={server.preview_icon}></img></NavLink></li>
