@@ -54,6 +54,10 @@
     outline: none;
 }
 
+.server-image-upload {
+    display: none;
+}
+
 .fa-camera {
     font-size: 40px;
     width: 70px;
@@ -62,6 +66,7 @@
     justify-content: center;
     align-items: center;
     justify-self: center;
+    cursor: pointer;
 }
 
 .server-bottom-form {

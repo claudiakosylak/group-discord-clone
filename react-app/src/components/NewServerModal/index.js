@@ -10,6 +10,9 @@ function NewServerModal() {
     const [title, setTitle] = useState("");
     const [errors, setErrors] = useState("");
     const [hasErrors, setHasErrors] = useState(false)
+
+    const [previewIcon, setPreviewIcon] = useState(null);
+
     const { closeModal } = useModal();
     const history = useHistory()
 
@@ -25,7 +28,8 @@ function NewServerModal() {
         e.preventDefault();
 
         const serverInfo = {
-            title
+            title,
+            previewIcon,
         }
 
 
@@ -33,6 +37,7 @@ function NewServerModal() {
             setHasErrors(true)
         } else {
             const response = await dispatch(createNewServerThunk(serverInfo))
+            console.log("THIS IS THE RESPONSE AFTER THE DISPATCH CREATE NEW SERVER", response)
             await dispatch(getServersThunk())
             history.push(`/${response.id}/${response.channels[0].id}`)
             setHasErrors(false)
@@ -50,7 +55,22 @@ function NewServerModal() {
             <p className="create-server-subtext">Give your new server personality with a name and an icon.</p>
             <form onSubmit={handleSubmit} className="create-server-form">
                 <div className="form-top-half">
+                    <label>
+                    <div>
                     <i class="fa-solid fa-camera"></i>
+                    </div>
+
+                    <label>
+                        Profile Picture
+                        <input
+                            className="server-image-upload"
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => setPreviewIcon(e.target.files[0])}
+                        />
+                    </label>
+                    </label>
+
                     <label className="server-name-label">
                         SERVER NAME
                         <input

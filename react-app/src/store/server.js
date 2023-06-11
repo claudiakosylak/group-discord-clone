@@ -70,6 +70,11 @@ export const getOneServerThunk = serverId => async dispatch => {
 }
 
 export const createNewServerThunk = (server) => async (dispatch) => {
+    const {title, previewIcon} = server
+    const form_data = new FormData()
+    form_data.append("preview_icon", previewIcon)
+    console.log("THIS IS THE PREVIEWICON IN THE THUNK", previewIcon)
+    console.log("THIS IS THE form data IN THE THUNK", form_data.get("preview_icon"))
     try {
         const res = await fetch("/api/servers", {
             method: "POST",
@@ -79,8 +84,25 @@ export const createNewServerThunk = (server) => async (dispatch) => {
 
         if (res.ok) {
             const newServer = await res.json()
-            await dispatch(createNewServerAction(newServer))
-            return newServer
+            console.log("THIS IS THE NEW SERVER AFTER THE RES.OK", newServer)
+            if (form_data.get("preview_icon")) {
+                const imageResponse = await fetch(`/api/servers/${newServer.id}/image`, {
+                    method: "POST",
+                    body: form_data
+                })
+                if (imageResponse.ok) {
+                    const serverImage = await imageResponse.json()
+                    console.log("THIS IS THE SERVERIMAGE AFTER THE IMAGE RESPONSE", serverImage)
+                    const returnResponse = dispatch(createNewServerAction(serverImage))
+                    return newServer
+                } else {
+                    const err = await res.json()
+                    return err
+                }
+            }
+            const returnResponse = dispatch(createNewServerAction(newServer))
+            return returnResponse
+
         } else {
             const err = await res.json()
             return err
@@ -134,6 +156,7 @@ const serverReducer = (state = initialState, action) => {
             return newState;
         case CREATE_NEW_SERVER:
             const createState = {...state, allServers: {...state.allServers}, currentServer: {}, discoverServers: {...state.discoverServers} }
+            console.log("THIS IS THE ACTION IN THE CREATE NEW SERVER", action)
             createState.currentServer = action.server
             return createState
         case DELETE_SERVER:
