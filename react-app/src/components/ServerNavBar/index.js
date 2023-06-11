@@ -42,15 +42,15 @@ function ServerNavBar({ isLoaded }) {
 
       <div className="left-nav-bars-container">
         <div className="top-bar-wrapper">
-          <Topbar />
+          {/* <Topbar /> */}
         </div>
         <div className="left-nav-bars">
 
-          <div className="user-info-wrapper">
-
-            <img src={user.profile_pic} className="user-profile-pic"></img>
-            <p>{user.username}</p>
-            <p>User Settings</p>
+          <div className="user-info-wrapper" id='server-page-user-info-wrapper'>
+            <div id='homepage-user-info'>
+              <img src={user.profile_pic} className="user-profile-pic"></img>
+              <p>{user.username}</p>
+            </div>
             <button onClick={handleLogout}>Logout</button>
           </div>
 
@@ -59,7 +59,8 @@ function ServerNavBar({ isLoaded }) {
 
             {( serversArray[0] && serversArray[0].id) ? (
               <div className="home-main-content-text">
-                <h2>Welcome back! Please select a server to get started.</h2>
+                <h2>Welcome back!</h2>
+                <h2>Select a server to get started</h2>
               </div>
             ) : (
               <div className="home-main-content-text">

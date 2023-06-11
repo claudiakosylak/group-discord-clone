@@ -9,8 +9,9 @@
 .left-nav-bars-container {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 93%;
     height: 100vh;
+    position: relative;
 }
 
 .left-nav-bars {
@@ -20,6 +21,7 @@
     padding-top: 20px;
     height: 100%;
     background-color: #313338;
+    /* width: auto; */
 }
 
 .server-list {
@@ -57,17 +59,42 @@
 }
 
 .home-main-content-text {
-    width: 850px;
+    width: 50%;
+    min-width: 300px;
     height: 350px;
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 0 200px;
-    background-image: url("https://mcdn.wallpapersafari.com/medium/48/64/VQ9gG1.jpg")
+    margin: 40px 200px;
+    background-image: url("https://mcdn.wallpapersafari.com/medium/48/64/VQ9gG1.jpg");
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
 }
 
 .user-info-wrapper {
     align-self: flex-start;
+}
+
+
+h2 {
+    display: flex;
+    /* flex-shrink: 1; */
+}
+
+
+#homepage-user-info {
+    display: flex;
+    /* width: 100%; */
+    align-items: center;
+}
+
+#homepage-user-info img {
+    margin-right: 10px;
+}
+
+
+#server-page-user-info-wrapper {
+    /* background-color: black; */
 }
