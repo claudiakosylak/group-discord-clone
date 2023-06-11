@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import {useModal} from "../../context/Modal";
-import { deleteChannelThunk, getChannelsThunk } from "../../store/channel";
+import { deleteChannelThunk, getChannelsThunk, getOneChannelThunk } from "../../store/channel";
 import { useHistory } from "react-router-dom";
+import "./DeleteChannelModal.css";
 
 function DeleteChannelModal({channel}) {
     const dispatch = useDispatch()
@@ -13,16 +14,20 @@ function DeleteChannelModal({channel}) {
         dispatch(deleteChannelThunk(channel.id))
         dispatch(getChannelsThunk(channel.server_id))
         history.push(`/${currentServer.id}/${currentServer.channels[0].id}`)
+        dispatch(getOneChannelThunk(currentServer.channels[0].id))
         closeModal()
     }
 
     return (
 
-        <div>
+        <div className="delete-channel-container">
             <h1>Delete Channel</h1>
             <p>Are you sure you want to delete #{channel.title}? This cannot be undone.</p>
-            <button onClick={closeModal}>Cancel</button>
-            <button onClick={handleDelete}>Delete Channel</button>
+            <div className="delete-channel-buttons">
+            <p onClick={closeModal} className = "delete-channel-cancel">Cancel</p>
+            <button onClick={handleDelete} className="delete-channel-delete">Delete Channel</button>
+
+            </div>
 
         </div>
 

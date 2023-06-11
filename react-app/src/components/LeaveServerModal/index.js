@@ -3,6 +3,7 @@ import {useModal} from "../../context/Modal";
 import { deleteMembershipThunk, getMembershipsThunk } from "../../store/membership";
 import { useHistory } from "react-router-dom";
 import { clearCurrentServer } from "../../store/server";
+import "./LeaveServerModal.css";
 
 function LeaveServerModal ({server}) {
     const dispatch = useDispatch()
@@ -26,11 +27,14 @@ function LeaveServerModal ({server}) {
     }
 
     return (
-        <div>
+        <div className="leave-server-container">
             <h1>Leave {server.title}</h1>
             <p>Are you sure you want to leave {server.title}?</p>
-            <button onClick={closeModal}>Cancel</button>
-            <button onClick={handleDelete}>Leave Server</button>
+            <div className="leave-server-buttons">
+
+            <p onClick={closeModal} className="leave-server-cancel">Cancel</p>
+            <button onClick={handleDelete} className="leave-server-leave">Leave Server</button>
+            </div>
         </div>
     )
 

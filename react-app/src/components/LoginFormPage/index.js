@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
@@ -15,6 +15,7 @@ function LoginFormPage() {
 
   const history= useHistory();
 
+
   if (sessionUser) return <Redirect to="/" />;
 
   const demoUserLogin = () => {
@@ -27,22 +28,25 @@ function LoginFormPage() {
   }
 
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
+      console.log("These are the errors in the data", data)
+      console.log("These are the errors in the login", errors)
     }
   };
 
   return (
     <div className='login-page-container'>
       <img className='login-background-image' src={backgroundImage}/>
-      <div className='login-form-container'>
+      <div className={errors.length ? "login-form-container-errors" : "login-form-container"}>
         <form className='login-form' onSubmit={handleSubmit}>
           <h1 id='login-form-header'>Welcome back!</h1>
           <p id='login-form-tag'>We're so excited to see you again!</p>
-          <ul>
+          <ul className="wtf-validation">
             {errors.map((error, idx) => (
               <li key={idx}>{error}</li>
             ))}

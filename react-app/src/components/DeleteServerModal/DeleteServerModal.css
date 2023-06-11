@@ -1,0 +1,77 @@
+.delete-server-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #3a3c3e;
+    color: white;
+    border-radius: 10px;
+    height: 300px;
+    width: 430px;
+    justify-content: space-between;
+}
+
+.delete-server-container > h1 {
+    font-size: 20px;
+    padding: 15px 15px 0 15px;
+}
+
+.delete-server-text {
+    background-color: rgb(216, 158, 23);
+    color: white;
+    border-radius: 10px;
+    margin: 0px 15px;
+    padding: 10px 15px;
+}
+
+.delete-server-container label {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    margin: 0 15px 5px 15px;
+}
+
+.delete-server-container input {
+    background-color: #1E1F22;
+    border: none;
+    color: white;
+    width: 100%;
+    border-radius: 5px;
+    height: 40px;
+}
+
+.delete-server-container input:focus {
+    outline: none;
+}
+
+.delete-server-buttons {
+    display: flex;
+    background-color: #2f3132;
+    width: 100%;
+    justify-content: flex-end;
+    border-radius: 0 0 10px 10px;
+    height: 70px;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+}
+
+.delete-server-delete {
+    background-color: #DA373C;
+    color: white;
+    border-radius: 3px;
+    border: none;
+    padding: 10px 15px;
+}
+
+.delete-server-delete:hover {
+    cursor: pointer;
+    background-color: #a52327;
+}
+
+.delete-server-cancel:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.delete-server-error {
+    margin-left: 15px;
+}

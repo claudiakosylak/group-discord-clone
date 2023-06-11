@@ -95,11 +95,14 @@ export const signUp = (username, email, password, month, day, year) => async (di
 		return null;
 	} else if (response.status < 500) {
 		const data = await response.json();
+		console.log("THIS IS THE DATA ERRORS", data)
 		if (data.errors) {
 			return data.errors;
 		}
 	} else {
-		return ["An error occurred. Please try again."];
+
+		return ["Please enter a valid birth date"];
+		// return ["An error occurred. Please try again."];
 	}
 };
 

@@ -54,6 +54,15 @@
     outline: none;
 }
 
+.server-image-upload {
+    display: none;
+}
+
+.server-image-label {
+    height: 4rem;
+    margin-bottom: 1rem;
+}
+
 .fa-camera {
     font-size: 40px;
     width: 70px;
@@ -62,6 +71,7 @@
     justify-content: center;
     align-items: center;
     justify-self: center;
+    cursor: pointer;
 }
 
 .server-bottom-form {
@@ -94,4 +104,10 @@
     flex-direction: column;
     align-items: center;
 
+}
+
+.create-server-errors {
+    font-size: 12px;
+    color: red;
+    margin-bottom: 10px;
 }

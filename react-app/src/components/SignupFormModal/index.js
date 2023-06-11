@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { signUp } from "../../store/session";
 import "./SignupForm.css";
 import { Redirect, NavLink } from "react-router-dom";
+import backgroundImage from "./discord-login-background.png"
 
 function SignupFormModal() {
 	const dispatch = useDispatch();
@@ -70,6 +71,7 @@ function SignupFormModal() {
 			const data = await dispatch(signUp(username, email, password, month, day, year));
 			if (data) {
 				setErrors(data);
+				console.log("THESE ARE THE ERRORS", errors)
 			} else {
 				setHasSubmitted(false)
 
@@ -93,128 +95,134 @@ function SignupFormModal() {
 
 
 	return (
-		<div>
-			<h1>Sign Up</h1>
-			<form onSubmit={handleSubmit}>
-					{errors.email ? <p style={{color:"darkred"}}>{errors.email}</p> : ""}
-					{errors.username ? <p style={{color:"darkred"}}>{errors.username}</p> : ""}
-					{errors.password ? <p style={{color:"darkred"}}>{errors.password}</p> : ""}
-				<ul>
-					{(hasSubmitted && errors.length) && (errors.map((error, idx) => (
-						<li key={idx} style={{color:"darkred"}}>{error}</li>
-					)))}
+		<div className="signup-page-container">
+			<img className="signup-background-image" src={backgroundImage} />
+			<div className={hasSubmitted && errors.length ? "signup-form-container-wtf" : "signup-form-container"}>
+				<form className="signup-form" onSubmit={handleSubmit}>
+					<h1 className="signup-form-header">Create an account</h1>
 
-				</ul>
-				<label>
-					Email
-					<input
-						type="text"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Username
-					<input
-						type="text"
-						value={username}
-						onChange={(e) => setUsername(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Password
-					<input
-						type="password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						required
-					/>
-				</label>
+					<ul className="wtf-validation">
+						{(hasSubmitted && errors.length) && (errors.map((error, idx) => (
+							<li key={idx} style={{ color: "red" }}>{error}</li>
+						)))}
 
-				<label>
-					Month
-					<select
-						// type="select"
-						value={month}
-						onChange={(e) => setMonth(e.target.value)}
-						required
-					>
-					<option value="" disabled>
-						Month
-					</option>
-					<option value="January">
-						January
-					</option>
-					<option value="February">
-						February
-					</option>
-					<option value="March">
-						March
-					</option>
-					<option value="April">
-						April
-					</option>
-					<option value="May">
-						May
-					</option>
-					<option value="June">
-						June
-					</option>
-					<option value="July">
-						July
-					</option>
-					<option value="August">
-						August
-					</option>
-					<option value="September">
-						September
-					</option>
-					<option value="October">
-						October
-					</option>
-					<option value="November">
-						November
-					</option>
-					<option value="December">
-						December
-					</option>
-					</select>
+					</ul>
+					<label className="signup-form-label">
+						<p>Email {errors.email && <span style={{ color: "red" }}>{errors.email}</span>}</p>
+						<input
+							className="signup-form-input"
+							type="text"
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
+							required
+						/>
+					</label>
+					<label className="signup-form-label">
+					<p>Username {errors.username && <span style={{ color: "red" }}>{errors.username}</span>}</p>
+						<input
+							className="signup-form-input"
+							type="text"
+							value={username}
+							onChange={(e) => setUsername(e.target.value)}
+							required
+						/>
+					</label>
+					<label className="signup-form-label">
+					<p>Password {errors.password && <span style={{ color: "red" }}>{errors.password}</span>}</p>
+						<input
+							className="signup-form-input"
+							type="password"
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+							required
+						/>
+					</label>
+					<div className="birthday-container">
+						<label className="signup-form-label">
+							Month
+							<select
+								// type="select"
+								className="signup-select"
+								value={month}
+								onChange={(e) => setMonth(e.target.value)}
+								required
+							>
+								<option value="" disabled>
+									Month
+								</option>
+								<option value="January">
+									January
+								</option>
+								<option value="February">
+									February
+								</option>
+								<option value="March">
+									March
+								</option>
+								<option value="April">
+									April
+								</option>
+								<option value="May">
+									May
+								</option>
+								<option value="June">
+									June
+								</option>
+								<option value="July">
+									July
+								</option>
+								<option value="August">
+									August
+								</option>
+								<option value="September">
+									September
+								</option>
+								<option value="October">
+									October
+								</option>
+								<option value="November">
+									November
+								</option>
+								<option value="December">
+									December
+								</option>
+							</select>
 
-				</label>
-				<label>
-					Day
-					<select
-						// type="select"
-						value={day}
-						onChange={(e) => setDay(e.target.value)}
-						required
-					>
-					<option value="" disabled>Day</option>
-					{daysOptionArr.map(day => (
-						<option key={day} value={day}>{day}</option>
-					))}
-					</select>
-				</label>
-				<label>
-					Year
-					<select
-						// type="select"
-						value={year}
-						onChange={(e) => setYear(e.target.value)}
-						required
-					>
-					<option value="" disabled>Year</option>
-					{yearOptionArr.map(year => (
-						<option key={year} value={year}>{year}</option>
-					))}
-					</select>
-				</label>
+						</label>
+						<label className="signup-form-label">
+							Day
+							<select
+								className="signup-select"
+								value={day}
+								onChange={(e) => setDay(e.target.value)}
+								required
+							>
+								<option value="" disabled>Day</option>
+								{daysOptionArr.map(day => (
+									<option key={day} value={day}>{day}</option>
+								))}
+							</select>
+						</label>
+						<label className="signup-form-label">
+							Year
+							<select
+								className="signup-select"
+								value={year}
+								onChange={(e) => setYear(e.target.value)}
+								required
+							>
+								<option value="" disabled>Year</option>
+								{yearOptionArr.map(year => (
+									<option key={year} value={year}>{year}</option>
+								))}
+							</select>
+						</label>
+					</div>
 
-				<button type="submit" disabled={username.length > 30 || password.length > 30 || email.length > 30 || month === "" || day === "" || year === ""}>Sign Up</button>
-			</form>
-			<NavLink id="reroute-login-link" to='/login'>Already have an Account?</NavLink>
+					<button className="signup-form-button" type="submit" disabled={username.length > 30 || password.length > 30 || email.length > 30 || month === "" || day === "" || year === ""}>Continue</button>
+				</form>
+				<NavLink id="reroute-login-link" to='/login'>Already have an Account?</NavLink>
+			</div>
 		</div>
 	);
 }

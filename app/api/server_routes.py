@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import User, Server, Membership, db, Channel
 from app.forms import ServerForm, ChannelForm
+from app.api.AWS_helpers import upload_file_to_s3, get_unique_filename, remove_file_from_s3
 
 server_routes = Blueprint('servers', __name__)
 
@@ -14,6 +15,56 @@ def validation_errors_to_error_messages(validation_errors):
         for error in validation_errors[field]:
             errorMessages.append(f'{field} : {error}')
     return errorMessages
+
+@server_routes.route('/<int:id>/image', methods=['POST'])
+@login_required
+def add_image_to_create_server(id):
+    """
+    Add a server image when creating a new server
+    """
+
+    print('🔥🔥🔥HITTING THE SERVER IMAGE ROUTE')
+
+    form = ServerForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    errors = {}
+    server = Server.query.get(id)
+
+    if form.data['preview_icon']:
+        image = form.data["preview_icon"]
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+            # print("+++++++ THIS IS THE PICTURES NEW FILE NAME", image.filename)
+        if 'url' not in upload:
+            errors['preview_icon'] = 'Invalid image url'
+        else:
+            server.preview_icon = upload['url']
+
+    db.session.commit()
+    print("🔥🔥🔥 THIS IS THE CREATE SERVER WITH IMAGE", server.to_dict())
+    return server.to_dict()
+
+@server_routes.route("/<int:id>/image", methods=["PUT"])
+@login_required
+def update_image_to_server(id):
+    """
+    Update a server image
+    """
+    form = ServerForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    errors = {}
+    server = Server.query.get(id)
+
+    if form.data["preview_icon"]:
+        image = form.data["preview_icon"]
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+        if 'url' not in upload:
+            errors['preview_icon'] = 'Invalid image url'
+        else:
+            server.preview_icon = upload['url']
+    db.session.commit()
+    return server.to_dict()
 
 @server_routes.route("/<int:id>/memberships")
 @login_required
@@ -177,7 +228,8 @@ def add_server():
     if form.validate_on_submit():
         newServer = Server(
             title=form.data['title'],
-            owner_id=current_user.id
+            owner_id=current_user.id,
+
         )
 
 

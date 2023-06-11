@@ -1,0 +1,49 @@
+.delete-channel-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #3a3c3e;
+    color: white;
+    border-radius: 10px;
+    height: 200px;
+    width: 430px;
+    justify-content: space-between;
+}
+
+.delete-channel-container > h1 {
+    font-size: 20px;
+    padding: 15px;
+}
+
+.delete-channel-container > p {
+    padding: 15px;
+}
+
+.delete-channel-buttons {
+    display: flex;
+    background-color: #2f3132;
+    width: 100%;
+    justify-content: flex-end;
+    border-radius: 0 0 10px 10px;
+    height: 70px;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+}
+
+.delete-channel-delete {
+    background-color: #DA373C;
+    color: white;
+    border-radius: 3px;
+    border: none;
+    padding: 10px 15px;
+}
+
+.delete-channel-delete:hover {
+    cursor: pointer;
+    background-color: #a52327;
+}
+
+.delete-channel-cancel:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
