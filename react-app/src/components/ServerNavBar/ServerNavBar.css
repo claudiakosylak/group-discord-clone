@@ -12,6 +12,7 @@
     width: 93%;
     height: 100vh;
     position: relative;
+
 }
 
 .left-nav-bars {
@@ -21,7 +22,7 @@
     padding-top: 20px;
     height: 100%;
     background-color: #313338;
-    /* width: auto; */
+
 }
 
 .server-list {
@@ -47,8 +48,12 @@
     width: 100%;
     margin: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-
+    margin-bottom: 0;
+    margin-top:0;
+    align-items: center;
+    background-color: #313338;
 }
 
 .home-page-image {
@@ -71,6 +76,7 @@
     background-image: url("https://mcdn.wallpapersafari.com/medium/48/64/VQ9gG1.jpg");
     -webkit-border-radius: 10px;
     border-radius: 10px;
+
 }
 
 .user-info-wrapper {
@@ -81,8 +87,11 @@
 h2 {
     display: flex;
     /* flex-shrink: 1; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    text-align: left;
+    padding: 25px;
 }
-
 
 #homepage-user-info {
     display: flex;
@@ -97,4 +106,78 @@ h2 {
 
 #server-page-user-info-wrapper {
     /* background-color: black; */
+}
+
+#home-page-discover-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+#home-page-discover-link-container{
+    height: 75px;
+    width: 35%;
+    border: .5px rgb(72, 71, 71) solid;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+#home-page-discover-link-container:hover {
+    background-color: #44454a;
+}
+
+#compass-and-text {
+    display: flex;
+    align-items: center;
+}
+
+#discover-link-text {
+    color: white;
+    margin-left: 10px;
+    font-size: 1.1em;
+}
+
+#discover-compass {
+    font-size: 2em;
+    background-color:  #23A559;
+    color: white;
+    border-radius: 35%;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#discover-arrow {
+    font-size: 1.1em;
+    color: white;
+    margin-right: 5px;
+}
+
+
+#discover-create-server {
+    width: 35%;
+}
+
+
+#home-page-or {
+    color: white;
+    font-size: 1.25em;
+    margin-bottom: 10px;
+}
+
+#homepage-user-info-wrapper {
+    margin-left: 10px;
+}
+
+#homepage-user-info-wrapper button {
+    background-color: transparent;
+    border: none;
+    margin-top: 2px;
+    color: #B5BAC1;
 }

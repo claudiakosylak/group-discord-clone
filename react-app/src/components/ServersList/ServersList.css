@@ -2,6 +2,7 @@
     overflow-y: auto;
     background-color: #1E1F22;
     /* padding-bottom: 10px; */
+    height: 100%;
 }
 
 #server-list-wrapper::-webkit-scrollbar {
