@@ -1,10 +1,10 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.validators import DataRequired
-from flask_wtf.file import FileField
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 
 
 
-class ServerForm(FlaskForm):
+class UpdateServerForm(FlaskForm):
     title = StringField('SERVER NAME', validators=[DataRequired()])
-    preview_icon = StringField("preview_icon")
+    preview_icon = FileField("preview_icon")
