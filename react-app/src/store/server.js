@@ -116,29 +116,34 @@ export const createNewServerThunk = (server) => async (dispatch) => {
 export const updateServerThunk = (serverInfo, serverId) => async dispatch => {
     const {title, previewIcon} = serverInfo
     console.log("THIS IS TEH SERVER ID", serverId)
-    const form_data = new FormData()
-    form_data.append("preview_icon", previewIcon)
+    // const form_data = new FormData()
+    // form_data.append("preview_icon", previewIcon)
     const res = await fetch(`/api/servers/${serverId}`, {
         method: "PUT",
         headers: { "Content-Type" : "application/json" },
-        body: JSON.stringify(serverInfo)
+        body: JSON.stringify({
+            title: title,
+            preview_icon: previewIcon
+        })
     })
     console.log("WE ARE HITTING THE THUNK")
     console.log("THIS IS RES", res)
     if (res.ok) {
         const updatedServer = await res.json();
-        if (form_data.get("preview_icon")) {
-            const imageResponse = await fetch(`/api/servers/${serverId}/image`, {
-                method: "PUT",
-                body: form_data
-            })
-            if (imageResponse.ok) {
-                const serverImage = await imageResponse.json()
-                console.log("THIS IS THE SERVER IMAGE", serverImage)
-                dispatch(createNewServerAction(serverImage))
-                return null
-            }
-        }
+        console.log("updated server in thunk", updatedServer)
+        // if (form_data.get("preview_icon")) {
+        //     const imageResponse = await fetch(`/api/servers/${serverId}/image`, {
+        //         method: "PUT",
+        //         body: form_data
+        //     })
+        //     if (imageResponse.ok) {
+        //         const serverImage = await imageResponse.json()
+        //         console.log("THIS IS THE SERVER IMAGE", serverImage)
+        //         dispatch(createNewServerAction(serverImage))
+        //         return null
+        //     }
+        // }
+
         await dispatch(createNewServerAction(updatedServer))
         return updatedServer
     } else {
