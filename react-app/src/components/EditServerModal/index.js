@@ -66,7 +66,7 @@ function EditServerModal({ server }) {
                 </div>
                 <form onSubmit={handleSubmit} className="edit-server-form">
                     <div className="edit-server-form-top">
-                        <label className="server-image-label">
+                        {/* <label className="server-image-label">
 
                             <div>
                             <i class="fa-solid fa-camera"></i>
@@ -78,7 +78,7 @@ function EditServerModal({ server }) {
                                 onChange={(e) => setPreviewIcon(e.target.files[0])}
                             />
 
-                        </label>
+                        </label> */}
 
 
 

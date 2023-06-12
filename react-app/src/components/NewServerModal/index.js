@@ -55,7 +55,7 @@ function NewServerModal() {
             <p className="create-server-subtext">Give your new server personality with a name and an icon.</p>
             <form onSubmit={handleSubmit} className="create-server-form">
                 <div className="form-top-half">
-                    <label className="server-image-label">
+                    {/* <label className="server-image-label">
                     <div>
                     <i class="fa-solid fa-camera"></i>
                     </div>
@@ -69,7 +69,7 @@ function NewServerModal() {
                             onChange={(e) => setPreviewIcon(e.target.files[0])}
                         />
 
-                    </label>
+                    </label> */}
 
                     <label className="server-name-label">
                         SERVER NAME
