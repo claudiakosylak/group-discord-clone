@@ -18,6 +18,9 @@ def validation_errors_to_error_messages(validation_errors):
 @channel_routes.route("/<int:channel_id>/messages/<int:channel_message_id>", methods=["DELETE"])
 @login_required
 def delete_channel_messages(channel_id, channel_message_id):
+
+    """Deletes a message from a channel"""
+
     message = ChannelMessage.query.filter(ChannelMessage.id == channel_message_id).first()
     db.session.delete(message)
     db.session.commit()
@@ -27,12 +30,18 @@ def delete_channel_messages(channel_id, channel_message_id):
 @channel_routes.route("/<int:id>")
 @login_required
 def get_one_channel(id):
+
+    """Returns a specific channel"""
+
     current_channel = Channel.query.get(id)
     return current_channel.to_dict()
 
 @channel_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def edit_channel(id):
+
+    """Edit a channel"""
+
     form = ChannelForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -48,6 +57,9 @@ def edit_channel(id):
 @channel_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
 def delete_channel(id):
+
+    """Deletes a channel"""
+
     channel = Channel.query.get(id)
     db.session.delete(channel)
     db.session.commit()
@@ -57,6 +69,9 @@ def delete_channel(id):
 @channel_routes.route("/<int:id>/messages", methods=["GET"])
 @login_required
 def channel_messages(id):
+
+    """Returns all the messages in a specific channel"""
+
     messages = ChannelMessage.query.filter(ChannelMessage.channel_id == id).all()
 
     message_dict = []

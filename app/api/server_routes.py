@@ -69,6 +69,9 @@ def update_image_to_server(id):
 @server_routes.route("/<int:id>/memberships")
 @login_required
 def get_memberships(id):
+
+    """Returns the memberships of a server"""
+
     memberships = Membership.query.filter(Membership.server_id == id).all()
     membership_dict = {}
     for membership in memberships:
@@ -78,6 +81,9 @@ def get_memberships(id):
 @server_routes.route("/<int:id>/memberships", methods=["POST"])
 @login_required
 def create_membership(id):
+
+    """Creates a server membership"""
+
     newMembership = Membership(
         role = "member",
         server_id = id,
@@ -91,6 +97,9 @@ def create_membership(id):
 @server_routes.route("/<int:id>/channels")
 @login_required
 def get_server_channels(id):
+
+    """Gets all the channels of a server"""
+
     server_channels = Channel.query.filter(Channel.server_id == id).all()
     print('Server Channels in the backend route', server_channels)
     channels_dict = {}
@@ -101,6 +110,9 @@ def get_server_channels(id):
 @server_routes.route("/<int:id>/channels", methods=["POST"])
 @login_required
 def create_channel(id):
+
+    """Creates a new channel"""
+
     form = ChannelForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -120,6 +132,9 @@ def create_channel(id):
 @server_routes.route("/discover")
 @login_required
 def discover_servers():
+
+    """Returns all the public servers that a user is not in"""
+
     all_servers = Server.query.filter(Server.private_status == False).all()
     # get list of all servers that exist that are public
     user_memberships = Membership.query.filter(Membership.user_id == current_user.id).all()
@@ -153,6 +168,9 @@ def discover_servers():
 @server_routes.route("/<int:id>")
 @login_required
 def get_server(id):
+
+    """Returns a single server"""
+
     current_server = Server.query.get(id)
     server_channels = Channel.query.filter(Channel.server_id == id)
     dict_server = current_server.to_dict()
@@ -165,6 +183,9 @@ def get_server(id):
 @server_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def update_server(id):
+
+    """Updates a server"""
+
     form = ServerForm()
     server = Server.query.get(id)
     if current_user.id == server.owner_id:
@@ -176,6 +197,9 @@ def update_server(id):
 @server_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
 def delete_server(id):
+
+    """Deletes a server"""
+
     server = Server.query.get(id)
     db.session.delete(server)
     db.session.commit()
@@ -222,6 +246,9 @@ def servers_route():
 @server_routes.route('', methods=["POST"])
 @login_required
 def add_server():
+
+    """Creates a new server"""
+
     form = ServerForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 

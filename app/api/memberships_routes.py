@@ -8,6 +8,9 @@ membership_routes = Blueprint("memberships", __name__)
 @membership_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
 def delete_membership(id):
+
+    """Leave a server"""
+
     membership = Membership.query.get(id)
     db.session.delete(membership)
     db.session.commit()
