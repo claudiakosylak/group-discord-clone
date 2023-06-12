@@ -81,7 +81,7 @@ function EditServerModal({ server }) {
 
                         </label> */}
 
-                        <label className="server-name-label">
+                        <label className="server-image">
                             ENTER IMAGE URL
                             <input
 
