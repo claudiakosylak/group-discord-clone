@@ -13,6 +13,7 @@ def seed_servers():
 
     db.session.add(server1)
     db.session.add(server2)
+
     db.session.commit()
 
 def undo_servers():

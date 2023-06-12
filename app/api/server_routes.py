@@ -190,6 +190,9 @@ def update_server(id):
     server = Server.query.get(id)
     if current_user.id == server.owner_id:
         server.title = form.data["title"]
+        if form.data["preview_icon"]:
+            image = form.data["preview_icon"]
+            server.preview_icon = form.data["preview_icon"]
         db.session.commit()
         return server.to_dict()
     return {"Only server owner can update information"}
