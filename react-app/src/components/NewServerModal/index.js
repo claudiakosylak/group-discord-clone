@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { createNewServerThunk, getServersThunk } from "../../store/server"
 import { useHistory } from "react-router-dom";
@@ -11,6 +11,9 @@ function NewServerModal() {
     const [errors, setErrors] = useState("");
     const [imageUrl, setImageUrl] = useState("");
     const [hasErrors, setHasErrors] = useState(false)
+    const servers = useSelector(state => state.server.allServers)
+    const serversList = Object.values(servers)
+    const lastServer = serversList[serversList.length - 1]
 
 
     const [previewIcon, setPreviewIcon] = useState(null);
@@ -40,11 +43,13 @@ function NewServerModal() {
             setHasErrors(true)
         } else {
             const response = await dispatch(createNewServerThunk(serverInfo))
-            console.log("THIS IS THE RESPONSE AFTER THE DISPATCH CREATE NEW SERVER", response)
             await dispatch(getServersThunk())
-            history.push(`/${response.id}/${response.channels[0].id}`)
-            setHasErrors(false)
-            closeModal()
+            if (serversList.length > 0) {
+                history.push(`/${lastServer.id}/${lastServer.channels[0].id}`)
+                setHasErrors(false)
+                closeModal()
+
+            }
         }
 
     }
