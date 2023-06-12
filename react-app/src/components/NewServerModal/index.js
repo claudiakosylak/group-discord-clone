@@ -9,7 +9,9 @@ function NewServerModal() {
     const dispatch = useDispatch();
     const [title, setTitle] = useState("");
     const [errors, setErrors] = useState("");
+    const [imageUrl, setImageUrl] = useState("");
     const [hasErrors, setHasErrors] = useState(false)
+
 
     const [previewIcon, setPreviewIcon] = useState(null);
 
@@ -20,6 +22,7 @@ function NewServerModal() {
         const errors = {}
 
         if (title.length > 40) errors.title = "Please enter a title that is less than 40 characters"
+        if (imageUrl && (imageUrl.slice(imageUrl.length - 4 !== ".jpg" && imageUrl.length - 4 !== ".png" && imageUrl.length - 5 !== ".jpeg"))) errors.imageUrl = "Please enter an image url ending in '.jpg', '.png' or '.jpeg'"
 
         setErrors(errors)
     }, [title, hasErrors])
@@ -55,21 +58,25 @@ function NewServerModal() {
             <p className="create-server-subtext">Give your new server personality with a name and an icon.</p>
             <form onSubmit={handleSubmit} className="create-server-form">
                 <div className="form-top-half">
-                    <label className="server-image-label">
-                    <div>
-                    <i class="fa-solid fa-camera"></i>
-                    </div>
+                    {/* <label className="server-image-label"> */}
 
-
-
+                    {/* <i class="fa-solid fa-camera"></i>
+                    <label className="server-name-label">
+                        ENTER IMAGE URL
                         <input
-                            className="server-image-upload"
-                            type="file"
-                            accept="image/*"
-                            onChange={(e) => setPreviewIcon(e.target.files[0])}
+
+                            type="text"
+                            // accept="image/*"
+                            value={imageUrl}
+                            onChange={(e) => setImageUrl(e.target.value)}
                         />
 
                     </label>
+
+
+ */}
+
+
 
                     <label className="server-name-label">
                         SERVER NAME

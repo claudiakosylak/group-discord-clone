@@ -20,9 +20,10 @@ function EditServerModal({ server }) {
         const errors = {}
 
         if (title.length > 40) errors.title = "Please enter a title that is less than 40 characters"
+        if (previewIcon && (previewIcon.slice(previewIcon.length - 4) !== ".jpg" && previewIcon.slice(previewIcon.length - 4) !== ".png" && previewIcon.slice(previewIcon.length - 5) !== ".jpeg")) errors.previewIcon = "Please enter an image url ending in '.jpg', '.png' or '.jpeg'"
 
         setErrors(errors)
-    }, [title, hasErrors])
+    }, [title, previewIcon, hasErrors])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -66,7 +67,7 @@ function EditServerModal({ server }) {
                 </div>
                 <form onSubmit={handleSubmit} className="edit-server-form">
                     <div className="edit-server-form-top">
-                        <label className="server-image-label">
+                        {/* <label className="server-image-label">
 
                             <div>
                             <i class="fa-solid fa-camera"></i>
@@ -78,9 +79,20 @@ function EditServerModal({ server }) {
                                 onChange={(e) => setPreviewIcon(e.target.files[0])}
                             />
 
+                        </label> */}
+
+                        <label className="server-name-label">
+                            ENTER IMAGE URL
+                            <input
+
+                                type="text"
+                                // accept="image/*"
+                                value={previewIcon}
+                                onChange={(e) => setPreviewIcon(e.target.value)}
+                            />
+
                         </label>
-
-
+                        {errors.previewIcon ? <p className="create-server-errors">{errors.previewIcon}</p> : ""}
 
 
                         <label className="edit-server-labels">
