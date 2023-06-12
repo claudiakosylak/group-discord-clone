@@ -80,20 +80,7 @@ function EditServerModal({ server }) {
                             />
 
                         </label> */}
-{/* 
-                        <label className="server-image">
-                            ENTER IMAGE URL
-                            <input
 
-                                type="text"
-                                // accept="image/*"
-                                value={previewIcon}
-                                onChange={(e) => setPreviewIcon(e.target.value)}
-                            />
-
-                        </label>
-                        {errors.previewIcon ? <p className="create-server-errors">{errors.previewIcon}</p> : ""}
- */}
 
                         <label className="edit-server-labels">
                             SERVER NAME
