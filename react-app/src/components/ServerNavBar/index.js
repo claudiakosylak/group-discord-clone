@@ -77,14 +77,14 @@ function ServerNavBar({ isLoaded }) {
 
 
         </div>
-        <div className="user-info-wrapper" id='homepage-user-info-wrapper'>
-                        <div className="user-info-wrapper-userinfo">
-                            <img src={user.profile_pic} className="user-profile-pic"></img>
-                            <p>{user.username}</p>
-                        </div>
-                        <button onClick={handleLogout}><i class="fa-solid fa-person-through-window"></i></button>
+          <div className="user-info-wrapper" id='homepage-user-info-wrapper'>
+              <div className="user-info-wrapper-userinfo">
+                  <img src={user.profile_pic} className="user-profile-pic"></img>
+                  <p>{user.username}</p>
                 </div>
+                <button onClick={handleLogout}><i class="fa-solid fa-person-through-window"></i></button>
           </div>
+        </div>
       </div>
 
     </div >

@@ -54,11 +54,12 @@ function DiscoverServersIndex() {
             <div className="discover-right-side-wrapper">
 
                 {user && (
-                    <div className="user-info-wrapper discover-user-info">
-                        <img src={user.profile_pic} className="user-profile-pic"></img>
-                        <p>{user.username}</p>
-                        {/* <p>User Settings</p> */}
-                        <button onClick={handleLogout}>Logout</button>
+                    <div className="user-info-wrapper" id='homepage-user-info-wrapper'>
+                        <div className="user-info-wrapper-userinfo">
+                            <img src={user.profile_pic} className="user-profile-pic"></img>
+                            <p>{user.username}</p>
+                        </div>
+                        <button onClick={handleLogout}><i class="fa-solid fa-person-through-window"></i></button>
                     </div>
                 )}
 
@@ -69,12 +70,14 @@ function DiscoverServersIndex() {
                         <p>From gaming, to music, to learning, there's a place for you.</p>
                     </div>
                 </div>
-                <h3>Featured communities</h3>
+                <h3 id='featured-communities'>Featured Communities</h3>
 
                 <ul className='discover-index-grid'>
                     {discoverServers.map(server => (
                         <li key={server.id} className="discover-item">
-                            <img className="discover-item-image" src={server.preview_icon}></img>
+                            <div className='discover-item-image-container'>
+                                <img className="discover-item-image" src={server.preview_icon}></img>
+                            </div>
                             <div className="discover-item-text">
                                 <h4>{server.title}</h4>
                                 <button className="discover-join-button" onClick={() => handleJoin(server)}>Join</button>
