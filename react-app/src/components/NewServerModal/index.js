@@ -63,23 +63,7 @@ function NewServerModal() {
             <p className="create-server-subtext">Give your new server personality with a name and an icon.</p>
             <form onSubmit={handleSubmit} className="create-server-form">
                 <div className="form-top-half">
-                    {/* <label className="server-image-label"> */}
 
-                    {/* <i class="fa-solid fa-camera"></i>
-                    <label className="server-name-label">
-                        ENTER IMAGE URL
-                        <input
-
-                            type="text"
-                            // accept="image/*"
-                            value={imageUrl}
-                            onChange={(e) => setImageUrl(e.target.value)}
-                        />
-
-                    </label>
-
-
- */}
 
 
 
