@@ -40,7 +40,9 @@ def seed_memberships():
 
 def undo_memberships():
     if environment == "production":
+        print("HITTING THIS: 🍎", SCHEMA)
         db.session.execute(f"TRUNCATE table {SCHEMA}.memberships RESTART IDENTITY CASCADE;")
+
     else:
         db.session.execute(text("DELETE FROM memberships"))
 
