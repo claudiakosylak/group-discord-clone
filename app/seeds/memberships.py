@@ -4,7 +4,7 @@ from datetime import datetime
 
 def seed_memberships():
     for x in range(1, 10):
-        for y in range(1, 4):
+        for y in range(2, 4):
             membership = Membership(
                 role = 'member', server_id = x, user_id = x * y
             )
