@@ -7,8 +7,8 @@ socketio = SocketIO()
 # configure cors_allowed_origins
 if os.environ.get('FLASK_ENV') == 'production':
     origins = [
-        'http://discordiamulti.onrender.com',
-        'https://discordiamulti.onrender.com'
+        os.environ.get('SOCKET_ORIGIN_1'),
+        os.environ.get('SOCKET_ORIGIN_2')
     ]
 else:
     origins = "*"
