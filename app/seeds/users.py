@@ -131,6 +131,12 @@ def seed_users():
     db.session.add(demo)
     db.session.commit()
 
+    marnie = User(
+        username='Marnie', email='marnie@aa.io', password='password', date_of_birth=dob1.date(), about="I am an avid fan of Discordia and its communities! Reach out.", profile_pic=user_images[1])
+
+    db.session.add(demo)
+    db.session.commit()
+
     for name in first_names:
         user = User(
             username=name, email=f'{name}@email.com', password='password', date_of_birth=dob1.date(), about=about_sections[about_num], profile_pic=user_images[pic_num]
