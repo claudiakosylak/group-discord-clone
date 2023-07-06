@@ -28,7 +28,7 @@ const getDiscoverServersAction = servers => ({
     servers
 })
 
-export const getServersThunk = () =>  async (dispatch) => {
+export const getServersThunk = () => async (dispatch) => {
     const res = await fetch("/api/servers")
 
     if (res.ok) {
@@ -70,57 +70,50 @@ export const getOneServerThunk = serverId => async dispatch => {
 }
 
 export const createNewServerThunk = (server) => async (dispatch) => {
-    const {title, previewIcon} = server
+    // const {title, previewIcon} = server
     const form_data = new FormData()
-    form_data.append("preview_icon", previewIcon)
-    console.log("THIS IS THE PREVIEWICON IN THE THUNK", previewIcon)
-    console.log("THIS IS THE form data IN THE THUNK", form_data.get("preview_icon"))
-    try {
-        const res = await fetch("/api/servers", {
-            method: "POST",
-            headers: { "Content-Type" : "application/json" },
-            body: JSON.stringify(server)
-        })
+    // form_data.append("preview_icon", previewIcon)
+    const res = await fetch("/api/servers", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(server)
+    })
 
-        if (res.ok) {
-            const newServer = await res.json()
-            console.log("THIS IS THE NEW SERVER AFTER THE RES.OK", newServer)
-            if (form_data.get("preview_icon")) {
-                const imageResponse = await fetch(`/api/servers/${newServer.id}/image`, {
-                    method: "POST",
-                    body: form_data
-                })
-                if (imageResponse.ok) {
-                    const serverImage = await imageResponse.json()
-                    console.log("THIS IS THE SERVERIMAGE AFTER THE IMAGE RESPONSE", serverImage)
-                    const returnResponse = dispatch(createNewServerAction(serverImage))
-                    return newServer
-                } else {
-                    const err = await res.json()
-                    return err
-                }
-            }
-            const returnResponse = dispatch(createNewServerAction(newServer))
-            return returnResponse
+    if (res.ok) {
+        const newServer = await res.json()
+        // if (form_data.get("preview_icon")) {
+        //     const imageResponse = await fetch(`/api/servers/${newServer.id}/image`, {
+        //         method: "POST",
+        //         body: form_data
+        //     })
+        //     if (imageResponse.ok) {
+        //         const serverImage = await imageResponse.json()
+        //         console.log("THIS IS THE SERVERIMAGE AFTER THE IMAGE RESPONSE", serverImage)
+        //         const returnResponse = dispatch(createNewServerAction(serverImage))
+        //         return newServer
+        //     } else {
+        //         const err = await res.json()
+        //         return err
+        //     }
+        // }
+        await dispatch(createNewServerAction(newServer))
+        return newServer;
 
-        } else {
-            const err = await res.json()
-            return err
-        }
-    } catch(errors) {
-        console.log("THIS IS THE CATCH ERROR: ", errors)
-
+    } else {
+        const err = await res.json()
+        return err
     }
+
 }
 
 export const updateServerThunk = (serverInfo, serverId) => async dispatch => {
-    const {title, previewIcon} = serverInfo
+    const { title, previewIcon } = serverInfo
     console.log("THIS IS TEH SERVER ID", serverId)
     // const form_data = new FormData()
     // form_data.append("preview_icon", previewIcon)
     const res = await fetch(`/api/servers/${serverId}`, {
         method: "PUT",
-        headers: { "Content-Type" : "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             title: title,
             preview_icon: previewIcon
@@ -153,7 +146,7 @@ export const updateServerThunk = (serverInfo, serverId) => async dispatch => {
 }
 
 export const deleteServerThunk = (serverId) => async dispatch => {
-    const res = await fetch(`/api/servers/${serverId}`, {method: "DELETE"})
+    const res = await fetch(`/api/servers/${serverId}`, { method: "DELETE" })
     console.log("***** SERVERID IN THUNK", serverId)
     if (res.ok) {
         const successMessage = await res.json();
@@ -167,30 +160,30 @@ export const deleteServerThunk = (serverId) => async dispatch => {
     }
 }
 
-const initialState = { allServers: {}, currentServer: {}, discoverServers: {}};
+const initialState = { allServers: {}, currentServer: {}, discoverServers: {} };
 
 const serverReducer = (state = initialState, action) => {
     console.log("IN REDUCER ACTION SERVERS: ", action.servers)
     switch (action.type) {
         case GET_CURRENT_USERS_SERVERS:
-            const newState = { ...state, allServers: {...state.allServers}, currentServer: {...state.currentServer}, discoverServers: {...state.discoverServers}}
+            const newState = { ...state, allServers: { ...state.allServers }, currentServer: { ...state.currentServer }, discoverServers: { ...state.discoverServers } }
             newState.allServers = action.servers
             return newState;
         case CREATE_NEW_SERVER:
-            const createState = {...state, allServers: {...state.allServers}, currentServer: {}, discoverServers: {...state.discoverServers} }
+            const createState = { ...state, allServers: { ...state.allServers }, currentServer: {}, discoverServers: { ...state.discoverServers } }
             console.log("THIS IS THE ACTION IN THE CREATE NEW SERVER", action)
             createState.currentServer = action.server
             return createState
         case DELETE_SERVER:
-            const deleteState = { ...state, allServers: {...state.allServers}, currentServer: {}, discoverServers: {...state.discoverServers}}
+            const deleteState = { ...state, allServers: { ...state.allServers }, currentServer: {}, discoverServers: { ...state.discoverServers } }
             delete deleteState.allServers[action.serverId]
             return deleteState;
         case GET_DISCOVER_SERVERS:
-            const discoverState = {...state, allServers: {...state.allServers}, currentServer: {}, discoverServers: {}}
+            const discoverState = { ...state, allServers: { ...state.allServers }, currentServer: {}, discoverServers: {} }
             discoverState.discoverServers = action.servers
             return discoverState;
         case CLEAR_CURRENT_SERVER:
-            const clearState = {...state, allServers: {...state.allServers}, currentServer: {}, discoverServers: {}}
+            const clearState = { ...state, allServers: { ...state.allServers }, currentServer: {}, discoverServers: {} }
             return clearState;
         default:
             return state;

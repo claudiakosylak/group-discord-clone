@@ -35,26 +35,24 @@ function NewServerModal() {
 
         const serverInfo = {
             title,
-            previewIcon,
+            // previewIcon,
         }
 
 
         if (Object.values(errors).length) {
             setHasErrors(true)
         } else {
-            const response = await dispatch(createNewServerThunk(serverInfo))
-            await dispatch(getServersThunk())
-            if (serversList.length > 0) {
-                history.push(`/${lastServer.id}/${lastServer.channels[0].id}`)
+            await dispatch(createNewServerThunk(serverInfo)).then(newServer => history.push(`/${newServer.id}/${newServer.channels[0].id}`))
+            // await dispatch(getServersThunk())
+            // if (serversList.length > 0) {
+                // history.push(`/${lastServer.id}/${lastServer.channels[0].id}`)
                 setHasErrors(false)
                 closeModal()
 
-            }
+            // }
         }
 
     }
-
-
 
     return (
         <div className="create-server-wrapper">
