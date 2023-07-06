@@ -7,7 +7,6 @@ import ServersList from '../ServersList';
 import "./DiscoverServersIndex.css"
 import { logout } from "../../store/session";
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
-import kitty from "../../images/discordia-kitty.jpg";
 
 
 function DiscoverServersIndex() {
@@ -42,7 +41,9 @@ function DiscoverServersIndex() {
         }
 
         await dispatch(createMembershipThunk(membership, server.id))
-        await dispatch(getDiscoverServersThunk())
+        // await dispatch(getDiscoverServersThunk())
+        console.log("SERVER ID: ", server.id)
+        console.log("CHANNELS AT ZERO ID: ", server.channels[0].id)
         history.push(`/${server.id}/${server.channels[0].id}`)
     }
 
