@@ -17,12 +17,28 @@
 
 #chat-input {
     width: 90%;
-    height: 2.5em;
+    height: 40px;
+    background-color: #383b40;
+    border: none;
+    padding: 5px 10px;
+    color: white;
+    border-radius: 5px 0 0 5px;
+}
+
+#chat-input:focus {
+    outline: none;
 }
 
 #chat-send-button {
     width:10%;
-    height: 2.5em;
+    height: 40px;
+    background-color: grey;
+    border: none;
+    border-radius: 0 5px 5px 0;
+}
+
+#chat-send-button:hover {
+    cursor: pointer;
 }
 
 #channel-message-scroll {
@@ -55,12 +71,6 @@
 .message-user-pic {
     width: 2.5em;
     height: 2.5em;
-}
-
-.message-header {
-}
-
-.message-content {
 }
 
 .message-username {

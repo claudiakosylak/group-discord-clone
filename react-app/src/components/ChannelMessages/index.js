@@ -121,6 +121,7 @@ function ChannelMessages({ channel, server }) {
                         <input id='chat-input'
                                 value={chatInput}
                                 onChange={updateChatInput}
+                                placeholder={`Message #${currentChannel.title}`}
                         />
                         <button id='chat-send-button' disabled={chatInput.length === 0 || chatInput.length > 1000} type="submit">Send</button>
                     </div>
