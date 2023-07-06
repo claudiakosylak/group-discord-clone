@@ -22,7 +22,7 @@ channel_topics = [
 def seed_channels():
     channel_topic = 0
 
-    for x in range(1, 10):
+    for x in range(1, 11):
         channel1 = Channel(
             title='general', server_id = x, topic = "This is the general channel"
         )
