@@ -55,7 +55,7 @@ function DiscoverServersIndex() {
             <div className="discover-right-side-wrapper">
 
                 {user && (
-                    <div className="user-info-wrapper" id='homepage-user-info-wrapper'>
+                    <div id='discover-user-info-wrapper'>
                         <div className="user-info-wrapper-userinfo">
                             <img src={user.profile_pic} className="user-profile-pic"></img>
                             <p>{user.username}</p>
