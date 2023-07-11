@@ -1,5 +1,5 @@
 .channel-list-container {
-    min-width: 250px;
+    width: 250px;
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -9,6 +9,7 @@
 .user-profile-pic {
     width: 30px;
     height: 30px;
+    object-fit: cover;
 }
 
 .all-content-container {

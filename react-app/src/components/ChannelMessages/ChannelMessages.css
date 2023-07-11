@@ -1,37 +1,58 @@
 .channel-messages-container {
     width: 500px;
-    padding: 20px 20px 2px 20px;
+    /* padding: 0px 20px 2px 20px; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-content: flex-end;
+    height: 94.3vh;
 }
 
 #chat-input-form {
-    margin-top: 1em;
+    margin-top: 10px;
     width: 100%;
     display: flex;
-    gap: 0.5em;
+    gap: 10px;
     flex-direction: column;
 }
 
 #chat-input {
     width: 90%;
-    height: 2.5em;
+    height: 40px;
+    background-color: #383b40;
+    border: none;
+    padding: 5px 10px;
+    color: white;
+    border-radius: 5px 0 0 5px;
+}
+
+#chat-input:focus {
+    outline: none;
 }
 
 #chat-send-button {
     width:10%;
-    height: 2.5em;
+    height: 40px;
+    background-color: grey;
+    border: none;
+    border-radius: 0 5px 5px 0;
+}
+
+#chat-send-button:hover {
+    cursor: pointer;
 }
 
 #channel-message-scroll {
-    overflow-y: auto;
+    overflow-y: scroll;
     position: relative;
     height: 90%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+#channel-message-scroll > p {
+    padding: 20px 0 0 20px;
 }
 
 
@@ -42,7 +63,7 @@
 
 
 #message-warning {
-    height: 2em;
+    height: 20px;
     width: 100%;
     font-size: 0.8em;
 }
@@ -50,17 +71,12 @@
 #channel-messages {
     justify-self: flex-end;
     width: 100%;
+    padding: 20px 20px 2px 20px;
 }
 
 .message-user-pic {
     width: 2.5em;
     height: 2.5em;
-}
-
-.message-header {
-}
-
-.message-content {
 }
 
 .message-username {
@@ -79,7 +95,7 @@
 
 .channel-messages-message-div {
     display: flex;
-    margin-top: 1.3em;
+    padding-top: 10px;
 }
 
 .channel-messages-message-div:hover i {
