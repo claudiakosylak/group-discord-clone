@@ -11,6 +11,7 @@
     align-items: center;
     width: 100%;
     padding-top: 20px;
+    position: relative;
 }
 
 .discover-right-side-wrapper > h3 {
@@ -132,4 +133,45 @@ h4 {
 
 #featured-communities {
     width: 50%;
+}
+
+#discover-user-info-wrapper button {
+    background-color: transparent;
+    border: none;
+    margin-top: 2px;
+    color: #B5BAC1;
+}
+
+#discover-user-info-wrapper {
+    color: white;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    width: 250px;
+    justify-content: space-between;
+    background-color: #1E1F22;
+    padding: 0.5em;
+    height: 60px;
+}
+
+
+#discover-user-info-wrapper-userinfo {
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+}
+
+#discover-user-info-wrapper button i{
+    font-size: 1.5em;
+    margin-top: 2px;
+ }
+
+ #discover-user-info-wrapper button i:hover {
+    color: darkred;
+    cursor: pointer;
+ }
+#discover-user-info-wrapper img {
+    border-radius: 50%;
 }

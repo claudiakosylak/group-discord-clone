@@ -104,10 +104,6 @@ h2 {
 }
 
 
-#server-page-user-info-wrapper {
-    /* background-color: black; */
-}
-
 #home-page-discover-link {
     display: flex;
     justify-content: space-between;
@@ -171,9 +167,6 @@ h2 {
     margin-bottom: 10px;
 }
 
-#homepage-user-info-wrapper {
-    margin-left: 10px;
-}
 
 #homepage-user-info-wrapper button {
     background-color: transparent;
