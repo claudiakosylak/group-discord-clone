@@ -31,6 +31,7 @@
     color: white;
     width: 100%;
     border-radius: 5px;
+    padding: 5px;
 }
 
 .channel-name-input-box:focus {

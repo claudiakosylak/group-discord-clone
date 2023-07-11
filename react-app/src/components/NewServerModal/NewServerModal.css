@@ -48,6 +48,7 @@
     height: 35px;
     border: none;
     background-color: #dbdbdd;
+    padding: 5px;
 }
 
 .server-name-label > input:focus {
