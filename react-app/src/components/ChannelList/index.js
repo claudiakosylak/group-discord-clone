@@ -39,7 +39,7 @@ function ChannelList({server}) {
                 </div>
                 {channels.map((channel, idx) => (
                     <div className="channel-menu-item">
-                        <NavLink className="channel-list-item" to={`/${server.id}/${channel.id}`}><li key={channel.id} ><i class="fa-solid fa-hashtag"></i>{channel.title}</li></NavLink>
+                        <NavLink className="channel-list-item" to={`/${server.id}/${channel.id}`}><li key={channel.id} ><i class="fa-solid fa-hashtag"></i>{channel.title.length < 23 ? channel.title : channel.title.slice(0, 17) + "..."}</li></NavLink>
                         {user.id === server.owner_id && idx !== 0 && (
                             <OpenModalButton
                                 buttonText={<i class="fa-solid fa-gear"></i>}
