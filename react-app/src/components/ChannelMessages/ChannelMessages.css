@@ -1,17 +1,18 @@
 .channel-messages-container {
     width: 500px;
-    padding: 20px 20px 2px 20px;
+    /* padding: 0px 20px 2px 20px; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-content: flex-end;
+    height: 94.3vh;
 }
 
 #chat-input-form {
-    margin-top: 1em;
+    margin-top: 10px;
     width: 100%;
     display: flex;
-    gap: 0.5em;
+    gap: 10px;
     flex-direction: column;
 }
 
@@ -42,12 +43,16 @@
 }
 
 #channel-message-scroll {
-    overflow-y: auto;
+    overflow-y: scroll;
     position: relative;
     height: 90%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+#channel-message-scroll > p {
+    padding: 20px 0 0 20px;
 }
 
 
@@ -58,7 +63,7 @@
 
 
 #message-warning {
-    height: 2em;
+    height: 20px;
     width: 100%;
     font-size: 0.8em;
 }
@@ -66,6 +71,7 @@
 #channel-messages {
     justify-self: flex-end;
     width: 100%;
+    padding: 20px 20px 2px 20px;
 }
 
 .message-user-pic {
@@ -89,7 +95,7 @@
 
 .channel-messages-message-div {
     display: flex;
-    margin-top: 1.3em;
+    padding-top: 10px;
 }
 
 .channel-messages-message-div:hover i {
