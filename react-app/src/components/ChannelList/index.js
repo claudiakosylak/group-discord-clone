@@ -7,6 +7,7 @@ import NewChannelModal from '../CreateChannelModal';
 import EditChannelModal from '../EditChannelComponent';
 import "./ChannelList.css"
 import { logout } from "../../store/session";
+import { useParams } from 'react-router-dom/cjs/react-router-dom';
 
 
 
@@ -14,6 +15,10 @@ function ChannelList({server}) {
     const channelsObj = useSelector(state => state.channel.allChannels)
     const channels = Object.values(channelsObj)
     const user = useSelector(state => state.session.user)
+    const {serverId, channelId} = useParams();
+
+    console.log("SERVER ID: ", serverId)
+    console.log("CHANNEL ID: ", channelId)
 
     const dispatch = useDispatch()
 
@@ -38,14 +43,16 @@ function ChannelList({server}) {
                 )}
                 </div>
                 {channels.map((channel, idx) => (
-                    <div className="channel-menu-item">
-                        <NavLink className="channel-list-item" to={`/${server.id}/${channel.id}`}><li key={channel.id} ><i class="fa-solid fa-hashtag"></i>{channel.title.length < 23 ? channel.title : channel.title.slice(0, 17) + "..."}</li></NavLink>
+                    <>
+                    <div className={`channel-menu-item ${channel.id.toString() === channelId ? "active-channel" : ""}`}>
+                        <NavLink className="channel-list-item"  to={`/${server.id}/${channel.id}`}><li key={channel.id} className={`channel-list-text ${channel.id.toString() === channelId ? "active-channel-text" : ""}`}><i class="fa-solid fa-hashtag"></i>{channel.title.length < 23 ? channel.title : channel.title.slice(0, 17) + "..."}</li></NavLink>
                         {user.id === server.owner_id && idx !== 0 && (
                             <OpenModalButton
                                 buttonText={<i class="fa-solid fa-gear"></i>}
                                 modalComponent={<EditChannelModal channel={channel} />} />
                         )}
                     </div>
+                    </>
                 ))}
 
             </ul>

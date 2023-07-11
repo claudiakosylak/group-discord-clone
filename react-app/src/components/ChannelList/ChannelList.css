@@ -107,3 +107,19 @@
 .fa-gear {
     padding: 10px;
 }
+
+.fa-gear:hover {
+    color: white;
+}
+
+.channel-list-text:hover {
+    color: white;
+}
+
+.active-channel {
+    background-color:#313338;
+}
+
+.active-channel-text {
+    color: white;
+}
