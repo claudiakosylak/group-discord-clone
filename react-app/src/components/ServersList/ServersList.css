@@ -34,12 +34,12 @@
     border-radius: 35%;
 }
 
-#selected-server-icon {
+#active-server-icon {
     border-radius: 35%;
 }
 
 .server-icon-buttons {
-    border-radius: 100%;
+    /* border-radius: 100%; */
     border: none;
     box-shadow: none;
 }
