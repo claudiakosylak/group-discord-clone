@@ -100,3 +100,18 @@
     min-width: 70px;
     /* max-width: 70px; */
 }
+
+.active-server-white {
+    height: 40px;
+    width: 5px;
+    border-radius: 5px;
+    background-color: white;
+    position: absolute;
+    left: 0;
+    margin-bottom: 5px;
+}
+
+.server-item-box {
+    display: flex;
+    align-items: center;
+}

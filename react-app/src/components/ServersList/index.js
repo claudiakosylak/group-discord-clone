@@ -12,7 +12,7 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 function ServersList() {
     const serversObj = useSelector((state) => state.server.allServers);
     const servers = Object.values(serversObj);
-    const serverId = useParams()
+    const {serverId, channelId} = useParams()
 
 
     const dispatch = useDispatch();
@@ -28,7 +28,7 @@ function ServersList() {
             <ul className="server-icons-container">
             {servers.map(server => (
               <>
-              <li key={server.id}><NavLink to={`/${server.id}/${server.channels[0].id}`} className="server-icon-buttons" ><img className="server-icons" src={server.preview_icon} id={server.id === serverId ? "active-server-icon" : ""}></img></NavLink></li>
+              <li key={server.id} className="server-item-box"><div className={server.id.toString() === serverId ? "active-server-white" : ""}></div><NavLink to={`/${server.id}/${server.channels[0].id}`} className="server-icon-buttons" ><img className="server-icons" src={server.preview_icon} id={server.id.toString() === serverId ? "active-server-icon" : ""}></img></NavLink></li>
               </>
             ))}
               <OpenCreateServerButton
