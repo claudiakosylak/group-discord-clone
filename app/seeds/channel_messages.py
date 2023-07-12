@@ -156,7 +156,7 @@ professor = [
     [15, "I've had them before, and I had a similar experience. It's frustrating when a professor can't effectively communicate the course material."],
     [20, "I've heard similar complaints from other students as well. It's unfortunate when a professor's teaching style hinders our learning experience."],
     [25, "I'm currently in their class too, and it's been a struggle. The lack of clarity and guidance makes it challenging to grasp the concepts."],
-    [30, "I had Professor Smith last semester, and it wasn't a positive experience. Their grading seemed inconsistent, which was frustrating."],
+    [30, "I had Professor Smith last quarter, and it wasn't a positive experience. Their grading seemed inconsistent, which was frustrating."],
     [35, "I can relate to that. I had them for a different course, and it was one of my least favorite classes. Their teaching methods need improvement."],
     [1, "It's reassuring to know I'm not the only one struggling with this professor. I wonder if there's anything we can do to address our concerns."],
     [10, "We could potentially provide feedback to the department or speak to the professor directly about our difficulties. It's worth considering."],
