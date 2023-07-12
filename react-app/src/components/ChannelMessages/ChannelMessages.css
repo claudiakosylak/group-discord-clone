@@ -107,3 +107,7 @@
     opacity: 1;
     cursor: pointer;
 }
+
+.dummy-bottom {
+    height: 5px;
+}
