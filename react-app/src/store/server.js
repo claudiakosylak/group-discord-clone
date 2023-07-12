@@ -71,7 +71,7 @@ export const getOneServerThunk = serverId => async dispatch => {
 
 export const createNewServerThunk = (server) => async (dispatch) => {
     // const {title, previewIcon} = server
-    const form_data = new FormData()
+    // const form_data = new FormData()
     // form_data.append("preview_icon", previewIcon)
     const res = await fetch("/api/servers", {
         method: "POST",

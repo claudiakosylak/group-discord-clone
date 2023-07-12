@@ -259,7 +259,7 @@ def add_server():
         newServer = Server(
             title=form.data['title'],
             owner_id=current_user.id,
-
+            preview_icon=form.data['preview_icon']
         )
 
 

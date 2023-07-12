@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { createNewServerThunk, getServersThunk } from "../../store/server"
+import { createNewServerThunk } from "../../store/server"
 import { useHistory } from "react-router-dom";
 import "./NewServerModal.css";
 
@@ -13,7 +13,14 @@ function NewServerModal() {
     const [hasErrors, setHasErrors] = useState(false)
     const servers = useSelector(state => state.server.allServers)
     const serversList = Object.values(servers)
-    const lastServer = serversList[serversList.length - 1]
+
+    const defaultImages = [
+        "https://i.imgur.com/dHWrBJK.png",
+        "https://i.imgur.com/vQrEpS1.png",
+        "https://i.imgur.com/PI7kWup.png",
+        "https://i.imgur.com/sidVfiL.png",
+        "https://i.imgur.com/fDinbtN.png"
+    ]
 
 
     const [previewIcon, setPreviewIcon] = useState(null);
@@ -35,7 +42,7 @@ function NewServerModal() {
 
         const serverInfo = {
             title,
-            // previewIcon,
+            preview_icon: defaultImages[(Math.floor(Math.random() * defaultImages.length))]
         }
 
 
