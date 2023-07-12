@@ -10,12 +10,12 @@ function DeleteChannelModal({channel}) {
     const {closeModal} = useModal();
     const currentServer = useSelector(state => state.server.currentServer)
     const history = useHistory();
-    const {serverId, channelId} = useParams();
+    console.log("CHANNEL: ", channel)
 
     const handleDelete = () => {
-        dispatch(deleteChannelThunk(channelId))
-        dispatch(getChannelsThunk(serverId))
-        history.push(`/${serverId}/${currentServer.channels[0].id}`)
+        dispatch(deleteChannelThunk(channel.id))
+        dispatch(getChannelsThunk(currentServer.id))
+        history.push(`/${currentServer.id}/${currentServer.channels[0].id}`)
         dispatch(getOneChannelThunk(currentServer.channels[0].id))
         closeModal()
     }
