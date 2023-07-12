@@ -12,8 +12,6 @@ function DeleteServerModal({ server }) {
     const [errors, setErrors] = useState("");
     const [hasSubmitted, setHasSubmitted] = useState(false)
 
-    console.log("SERVER IN MODAL", server)
-    console.log("SERVERID IN MODAL", server.id)
     const history = useHistory();
 
     // useEffect(() => {

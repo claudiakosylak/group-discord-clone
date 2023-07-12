@@ -43,11 +43,9 @@ export const getServersThunk = () => async (dispatch) => {
 
 export const getDiscoverServersThunk = () => async dispatch => {
     const res = await fetch("/api/servers/discover")
-    console.log("WE ARE IN THUNK")
 
     if (res.ok) {
         const servers = await res.json()
-        console.log("SERVERS IN THUNK: ", servers)
         await dispatch(getDiscoverServersAction(servers))
         return servers
     } else {
@@ -88,7 +86,6 @@ export const createNewServerThunk = (server) => async (dispatch) => {
         //     })
         //     if (imageResponse.ok) {
         //         const serverImage = await imageResponse.json()
-        //         console.log("THIS IS THE SERVERIMAGE AFTER THE IMAGE RESPONSE", serverImage)
         //         const returnResponse = dispatch(createNewServerAction(serverImage))
         //         return newServer
         //     } else {
@@ -108,7 +105,6 @@ export const createNewServerThunk = (server) => async (dispatch) => {
 
 export const updateServerThunk = (serverInfo, serverId) => async dispatch => {
     const { title, previewIcon } = serverInfo
-    console.log("THIS IS TEH SERVER ID", serverId)
     // const form_data = new FormData()
     // form_data.append("preview_icon", previewIcon)
     const res = await fetch(`/api/servers/${serverId}`, {
@@ -119,11 +115,8 @@ export const updateServerThunk = (serverInfo, serverId) => async dispatch => {
             preview_icon: previewIcon
         })
     })
-    console.log("WE ARE HITTING THE THUNK")
-    console.log("THIS IS RES", res)
     if (res.ok) {
         const updatedServer = await res.json();
-        console.log("updated server in thunk", updatedServer)
         // if (form_data.get("preview_icon")) {
         //     const imageResponse = await fetch(`/api/servers/${serverId}/image`, {
         //         method: "PUT",
@@ -131,7 +124,6 @@ export const updateServerThunk = (serverInfo, serverId) => async dispatch => {
         //     })
         //     if (imageResponse.ok) {
         //         const serverImage = await imageResponse.json()
-        //         console.log("THIS IS THE SERVER IMAGE", serverImage)
         //         dispatch(createNewServerAction(serverImage))
         //         return null
         //     }
@@ -147,15 +139,12 @@ export const updateServerThunk = (serverInfo, serverId) => async dispatch => {
 
 export const deleteServerThunk = (serverId) => async dispatch => {
     const res = await fetch(`/api/servers/${serverId}`, { method: "DELETE" })
-    console.log("***** SERVERID IN THUNK", serverId)
     if (res.ok) {
         const successMessage = await res.json();
-        console.log("SUCCESS MESSAGE: ", successMessage)
         dispatch(deleteServerAction(serverId))
         return successMessage;
     } else {
         const err = await res.json();
-        console.log("THE ERROR IN THUNK: ", err)
         return err;
     }
 }
@@ -163,7 +152,6 @@ export const deleteServerThunk = (serverId) => async dispatch => {
 const initialState = { allServers: {}, currentServer: {}, discoverServers: {} };
 
 const serverReducer = (state = initialState, action) => {
-    console.log("IN REDUCER ACTION SERVERS: ", action.servers)
     switch (action.type) {
         case GET_CURRENT_USERS_SERVERS:
             const newState = { ...state, allServers: { ...state.allServers }, currentServer: { ...state.currentServer }, discoverServers: { ...state.discoverServers } }
@@ -171,7 +159,6 @@ const serverReducer = (state = initialState, action) => {
             return newState;
         case CREATE_NEW_SERVER:
             const createState = { ...state, allServers: { ...state.allServers }, currentServer: {}, discoverServers: { ...state.discoverServers } }
-            console.log("THIS IS THE ACTION IN THE CREATE NEW SERVER", action)
             createState.currentServer = action.server
             return createState
         case DELETE_SERVER:

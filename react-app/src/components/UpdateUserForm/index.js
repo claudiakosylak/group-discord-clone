@@ -9,10 +9,8 @@ function UpdateUser() {
 
     const userId = useSelector(state => state.session.user.id)
     const currentUser = useSelector(state => state.session.user)
-    console.log(currentUser)
 
     const fullDateOfBirth = currentUser?.date_of_birth.split(" ")
-    console.log("THIS IS THE FULL DATE OF BIRTH", fullDateOfBirth)
 
     let monthObj = {
         Jan: "January",
@@ -82,19 +80,13 @@ function UpdateUser() {
             user.about = about
             // formData.append("about", about)
         }
-        console.log(profilePic)
         if (profilePic) {
             user.profile_pic = profilePic
             // formData.append("profile_pic", profilePic)
         }
-        console.log('USER DOT PROF_PIC ------------------>', user.profile_pic)
-        // console.log("THIS IS THE FORM DATA", formData)
-        console.log("THIS IS THE USER IN THE COMPONENT", user)
         const data = await dispatch(updateUserThunk(user));
-        console.log("THIS IS THE DATA IN THE HANDLE SUBMIT", data)
         // const formData = new FormData();
-        // console.log('This is our form data in the handle submit ', formData)
-        // formData.append("profile_pic", profilePic);
+
 
 
 
@@ -117,7 +109,6 @@ function UpdateUser() {
         //         profile_pic: profilePic
         //     },
         // });
-        // console.log("THIS IS RES", res)
         // if (res.ok) {
         //     await res.json();
         //     setImageLoading(false);
@@ -127,7 +118,6 @@ function UpdateUser() {
         //     setImageLoading(false);
         //     // a real app would probably use more advanced
         //     // error handling
-        //     console.log("error");
         // }
 
     }

@@ -16,8 +16,6 @@ function Topbar({server}) {
     const currentUser = useSelector(state => state.session.user)
     const {serverId, channelId} = useParams()
 
-    // console.log("CURRENT SERVER: ",currentServer)
-
     return (
         <div className="top-bar-container">
             <div className='topbar-server-title'>

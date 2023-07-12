@@ -37,7 +37,6 @@ function ChannelMessages({ channel, server }) {
         socket.on("chat", (chat) => {
             // when we recieve a chat, add it into our messages array in state
             setMessages(messages => [...messages, chat])
-            console.log("CHAT",chat)
             // dispatch(getAllChannelMessagesThunk(channel));
         })
 
@@ -45,7 +44,6 @@ function ChannelMessages({ channel, server }) {
         socket.on("delete_message", (delete_message) => {
             // when we recieve a chat, add it into our messages array in state
             setMessages(messages => messages.filter(message => message.id !== delete_message.id))
-            console.log("DELETE message from component", delete_message)
             // dispatch(getAllChannelMessagesThunk(channel));
         })
 
