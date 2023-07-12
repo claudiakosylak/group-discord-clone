@@ -1,9 +1,84 @@
-# Flask React Project
+<a name="readme-top"></a>
 
-This is the starter for the Flask React project.
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/claudiakosylak/group-discord-clone">
+    <img src="react-app/public/discord.svg" alt="Logo">
+  </a>
 
-## Getting started
-1. Clone this repository (only this branch)
+<h3 align="center">Discordia</h3>
+
+  <p align="center">
+    Discordia is a Discord clone where users can create and join servers to chat with other members in live time.
+    <br />
+    <a href="https://github.com/claudiakosylak/group-discord-clone"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://discordiamulti.onrender.com">View Live Site</a>
+    ·
+    <a href="https://github.com/claudiakosylak/group-discord-clone/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/claudiakosylak/group-discord-clone/issues">Request Feature</a>
+  </p>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+
+This project was a group collaboration to clone Discord and its core functionality. The initial MVP was due within just over a week's time. Socket.io is implemented to allow chats to happen in live time.
+
+Feature Highlights:
+* Users can create a server, edit that server's details and delete the server
+* Users can create, edit and delete channels for the servers they own
+* Users can send messages within channels for servers they own or are a part of in real time, and can delete their own messages
+* Users can view all of their existing servers in the left nav bar
+* Users can discover new servers to join, join servers, and leave a server
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+### Built With
+
+* ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+* ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+* ![Socket.io](https://img.shields.io/badge/Socket.io-black?style=for-the-badge&logo=socket.io&badgeColor=010101)
+* ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
+* ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+* ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+* ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
+* ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+* ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+To get a local copy up and running follow these simple example steps.
+
+1. Clone this repository
 
 2. Install dependencies
 
@@ -11,17 +86,17 @@ This is the starter for the Flask React project.
       pipenv install -r requirements.txt
       ```
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
+3. Create a **.env** file with your environment variables based on this example:
 
-4. Make sure the SQLite3 database connection URL is in the **.env** file
+   SECRET_KEY=your_secret_key
+   DATABASE_URL=your_db_url
+   SCHEMA=your_schema_name
 
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention**.
+   S3_BUCKET=your_bucket_name
+   S3_KEY=your_key
+   S3_SECRET=your_secret_key
 
-6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
+4. Get into your pipenv, migrate your database, seed your database, and run your Flask app
 
    ```bash
    pipenv shell
@@ -39,110 +114,117 @@ This is the starter for the Flask React project.
    flask run
    ```
 
-7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+5. To set up the front end, cd into react-app in another terminal. Then install dependencies and start the app:
+
+   ```bash
+   npm install
+   ```
+
+   ```bash
+   npm start
+   ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-## Deployment through Render.com
+<!-- USAGE EXAMPLES -->
+## Usage
 
-First, refer to your Render.com deployment articles for more detailed
-instructions about getting started with [Render.com], creating a production
-database, and deployment debugging tips.
+### Sign Up
 
-From the [Dashboard], click on the "New +" button in the navigation bar, and
-click on "Web Service" to create the application that will be deployed.
+Users can sign in giving their details.
 
-Look for the name of the application you want to deploy, and click the "Connect"
-button to the right of the name.
+![signup](./images/signup_screenshot.png)
 
-Now, fill out the form to configure the build and start commands, as well as add
-the environment variables to properly deploy the application.
+### Log In
 
-### Part A: Configure the Start and Build Commands
+Registered users can log in with their credentials. Users can also log in with one of two demo users to test functionality without creating an account.
 
-Start by giving your application a name.
+![login](./images/login_screenshot.png)
 
-Leave the root directory field blank. By default, Render will run commands from
-the root directory.
+### Send and Delete Messages
 
-Make sure the Environment field is set set to "Python 3", the Region is set to
-the location closest to you, and the Branch is set to "main".
+Users can send messages within channels for servers they are a part of. They can also delete messages that they have sent.
 
-Next, add your Build command. This is a script that should include everything
-that needs to happen _before_ starting the server.
+![send-delete-messages](./images/send-delete-message.gif)
 
-For your Flask project, enter the following command into the Build field, all in
-one line:
+### Create a Server
 
-```shell
-# build command - enter all in one line
-npm install --prefix react-app &&
-npm run build --prefix react-app &&
-pip install -r requirements.txt &&
-pip install psycopg2 &&
-flask db upgrade &&
-flask seed all
-```
+Users can create a new server and choose a name for that server. A general channel is always automatically created for new servers.
 
-This script will install dependencies for the frontend, and run the build
-command in the __package.json__ file for the frontend, which builds the React
-application. Then, it will install the dependencies needed for the Python
-backend, and run the migration and seed files.
+![create-server](./images/create-server.gif)
 
-Now, add your start command in the Start field:
+### Edit a Server
 
-```shell
-# start script
-gunicorn app:app
-```
+Users can edit the name for servers they own.
 
-_If you are using websockets, use the following start command instead for increased performance:_
+![edit-server](./images/edit-server.gif)
 
-`gunicorn --worker-class eventlet -w 1 app:app`
+### Delete a Server
 
-### Part B: Add the Environment Variables
+Users can delete a server that they own. They are prompted to enter the name of the server to match so that they do not delete a server by mistake.
 
-Click on the "Advanced" button at the bottom of the form to configure the
-environment variables your application needs to access to run properly. In the
-development environment, you have been securing these variables in the __.env__
-file, which has been removed from source control. In this step, you will need to
-input the keys and values for the environment variables you need for production
-into the Render GUI.
+![delete-server](./images/delete-server.gif)
 
-Click on "Add Environment Variable" to start adding all of the variables you
-need for the production environment.
+### Create a Channel
 
-Add the following keys and values in the Render GUI form:
+Users can create a channel for servers they own, choosing a name and a topic for that channel.
 
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-- REACT_APP_BASE_URL (use render.com url, located at top of page, similar to
-  https://this-application-name.onrender.com)
+![create-channel](./images/create-channel.gif)
 
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
+### Edit a Channel
 
-Add the following keys and values:
+Users can edit the details for channels that they own by clicking the cog next to the channel name.
 
-- DATABASE_URL (copy value from Internal Database URL field)
+![edit-channel](./images/edit-channel.gif)
 
-_Note: Add any other keys and values that may be present in your local __.env__
-file. As you work to further develop your project, you may need to add more
-environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment._
+### Delete a Channel
 
-Next, choose "Yes" for the Auto-Deploy field. This will re-deploy your
-application every time you push to main.
+Users can delete channels for servers they own by clicking Delete Channel from within the Edit Channel modal.
 
-Now, you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your build and
-start commands being executed, and see any errors in the build process.
+![delete-channel](./images/delete-channel.gif)
 
-When deployment is complete, open your deployed site and check to see if you
-successfully deployed your Flask application to Render! You can find the URL for
-your site just below the name of the Web Service at the top of the page.
+### Discover Servers
 
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
+Users can go to the discover servers page from either the left navigation bar or the home page upon login. Here they can see all of the servers they are not yet a part of.
+
+![discover-servers](./images/discover-servers.gif)
+
+### Join a Server
+
+Users can join servers from the discover servers page. They are redirected to the server page once they join.
+
+![join-server](./images/join-server.gif)
+
+### Leave a Server
+
+Users can leave servers that they are currently members of.
+
+![leave-server](./images/leave-server.gif)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<!-- ROADMAP -->
+## Roadmap
+
+- [ ] AWS implementation to be able to upload pictures for server and user icons.
+- [ ] Add reactions for messages.
+- [ ] Direct messaging between two specific users.
+
+See the [open issues](https://github.com/claudiakosylak/group-discord-clone/issues) for a full list of proposed features (and known issues).
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<!-- CONTACT -->
+## Contact
+
+Claudia Kosylak - claudiakosylak@gmail.com - https://github.com/claudiakosylak/
+Matt McBurnett - mattmcburnett@gmail.com - https://github.com/mattmcburnett
+James Lee - https://github.com/lee963654
+Hanna Rosenfeld - hannazrosenfeld@gmail.com - https://github.com/hannarosenfeld
+
+Project Link: [https://github.com/claudiakosylak/group-discord-clone](https://github.com/claudiakosylak/group-discord-clone)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
