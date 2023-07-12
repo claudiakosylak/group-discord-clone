@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/claudiakosylak/group-discord-clone">
-    <img src="react-app/public/discord.svg" alt="Logo">
+    <img src="react-app/public/discord.svg" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Discordia</h3>
@@ -220,10 +220,10 @@ See the [open issues](https://github.com/claudiakosylak/group-discord-clone/issu
 <!-- CONTACT -->
 ## Contact
 
-Claudia Kosylak - claudiakosylak@gmail.com - https://github.com/claudiakosylak/
-Matt McBurnett - mattmcburnett@gmail.com - https://github.com/mattmcburnett
-James Lee - https://github.com/lee963654
-Hanna Rosenfeld - hannazrosenfeld@gmail.com - https://github.com/hannarosenfeld
+* Claudia Kosylak - claudiakosylak@gmail.com - https://github.com/claudiakosylak/
+* Matt McBurnett - mattmcburnett@gmail.com - https://github.com/mattmcburnett
+* James Lee - https://github.com/lee963654
+* Hanna Rosenfeld - hannazrosenfeld@gmail.com - https://github.com/hannarosenfeld
 
 Project Link: [https://github.com/claudiakosylak/group-discord-clone](https://github.com/claudiakosylak/group-discord-clone)
 
