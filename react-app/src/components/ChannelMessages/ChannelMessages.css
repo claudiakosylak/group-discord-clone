@@ -44,7 +44,7 @@
 }
 
 #channel-message-scroll {
-    overflow-y: auto;
+    overflow-y: scroll;
     position: relative;
     height: 90%;
     display: flex;
@@ -80,8 +80,8 @@
 }
 
 .message-user-pic {
-    width: 2.5em;
-    height: 2.5em;
+    width: 40px;
+    height: 40px;
 }
 
 .message-username {
@@ -110,4 +110,12 @@
 
 .dummy-bottom {
     height: 5px;
+}
+
+.message-content p {
+    word-break: break-word;
+}
+
+.message-content {
+    width: 90%;
 }
