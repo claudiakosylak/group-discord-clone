@@ -22,12 +22,12 @@ channel_topics = [
 def seed_channels():
     channel_topic = 0
 
-    for x in range(1, 11):
+    for x in range(1, 21):
         channel1 = Channel(
             title='general', server_id = x, topic = "This is the general channel"
         )
         db.session.add(channel1)
-        for y in range(1, 5):
+        for y in range(1, 3):
             channel = Channel(
                 title=channel_topics[channel_topic], server_id = x, topic=channel_topics[channel_topic]
             )
