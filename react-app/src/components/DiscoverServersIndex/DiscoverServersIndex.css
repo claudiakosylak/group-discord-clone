@@ -60,7 +60,7 @@
 .discover-index-grid {
     display: grid;
     grid-template-columns: repeat(4, 25%);
-    grid-template-rows: repeat(2, 25%);
+    grid-auto-rows: auto;
     height: 90%;
     row-gap: 20px;
     width: 850px;
