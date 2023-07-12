@@ -100,7 +100,7 @@
 
 .channel-messages-message-div {
     display: flex;
-    padding-top: 10px;
+    padding-top: 20px;
 }
 
 .channel-messages-message-div:hover i {
