@@ -15,8 +15,6 @@ function ServerNavBar({ isLoaded }) {
   const user = useSelector(state => state.session.user)
   const servers = useSelector(state => state.server.allServers)
   const serversArray = Object.values(servers)
-  console.log("🍎servers: ", servers)
-  console.log("🍎serversArray at zero: ", serversArray[0])
 
   const history = useHistory()
   const dispatch = useDispatch()

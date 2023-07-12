@@ -31,7 +31,6 @@ function SignupFormModal() {
 
 
 		setErrors(errors)
-		// console.log("ERROR OBJ IN THE USEEFFECT", errors)
 
 	}, [month, day, year, username, password, email])
 
@@ -65,13 +64,11 @@ function SignupFormModal() {
 		// setErrors(errors)
 
 		if (Object.values(errors).length) {
-			// console.log("OBJECT . VALUES OF ERRORS IN HANDLE SUB", Object.values(errors))
 			setHasErrors(true)
 		} else {
 			const data = await dispatch(signUp(username, email, password, month, day, year));
 			if (data) {
 				setErrors(data);
-				console.log("THESE ARE THE ERRORS", errors)
 			} else {
 				setHasSubmitted(false)
 

@@ -3,17 +3,19 @@ import {useModal} from "../../context/Modal";
 import { deleteChannelThunk, getChannelsThunk, getOneChannelThunk } from "../../store/channel";
 import { useHistory } from "react-router-dom";
 import "./DeleteChannelModal.css";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 function DeleteChannelModal({channel}) {
     const dispatch = useDispatch()
     const {closeModal} = useModal();
     const currentServer = useSelector(state => state.server.currentServer)
     const history = useHistory();
+    const {serverId, channelId} = useParams();
 
     const handleDelete = () => {
-        dispatch(deleteChannelThunk(channel.id))
-        dispatch(getChannelsThunk(channel.server_id))
-        history.push(`/${currentServer.id}/${currentServer.channels[0].id}`)
+        dispatch(deleteChannelThunk(channelId))
+        dispatch(getChannelsThunk(serverId))
+        history.push(`/${serverId}/${currentServer.channels[0].id}`)
         dispatch(getOneChannelThunk(currentServer.channels[0].id))
         closeModal()
     }

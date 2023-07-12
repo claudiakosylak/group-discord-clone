@@ -95,7 +95,6 @@ export const signUp = (username, email, password, month, day, year) => async (di
 		return null;
 	} else if (response.status < 500) {
 		const data = await response.json();
-		console.log("THIS IS THE DATA ERRORS", data)
 		if (data.errors) {
 			return data.errors;
 		}
@@ -108,15 +107,11 @@ export const signUp = (username, email, password, month, day, year) => async (di
 
 
 export const updateUserThunk = (user) => async(dispatch) => {
-	console.log("THIS IS THE USER WE ARE PASSING IN THE THUNK", user)
 	const {id, username, email, password, month, day, year, about, profile_pic} = user
-	console.log('PROFILE_PIC IN THE updateUserThunk ----------------->', profile_pic)
-	console.log("THIS IS THE MONTH==================", month)
 	const form_data = new FormData()
 	// form_data.append('test', 'working')
 	// form_data.get(te)
 	form_data.append('profile_pic', profile_pic)
-	console.log('HERE"S THE FORM DATATATATAT ---------->', form_data.get('profile_pic'))
 	const response = await fetch(`/api/users/${user.id}`, {
 		method: "PUT",
 		headers: {
@@ -139,10 +134,8 @@ export const updateUserThunk = (user) => async(dispatch) => {
 			method: "PUT",
 			body: form_data
 		})
-		console.log("THIS IS THE IMAGE RESPONSE: ", imageResponse)
 		if (imageResponse.ok && response.ok) {
 			const userAndImageRes = await imageResponse.json()
-			console.log("THIS IS THE IMAGE RESPONSE AFTER: ", userAndImageRes)
 			dispatch(updateUser(userAndImageRes))
 			return null
 		} else if (response.status < 500) {
@@ -155,10 +148,8 @@ export const updateUserThunk = (user) => async(dispatch) => {
 		}
 	}
 
-	console.log("THIS IS THE RESPONSE IN THE UPDATE THUNK", response)
 	// if (response.ok) {
 	// 	const data = await response.json();
-	// 	console.log("THIS IS THE DATA IN THE THUNK AFTER RESPONSE OK", data)
 	// 	dispatch(updateUser(data));
 	// 	return null;
 	// } else if (response.status < 500) {

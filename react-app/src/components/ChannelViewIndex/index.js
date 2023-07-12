@@ -16,7 +16,6 @@ function ChannelViewIndex() {
     const dispatch = useDispatch()
     const server = useSelector(state => state.server.currentServer)
     const user = useSelector(state => state.session.user)
-    console.log("CURRENT SERVER: ", server)
     const history = useHistory()
 
     useEffect(() => {

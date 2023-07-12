@@ -42,8 +42,6 @@ function DiscoverServersIndex() {
 
         await dispatch(createMembershipThunk(membership, server.id))
         // await dispatch(getDiscoverServersThunk())
-        console.log("SERVER ID: ", server.id)
-        console.log("CHANNELS AT ZERO ID: ", server.channels[0].id)
         history.push(`/${server.id}/${server.channels[0].id}`)
     }
 

@@ -34,8 +34,6 @@ function LoginFormPage() {
     const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
-      console.log("These are the errors in the data", data)
-      console.log("These are the errors in the login", errors)
     }
   };
 

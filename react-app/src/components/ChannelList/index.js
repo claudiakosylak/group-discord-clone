@@ -17,9 +17,6 @@ function ChannelList({server}) {
     const user = useSelector(state => state.session.user)
     const {serverId, channelId} = useParams();
 
-    console.log("SERVER ID: ", serverId)
-    console.log("CHANNEL ID: ", channelId)
-
     const dispatch = useDispatch()
 
 

@@ -13,8 +13,6 @@ function NewChannelModal({ serverId }) {
     const [hasErrors, setHasErrors] = useState(false)
     const { closeModal } = useModal();
 
-    console.log("THE SERVER ID: ", serverId)
-
     const history = useHistory();
 
     useEffect(() => {
