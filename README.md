@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/claudiakosylak/group-discord-clone">
-    <img src="react-app/public/discord.svg" alt="Logo">
+    <img src="react-app/public/discord.svg" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Discordia</h3>
