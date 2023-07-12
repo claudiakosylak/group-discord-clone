@@ -220,10 +220,10 @@ See the [open issues](https://github.com/claudiakosylak/group-discord-clone/issu
 <!-- CONTACT -->
 ## Contact
 
-Claudia Kosylak - claudiakosylak@gmail.com - https://github.com/claudiakosylak/
-Matt McBurnett - mattmcburnett@gmail.com - https://github.com/mattmcburnett
-James Lee - https://github.com/lee963654
-Hanna Rosenfeld - hannazrosenfeld@gmail.com - https://github.com/hannarosenfeld
+* Claudia Kosylak - claudiakosylak@gmail.com - https://github.com/claudiakosylak/
+* Matt McBurnett - mattmcburnett@gmail.com - https://github.com/mattmcburnett
+* James Lee - https://github.com/lee963654
+* Hanna Rosenfeld - hannazrosenfeld@gmail.com - https://github.com/hannarosenfeld
 
 Project Link: [https://github.com/claudiakosylak/group-discord-clone](https://github.com/claudiakosylak/group-discord-clone)
 
