@@ -18,24 +18,16 @@ def seed_memberships():
         db.session.add(membership2)
     db.session.commit()
 
-    # mem1 = Membership(
-    #     role = 'member', server_id=1, user_id=2
-    # )
-    # mem2 = Membership(
-    #     role = 'member', server_id=2, user_id=1
-    # )
-    # mem3 = Membership(
-    #     role = 'member', server_id=2, user_id=3
-    # )
-    # mem4 = Membership(
-    #         role = 'member', server_id=1, user_id=3
-    #     )
+    userId = 96
 
-    # db.session.add(mem1)
-    # db.session.add(mem2)
-    # db.session.add(mem3)
-    # db.session.add(mem4)
-    # db.session.commit()
+    for x in range(6, 21):
+        for y in range(1, 4):
+            membership3 = Membership(
+                role = "member", server_id = x, user_id = userId
+            )
+            db.session.add(membership3)
+            userId -= 1
+    db.session.commit()
 
 
 def undo_memberships():
