@@ -13,7 +13,14 @@ function NewServerModal() {
     const [hasErrors, setHasErrors] = useState(false)
     const servers = useSelector(state => state.server.allServers)
     const serversList = Object.values(servers)
-    const lastServer = serversList[serversList.length - 1]
+
+    const defaultImages = [
+        "https://i.imgur.com/dHWrBJK.png",
+        "https://i.imgur.com/vQrEpS1.png",
+        "https://i.imgur.com/PI7kWup.png",
+        "https://i.imgur.com/sidVfiL.png",
+        "https://i.imgur.com/fDinbtN.png"
+    ]
 
 
     const [previewIcon, setPreviewIcon] = useState(null);
@@ -35,7 +42,7 @@ function NewServerModal() {
 
         const serverInfo = {
             title,
-            // previewIcon,
+            preview_icon: defaultImages[(Math.floor(Math.random() * defaultImages.length))]
         }
 
 
@@ -43,7 +50,7 @@ function NewServerModal() {
             setHasErrors(true)
         } else {
             await dispatch(createNewServerThunk(serverInfo)).then(newServer => history.push(`/${newServer.id}/${newServer.channels[0].id}`))
-            // await dispatch(getServersThunk())
+            await dispatch(getServersThunk())
             // if (serversList.length > 0) {
                 // history.push(`/${lastServer.id}/${lastServer.channels[0].id}`)
                 setHasErrors(false)

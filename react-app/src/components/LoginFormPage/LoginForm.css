@@ -69,7 +69,8 @@
     border: none;
     color: #B5BAC1;
     font-size: 18px;
-    outline: none
+    outline: none;
+    padding: 5px;
 }
 
 .login-form-button {

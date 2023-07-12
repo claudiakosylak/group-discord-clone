@@ -52,6 +52,10 @@
     justify-content: space-between;
 }
 
+#channel-message-scroll::-webkit-scrollbar {
+    width: 1px
+}
+
 #channel-message-scroll > p {
     padding: 20px 0 0 20px;
 }
@@ -76,8 +80,8 @@
 }
 
 .message-user-pic {
-    width: 2.5em;
-    height: 2.5em;
+    width: 40px;
+    height: 40px;
 }
 
 .message-username {
@@ -102,4 +106,16 @@
 .channel-messages-message-div:hover i {
     opacity: 1;
     cursor: pointer;
+}
+
+.dummy-bottom {
+    height: 5px;
+}
+
+.message-content p {
+    word-break: break-word;
+}
+
+.message-content {
+    width: 90%;
 }

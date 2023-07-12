@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { io } from 'socket.io-client';
 import { useDispatch, useSelector } from "react-redux";
 import { getAllChannelMessagesThunk } from '../../store/channelMessages';
@@ -14,15 +14,16 @@ function ChannelMessages({ channel, server }) {
     const [chatInput, setChatInput] = useState("");
     const user = useSelector(state => state.session.user);
     const channelMessages = useSelector(state => state.channelMessages.allChannelMessages);
+
     const currentChannel = useSelector(state => state.channel.currentChannel)
     let messageList;
+    const bottomRef = useRef();
 
     if (channelMessages) {
         messageList = Object.values(channelMessages);
     }
+    const messageListLength = messageList.length;
 
-
-    console.log("MESSAGELIST: ", messageList)
 
     useEffect(() => {
         // open socket connection
@@ -48,6 +49,8 @@ function ChannelMessages({ channel, server }) {
             // dispatch(getAllChannelMessagesThunk(channel));
         })
 
+        bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+
         // when component unmounts, disconnect
         return (() => {
             socket.disconnect()
@@ -55,7 +58,12 @@ function ChannelMessages({ channel, server }) {
     }, [])
 
     useEffect(() => {
+        bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, [messageListLength])
+
+    useEffect(() => {
         dispatch(getAllChannelMessagesThunk(channel));
+        bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
         setMessages(messageList);
     }, [channel])
 
@@ -114,6 +122,7 @@ function ChannelMessages({ channel, server }) {
                                     </div>
                             </div>
                         ))}
+                        <div ref={bottomRef} className="dummy-bottom"></div>
                     </div>
                 </div>
                 <form id='chat-input-form' onSubmit={sendChat}>

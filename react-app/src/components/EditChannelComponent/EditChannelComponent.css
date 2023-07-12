@@ -49,7 +49,7 @@
     border-radius: 5px;
     height: 35px;
     margin-top: 5px;
-
+    padding: 5px;
 }
 
 .edit-channel-labels > input:focus {

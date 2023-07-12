@@ -36,6 +36,7 @@
     width: 100%;
     border-radius: 5px;
     height: 40px;
+    padding: 5px;
 }
 
 .delete-server-container input:focus {
