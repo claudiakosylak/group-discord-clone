@@ -117,7 +117,71 @@ gaming = [
     [18, "Gaming has evolved so much over the years. It's impressive how it can be both a form of entertainment and a platform for socializing."],
 ]
 
+art_show = [
+    [8, "Hey everyone! There's a local art show happening this weekend. Who's interested in going?"],
+    [12, "I love art shows! Count me in. I'm always excited to explore and support local artists."],
+    [1, "I'm definitely interested! Art shows are a great way to discover new talents and get inspired."],
+    [16, "I've been meaning to attend more art events. It's a wonderful opportunity to appreciate creativity and expressiveness."],
+    [20, "I'm up for it too! It's always fascinating to see different art styles and interpretations."],
+    [24, "That sounds intriguing! I'd love to join and immerse myself in the local art scene. Let's make plans to go together."],
+    [8, "Great! Let's set a date and time. The art show starts at 5 PM on Saturday. How about we meet up at 4:30 PM near the entrance?"],
+    [12, "Sounds like a plan, Ava. I'll mark it on my calendar. Can't wait to explore the art exhibits with all of you."],
+    [1, "I'll be there too! Looking forward to discussing the art pieces and sharing our thoughts on the creative expressions."],
+    [16, "I'll make sure to be there on time. It'll be a refreshing experience to see the local art scene come to life."],
+]
 
+music_recommendations = [
+    [8, "Hey everyone! I'm looking for some new music recommendations. What are you all currently listening to?"],
+    [12, "Lately, I've been into indie rock bands. I can recommend a few artists if you're interested in that genre."],
+    [1, "I'm open to any genre! Share some of your indie rock recommendations, User 12. I'm always looking to expand my music library."],
+    [16, "I've been exploring electronic music lately. It's a diverse genre with so many subgenres and talented artists to discover."],
+    [20, "I'm a big fan of hip-hop. If you're interested, I can suggest some amazing artists and albums you might enjoy."],
+    [8, "Thanks for the recommendations, everyone! I'll check out the indie rock artists, electronic music, and hip-hop suggestions. Can't wait to broaden my musical horizons!"],
+]
+
+art_creativity = [
+    [8, "Hey everyone! Let's talk about art and creativity. What does art mean to you?"],
+    [12, "Art, to me, is a form of self-expression. It allows me to communicate emotions, thoughts, and perspectives in unique ways."],
+    [1, "I see art as a powerful means of storytelling. It has the ability to convey messages and evoke emotions that words sometimes can't."],
+    [16, "Art is a way to explore and challenge boundaries. It encourages us to think outside the box and embrace our imagination."],
+    [20, "For me, art is a source of inspiration and a way to appreciate beauty in its various forms. It brings joy and wonder into my life."],
+    [24, "Art is a reflection of the artist's soul. It's a visual representation of their experiences, passions, and interpretations of the world."],
+    [8, "I love how art can be interpreted differently by each person who experiences it. It sparks conversations and encourages diverse perspectives."],
+    [12, "Absolutely, Ava! Art has the power to connect people, inspire dialogue, and ignite creativity in both the artist and the audience."],
+]
+
+professor = [
+    [1, "Hey everyone, have you had a class with Professor Smith? I find their teaching style frustrating."],
+    [10, "I'm in that class too, and I completely agree. Their lectures are so disorganized, and it's hard to follow along."],
+    [15, "I've had them before, and I had a similar experience. It's frustrating when a professor can't effectively communicate the course material."],
+    [20, "I've heard similar complaints from other students as well. It's unfortunate when a professor's teaching style hinders our learning experience."],
+    [25, "I'm currently in their class too, and it's been a struggle. The lack of clarity and guidance makes it challenging to grasp the concepts."],
+    [30, "I had Professor Smith last semester, and it wasn't a positive experience. Their grading seemed inconsistent, which was frustrating."],
+    [35, "I can relate to that. I had them for a different course, and it was one of my least favorite classes. Their teaching methods need improvement."],
+    [1, "It's reassuring to know I'm not the only one struggling with this professor. I wonder if there's anything we can do to address our concerns."],
+    [10, "We could potentially provide feedback to the department or speak to the professor directly about our difficulties. It's worth considering."],
+    [15, "That's a good idea, Isabella. Constructive feedback might help them reflect on their teaching methods and make necessary adjustments."],
+]
+
+memes = [
+    [1, "Hey everyone! Where do you usually find the best funny memes? I need some laughs."],
+    [10, "I often find hilarious memes on social media platforms like Reddit and Twitter. The meme communities there are quite active."],
+    [15, "Agreed, Isabella. Reddit is my go-to for funny memes. There are specific subreddits dedicated to memes that always deliver the laughs."],
+    [20, "I also find great memes on Instagram. Many meme pages and accounts curate funny content, and you can explore different meme genres too."],
+    [25, "Besides social media, I find funny memes on meme websites like 9GAG and Imgur. They have a vast collection of memes to browse through."],
+    [30, "If you're into video memes, TikTok is worth checking out. Many creators there come up with creative and humorous short videos."],
+    [35, "I find a lot of funny memes on Facebook too. There are meme groups and pages where users share hilarious content regularly."],
+]
+
+tech_talk = [
+    [1, "Hey everyone! Let's talk about the latest trends in AI. What exciting developments have you come across recently?"],
+    [10, "I've been following the advancements in natural language processing. AI models are getting better at understanding and generating human-like text."],
+    [15, "That's fascinating, User 10! I've been intrigued by the progress in computer vision. AI algorithms can now analyze images and videos with remarkable accuracy."],
+    [20, "I've been exploring the applications of AI in healthcare. It's impressive how AI is assisting in early disease detection and personalized treatments."],
+    [25, "User 20, that's an exciting area! I've also been reading about AI in autonomous vehicles. It's evolving rapidly, and we may see self-driving cars become more common in the near future."],
+    [30, "Another trend I've noticed is the integration of AI in cybersecurity. AI algorithms can help detect and prevent cyber threats more effectively."],
+    [35, "I'm particularly excited about AI in robotics. The advancements in AI are enabling robots to perform complex tasks and interact more naturally with humans."],
+]
 
 
 announcement_messages = [
@@ -186,6 +250,49 @@ def seed_channel_messages():
     for message in gaming:
         new_message = ChannelMessage(
             content=message[1], user_id = message[0], channel_id = 9
+        )
+        db.session.add(new_message)
+    db.session.commit()
+
+    for message in art_show:
+        new_message = ChannelMessage(
+            content=message[1], user_id = message[0], channel_id = 10
+        )
+        db.session.add(new_message)
+    db.session.commit()
+
+    for message in music_recommendations:
+        new_message = ChannelMessage(
+            content=message[1], user_id = message[0], channel_id = 11
+        )
+        db.session.add(new_message)
+    db.session.commit()
+
+    for message in art_creativity:
+        new_message = ChannelMessage(
+            content=message[1], user_id = message[0], channel_id = 12
+        )
+        db.session.add(new_message)
+    db.session.commit()
+
+    for message in professor:
+        new_message = ChannelMessage(
+            content=message[1], user_id = message[0], channel_id = 13
+        )
+        db.session.add(new_message)
+    db.session.commit()
+
+
+    for message in memes:
+        new_message = ChannelMessage(
+            content=message[1], user_id = message[0], channel_id = 14
+        )
+        db.session.add(new_message)
+    db.session.commit()
+
+    for message in tech_talk:
+        new_message = ChannelMessage(
+            content=message[1], user_id = message[0], channel_id = 15
         )
         db.session.add(new_message)
     db.session.commit()
