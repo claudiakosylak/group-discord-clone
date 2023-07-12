@@ -117,14 +117,14 @@ first_names = [
     "Mason", "Mia", "Logan", "Harper", "Jackson", "Amelia", "Elijah", "Charlotte", "Caleb", "Abigail",
     "Henry", "Emily", "Alexander", "Avery", "Sebastian", "Ella", "Benjamin", "Scarlett", "James", "Grace",
     "Jacob", "Chloe", "Samuel", "Victoria", "Michael", "Lily", "Daniel", "Layla", "Matthew", "Zoe",
-    "Joseph", "Nora", "David", "Riley"
+    "Joseph", "Nora", "David"
 ]
 
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     about_num = 1
-    pic_num = 1
+    pic_num = 2
     demo = User(
         username='Demo', email='demo@aa.io', password='password', date_of_birth=dob1.date(), about=about_sections[0], profile_pic=user_images[0])
 
