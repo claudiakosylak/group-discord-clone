@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { createNewServerThunk } from "../../store/server"
+import { createNewServerThunk, getServersThunk } from "../../store/server"
 import { useHistory } from "react-router-dom";
 import "./NewServerModal.css";
 
@@ -50,7 +50,7 @@ function NewServerModal() {
             setHasErrors(true)
         } else {
             await dispatch(createNewServerThunk(serverInfo)).then(newServer => history.push(`/${newServer.id}/${newServer.channels[0].id}`))
-            // await dispatch(getServersThunk())
+            await dispatch(getServersThunk())
             // if (serversList.length > 0) {
                 // history.push(`/${lastServer.id}/${lastServer.channels[0].id}`)
                 setHasErrors(false)
