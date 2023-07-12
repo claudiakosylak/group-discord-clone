@@ -3,15 +3,15 @@ from sqlalchemy.sql import text
 from datetime import datetime
 
 def seed_memberships():
-    for x in range(1, 10):
-        for y in range(2, 4):
+    for x in range(1, 6):
+        for y in range(2, 11):
             membership = Membership(
                 role = 'member', server_id = x, user_id = x * y
             )
             db.session.add(membership)
     db.session.commit()
 
-    for x in range(2, 10):
+    for x in range(2, 6):
         membership2 = Membership(
             role = 'member', server_id = x, user_id = 1
         )

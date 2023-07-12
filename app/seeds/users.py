@@ -1,6 +1,7 @@
 from app.models import db, User, environment, SCHEMA
 from sqlalchemy.sql import text
 from datetime import datetime
+import random
 
 dob1 = datetime.strptime('1990-11-11', '%Y-%m-%d')
 
@@ -112,6 +113,14 @@ user_images = [
 
 ]
 
+defaultImages = [
+        "https://i.imgur.com/dHWrBJK.png",
+        "https://i.imgur.com/vQrEpS1.png",
+        "https://i.imgur.com/PI7kWup.png",
+        "https://i.imgur.com/sidVfiL.png",
+        "https://i.imgur.com/fDinbtN.png"
+    ]
+
 first_names = [
     "Ethan", "Olivia", "Liam", "Emma", "Noah", "Ava", "Aiden", "Isabella", "Lucas", "Sophia",
     "Mason", "Mia", "Logan", "Harper", "Jackson", "Amelia", "Elijah", "Charlotte", "Caleb", "Abigail",
@@ -120,11 +129,26 @@ first_names = [
     "Joseph", "Nora", "David"
 ]
 
+first_names2 = [
+    "Emma", "Liam", "Olivia", "Noah", "Ava", "Isabella", "Sophia", "Mia", "Charlotte", "Amelia",
+    "Harper", "Evelyn", "Luna", "Ella", "Elizabeth", "Grace", "Sofia", "Victoria", "Avery", "Scarlett",
+    "Mila", "Lily", "Eleanor", "Hannah", "Zoey", "Aria", "Penelope", "Leah", "Audrey", "Violet",
+    "Stella", "Bella", "Claire", "Lucy", "Paisley", "Everly", "Nova", "Brooklyn", "Ellie", "Savannah",
+    "Layla", "Naomi", "Skylar", "Liam", "Noah", "Jackson", "Aiden", "Lucas", "Caden", "Grayson",
+    "Mason", "Elijah", "Logan", "Oliver", "Ethan", "Avery", "Benjamin", "Henry", "Daniel", "Alexander",
+    "Sebastian", "Matthew", "Jack", "William", "James", "Michael", "David", "Joseph", "Samuel", "Owen",
+    "Wyatt", "Carter", "John", "Luke", "Gabriel", "Anthony", "Dylan", "Isaac", "Andrew", "Joshua",
+    "Julian", "Levi", "Christopher", "Leo", "Nathan", "Adam", "Thomas", "Ryan", "Eli", "Aaron"
+]
+
+new_first_names = list(set(first_names2) - set(first_names))
+
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     about_num = 1
     pic_num = 2
+    pass_num = 1
     demo = User(
         username='Demo', email='demo@aa.io', password='password', date_of_birth=dob1.date(), about=about_sections[0], profile_pic=user_images[0])
 
@@ -145,6 +169,14 @@ def seed_users():
         pic_num += 1
         db.session.add(user)
         db.session.commit()
+
+    for name in new_first_names:
+        user = User(
+            username=name, email=f'{name}@aa.io', password=f"password{pass_num}", date_of_birth=dob1.date(), profile_pic=random.choice(defaultImages)
+        )
+        pass_num += 1
+        db.session.add(user)
+    db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
 # have a built in function to do this. With postgres in production TRUNCATE
