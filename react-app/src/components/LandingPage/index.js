@@ -1,11 +1,12 @@
 import { useSelector } from "react-redux";
-import { useHistory, NavLink, Link } from "react-router-dom";
+import { useHistory, Redirect, Link } from "react-router-dom";
 import './LandingPage.css';
 import MainRight from './main_right_background.83ec969b.svg'
 import MainLeft from './main_left_background.svg';
 import Main from './background-main.svg';
 import BannerTwo from './bannerTwo.svg';
 import Avatar from './discord-avatar-512-KHS19.png'
+import { useEffect } from "react";
 
 
 function LandingPage() {
@@ -24,6 +25,10 @@ function LandingPage() {
         history.push('/')
     }
 
+    const toHome = () => {
+        history.push("/home")
+    }
+
     return (
         <div className="landing-page-container">
             <div className="landing-page-wrapper">
@@ -32,10 +37,13 @@ function LandingPage() {
                         <i id='keyboard' className="fa-solid fa-keyboard"></i>
                         <p id="discordia-title">Discordia</p>
                     </div>
-                    <div  id="landing-page-navbar-buttons-container">
+                    {!user && (
+
+                        <div  id="landing-page-navbar-buttons-container">
                         <button onClick={toSignup} className="signup-button" id="landing-page-signup-navbar-button">Sign Up</button>
                         <button onClick={toLogin} className="login-button" id="landing-page-login-navbar-button">Login</button>
                     </div>
+                        )}
                 </div>
                 <div id="landing-page-top-banner-container">
                     <div id="landing-background-banner-container">
@@ -51,10 +59,19 @@ function LandingPage() {
                             Feel free to take a look around! Discordia is a place that makes it easy to talk every day and hang out more often.
                             Where just you and a handful of friends can spend time together.
                         </p>
-                        <div id="top-banner-buttons-container">
+                        {!user ? (
+
+                            <div id="top-banner-buttons-container">
                             <button onClick={toSignup} className="signup-button" id="banner-signup-button">Sign up for Discordia</button>
                             <button onClick={toLogin} className="login-button" id="banner-login-button">Log in to your account</button>
                         </div>
+                            ) : (
+                                <div className="handle-logged-in">
+
+                                <button onClick={toHome} className="signup-button" id="banner-login-button">Enter Discordia</button>
+                                <p>You are logged in as {user.username}</p>
+                                </div>
+                            )}
                     </div>
                 </div>
                 <div id="banner-two-container">
