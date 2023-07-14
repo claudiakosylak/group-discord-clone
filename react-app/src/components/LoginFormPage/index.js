@@ -12,19 +12,18 @@ function LoginFormPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-
   const history= useHistory();
 
 
-  if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser) return <Redirect to="/home" />;
 
   const demoUserLogin = () => {
 
-    return dispatch(login('demo@aa.io', "password")).then(() => history.push('/'))
+    return dispatch(login('demo@aa.io', "password")).then(() => history.push('/home'))
   }
 
   const demoUserLoginTwo = () => {
-    return dispatch(login("marnie@aa.io", "password")).then(() => history.push('/'))
+    return dispatch(login("marnie@aa.io", "password")).then(() => history.push('/home'))
   }
 
 

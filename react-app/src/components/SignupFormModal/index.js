@@ -35,7 +35,7 @@ function SignupFormModal() {
 	}, [month, day, year, username, password, email])
 
 
-	if (sessionUser) return <Redirect to="/" />;
+	if (sessionUser) return <Redirect to="/home" />;
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();

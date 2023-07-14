@@ -31,3 +31,11 @@
     overflow: hidden;
     white-space: no-wrap;
 }
+
+/* .member-list-outer-wrapper {
+    overflow-y: scroll;
+}
+
+.member-list-outer-wrapper::webkit-scrollbar {
+    width: 1px;
+} */

@@ -12,6 +12,7 @@ import TopBar from "./components/TopBar";
 import ServersList from "./components/ServersList";
 import ChannelViewIndex from "./components/ChannelViewIndex";
 import { Redirect } from "react-router-dom/cjs/react-router-dom";
+import LandingPage from "./components/LandingPage";
 
 
 function App() {
@@ -27,14 +28,13 @@ function App() {
     <>
       {/* <Navigation isLoaded={isLoaded} /> */}
         <Switch>
-          <Route exact path="/">
-              {sessionUser ? (
+          <Route exact path='/'>
+            <LandingPage />
+          </Route>
+          <Route exact path="/home">
+              
                 <ServerNavBar isLoaded={isLoaded} />
-               ) : (
-                  <Redirect to="/login" />
-                )
 
-              }
 
           </Route>
           <Route path="/:serverId/:channelId">

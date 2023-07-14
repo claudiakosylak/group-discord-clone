@@ -17,7 +17,7 @@ function MembershipNavBar ({server}) {
 
 
     return (
-        <div>
+        <div className="member-list-outer-wrapper">
             <ul className="memberships-list-container">
                 <li className="member-list-item"><img className="members-pic" src={server.user.profile_pic}></img><span className="members-username">{server.user.username}</span><span className="crown">👑</span></li>
             {memberships.map(membership => (
