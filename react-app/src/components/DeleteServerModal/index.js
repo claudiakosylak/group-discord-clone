@@ -31,7 +31,7 @@ function DeleteServerModal({ server }) {
             dispatch(getServersThunk())
             closeModal()
             // setHasSubmitted(false)
-            history.push('/')
+            history.push('/home')
         } else {
             setErrors("You didn't enter the server name correctly")
         }
