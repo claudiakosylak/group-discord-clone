@@ -1,12 +1,11 @@
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink, Link } from "react-router-dom";
 import './LandingPage.css';
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
-
 import MainRight from './main_right_background.83ec969b.svg'
 import MainLeft from './main_left_background.svg';
 import Main from './background-main.svg';
 import BannerTwo from './bannerTwo.svg';
+import Avatar from './discord-avatar-512-KHS19.png'
 
 
 function LandingPage() {
@@ -34,8 +33,8 @@ function LandingPage() {
                         <p id="discordia-title">Discordia</p>
                     </div>
                     <div  id="landing-page-navbar-buttons-container">
-                        <button onClick={toSignup} id="landing-page-signup-navbar-button">Sign Up</button>
-                        <button onClick={toLogin}  id="landing-page-login-navbar-button">Login</button>
+                        <button onClick={toSignup} className="signup-button" id="landing-page-signup-navbar-button">Sign Up</button>
+                        <button onClick={toLogin} className="login-button" id="landing-page-login-navbar-button">Login</button>
                     </div>
                 </div>
                 <div id="landing-page-top-banner-container">
@@ -53,8 +52,8 @@ function LandingPage() {
                             Where just you and a handful of friends can spend time together.
                         </p>
                         <div id="top-banner-buttons-container">
-                            <button onClick={toSignup} id="banner-signup-button">Sign up for Discordia</button>
-                            <button onClick={toLogin} id="banner-login-button">Log in to your account</button>
+                            <button onClick={toSignup} className="signup-button" id="banner-signup-button">Sign up for Discordia</button>
+                            <button onClick={toLogin} className="login-button" id="banner-login-button">Log in to your account</button>
                         </div>
                     </div>
                 </div>
@@ -74,42 +73,43 @@ function LandingPage() {
                     <div id="dev-info-wrapper">
                         <div className="dev-wrapper">
                             <div className="avatar-container">
-                                <i id="avatar" className="fa-brands fa-discord"></i>
+                                <img id="avatar" className="avatar-container" src={Avatar}></img>
+
                             </div>
                             <div className="dev-info">
                                 <p className="cool-kids-names">Claudia Kosylak</p>
-                                <i className="fa-brands fa-github"></i>
-                                <i className="fa-brands fa-linkedin"></i>
+                                <Link to={{pathname: 'https://github.com/claudiakosylak'}} target="_blank"><i className="fa-brands fa-github"></i></Link>
+                                <Link to={{pathname: 'https://www.linkedin.com/in/claudiakosylak/'}} target="_blank"><i className="fa-brands fa-linkedin"></i></Link>
                             </div>
                         </div>
                         <div className="dev-wrapper">
                             <div className="avatar-container">
-                                <i id="avatar" className="fa-brands fa-discord"></i>
+                                <img id="avatar" className="avatar-container" src={Avatar}></img>
                             </div>
                             <div className="dev-info">
                                 <p className="cool-kids-names">Hanna Rosenfeld</p>
-                                <i className="fa-brands fa-github"></i>
-                                <i className="fa-brands fa-linkedin"></i>
+                                <Link to={{pathname: 'https://github.com/hannarosenfeld/'}} target="_blank"><i className="fa-brands fa-github"></i></Link>
+                                <Link to={{pathname: 'https://www.linkedin.com/in/hannazitarosenfeld/'}} target="_blank"><i className="fa-brands fa-linkedin"></i></Link>
                             </div>
                         </div>
                         <div className="dev-wrapper">
                             <div className="avatar-container">
-                                <i id="avatar" className="fa-brands fa-discord"></i>
+                                <img id="avatar" className="avatar-container" src={Avatar}></img>
                             </div>
                             <div className="dev-info">
                                 <p className="cool-kids-names">James Lee</p>
-                                <i className="fa-brands fa-github"></i>
-                                <button id="james-linkedin"><i className="fa-brands fa-linkedin"></i></button>
+                                <Link to={{pathname: 'https://github.com/lee963654'}} target="_blank"><i className="fa-brands fa-github"></i></Link>
+                                <Link to={{pathname: 'https://www.linkedin.com/in/jamesleeswe/'}} target="_blank"><i className="fa-brands fa-linkedin"></i></Link>
                             </div>
                         </div>
                         <div className="dev-wrapper">
                             <div className="avatar-container">
-                                <i id="avatar" className="fa-brands fa-discord"></i>
+                                <img id="avatar" className="avatar-container" src={Avatar}></img>
                             </div>
                             <div className="dev-info">
                                 <p className="cool-kids-names">Matt McBurnett</p>
-                                <i className="fa-brands fa-github"></i>
-                                <i className="fa-brands fa-linkedin"></i>
+                                <Link to={{pathname: 'https://github.com/mattmcburnett'}} target="_blank"><i className="fa-brands fa-github"></i></Link>
+                                <Link to={{pathname: 'https://www.linkedin.com/in/matt-mcburnett/'}} target="_blank"><i className="fa-brands fa-linkedin"></i></Link>
                             </div>
                         </div>
                     </div>
