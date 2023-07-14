@@ -31,6 +31,7 @@ function DiscoverServersIndex() {
     const handleLogout = (e) => {
         e.preventDefault();
         dispatch(logout());
+        history.push('/')
     };
 
     const handleJoin = async (server) => {

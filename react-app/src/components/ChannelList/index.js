@@ -7,7 +7,7 @@ import NewChannelModal from '../CreateChannelModal';
 import EditChannelModal from '../EditChannelComponent';
 import "./ChannelList.css"
 import { logout } from "../../store/session";
-import { useParams } from 'react-router-dom/cjs/react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 
 
@@ -18,11 +18,12 @@ function ChannelList({server}) {
     const {serverId, channelId} = useParams();
 
     const dispatch = useDispatch()
-
+    const history = useHistory()
 
     const handleLogout = (e) => {
         e.preventDefault();
         dispatch(logout());
+        history.push('/')
       };
 
 

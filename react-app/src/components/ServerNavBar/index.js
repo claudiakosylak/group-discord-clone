@@ -20,13 +20,14 @@ function ServerNavBar({ isLoaded }) {
   const dispatch = useDispatch()
 
 
-  if (!user) {
-    return <Redirect to="/login" />
-  }
+  // if (!user) {
+  //   return <Redirect to="/login" />
+  // }
 
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
+    history.push('/')
   };
 
   return (
@@ -66,21 +67,23 @@ function ServerNavBar({ isLoaded }) {
           <NavLink to="/discover" id='home-page-discover-link-container'>
             <div id='home-page-discover-link'>
               <div id='compass-and-text'>
-                <i class="fa-solid fa-compass" id='discover-compass'></i>
+                <i className="fa-solid fa-compass" id='discover-compass'></i>
                 <p id='discover-link-text'>Explore Disoverable Servers</p>
               </div>
-                <i class="fa-solid fa-angle-right" id='discover-arrow'></i>
+                <i className="fa-solid fa-angle-right" id='discover-arrow'></i>
             </div>
           </NavLink>
 
 
         </div>
           <div className="user-info-wrapper" id='homepage-user-info-wrapper'>
+          {user &&
               <div className="user-info-wrapper-userinfo">
                   <img src={user.profile_pic} className="user-profile-pic"></img>
                   <p>{user.username}</p>
-                </div>
-                <button onClick={handleLogout}><i class="fa-solid fa-person-through-window"></i></button>
+              </div>
+          }
+              <button onClick={handleLogout}><i className="fa-solid fa-person-through-window"></i></button>
           </div>
         </div>
       </div>

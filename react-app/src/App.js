@@ -31,14 +31,10 @@ function App() {
           <Route exact path='/'>
             <LandingPage />
           </Route>
-          <Route exact path="/">
-              {sessionUser ? (
+          <Route exact path="/home">
+              
                 <ServerNavBar isLoaded={isLoaded} />
-               ) : (
-                  <Redirect to="/login" />
-                )
 
-              }
 
           </Route>
           <Route path="/:serverId/:channelId">
