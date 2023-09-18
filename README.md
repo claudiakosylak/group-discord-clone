@@ -15,7 +15,7 @@
     <a href="https://github.com/claudiakosylak/group-discord-clone"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://discordiamulti.onrender.com">View Live Site</a>
+    <a href="https://discordia.onrender.com">View Live Site</a>
     ·
     <a href="https://github.com/claudiakosylak/group-discord-clone/issues">Report Bug</a>
     ·
